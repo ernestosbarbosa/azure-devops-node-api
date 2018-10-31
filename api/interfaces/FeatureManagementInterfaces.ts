@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -19,59 +19,59 @@ export interface ContributedFeature {
     /**
      * Named links describing the feature
      */
-    _links?: any;
+    _links: any;
     /**
      * If true, the feature is enabled unless overridden at some scope
      */
-    defaultState?: boolean;
+    defaultState: boolean;
     /**
      * Rules for setting the default value if not specified by any setting/scope. Evaluated in order until a rule returns an Enabled or Disabled state (not Undefined)
      */
-    defaultValueRules?: ContributedFeatureValueRule[];
+    defaultValueRules: ContributedFeatureValueRule[];
     /**
      * The description of the feature
      */
-    description?: string;
+    description: string;
     /**
      * Extra properties for the feature
      */
-    featureProperties?: { [key: string] : any; };
+    featureProperties: { [key: string] : any; };
     /**
      * Handler for listening to setter calls on feature value. These listeners are only invoked after a successful set has occured
      */
-    featureStateChangedListeners?: ContributedFeatureListener[];
+    featureStateChangedListeners: ContributedFeatureListener[];
     /**
      * The full contribution id of the feature
      */
-    id?: string;
+    id: string;
     /**
      * If this is set to true, then the id for this feature will be added to the list of claims for the request.
      */
-    includeAsClaim?: boolean;
+    includeAsClaim: boolean;
     /**
      * The friendly name of the feature
      */
-    name?: string;
+    name: string;
     /**
      * Suggested order to display feature in.
      */
-    order?: number;
+    order: number;
     /**
      * Rules for overriding a feature value. These rules are run before explicit user/host state values are checked. They are evaluated in order until a rule returns an Enabled or Disabled state (not Undefined)
      */
-    overrideRules?: ContributedFeatureValueRule[];
+    overrideRules: ContributedFeatureValueRule[];
     /**
      * The scopes/levels at which settings can set the enabled/disabled state of this feature
      */
-    scopes?: ContributedFeatureSettingScope[];
+    scopes: ContributedFeatureSettingScope[];
     /**
      * The service instance id of the service that owns this feature
      */
-    serviceInstanceType?: string;
+    serviceInstanceType: string;
     /**
      * Tags associated with the feature.
      */
-    tags?: string[];
+    tags: string[];
 }
 
 /**
@@ -96,11 +96,11 @@ export interface ContributedFeatureHandlerSettings {
     /**
      * Name of the handler to run
      */
-    name?: string;
+    name: string;
     /**
      * Properties to feed to the handler
      */
-    properties?: { [key: string] : any; };
+    properties: { [key: string] : any; };
 }
 
 /**
@@ -116,11 +116,11 @@ export interface ContributedFeatureSettingScope {
     /**
      * The name of the settings scope to use when reading/writing the setting
      */
-    settingScope?: string;
+    settingScope: string;
     /**
      * Whether this is a user-scope or this is a host-wide (all users) setting
      */
-    userScoped?: boolean;
+    userScoped: boolean;
 }
 
 /**
@@ -130,23 +130,23 @@ export interface ContributedFeatureState {
     /**
      * The full contribution id of the feature
      */
-    featureId?: string;
+    featureId: string;
     /**
      * True if the effective state was set by an override rule (indicating that the state cannot be managed by the end user)
      */
-    overridden?: boolean;
+    overridden: boolean;
     /**
      * Reason that the state was set (by a plugin/rule).
      */
-    reason?: string;
+    reason: string;
     /**
      * The scope at which this state applies
      */
-    scope?: ContributedFeatureSettingScope;
+    scope: ContributedFeatureSettingScope;
     /**
      * The current state of this feature
      */
-    state?: ContributedFeatureEnabledValue;
+    state: ContributedFeatureEnabledValue;
 }
 
 /**
@@ -156,15 +156,15 @@ export interface ContributedFeatureStateQuery {
     /**
      * The list of feature ids to query
      */
-    featureIds?: string[];
+    featureIds: string[];
     /**
      * The query result containing the current feature states for each of the queried feature ids
      */
-    featureStates?: { [key: string] : ContributedFeatureState; };
+    featureStates: { [key: string] : ContributedFeatureState; };
     /**
      * A dictionary of scope values (project name, etc.) to use in the query (if querying across scopes)
      */
-    scopeValues?: { [key: string] : string; };
+    scopeValues: { [key: string] : string; };
 }
 
 /**

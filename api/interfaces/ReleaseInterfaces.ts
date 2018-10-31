@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -16,11 +16,11 @@ import VSSInterfaces = require("../interfaces/common/VSSInterfaces");
 
 
 export interface AgentArtifactDefinition {
-    alias?: string;
-    artifactType?: AgentArtifactType;
-    details?: string;
-    name?: string;
-    version?: string;
+    alias: string;
+    artifactType: AgentArtifactType;
+    details: string;
+    name: string;
+    version: string;
 }
 
 export enum AgentArtifactType {
@@ -38,12 +38,12 @@ export enum AgentArtifactType {
 }
 
 export interface AgentBasedDeployPhase extends DeployPhase {
-    deploymentInput?: AgentDeploymentInput;
+    deploymentInput: AgentDeploymentInput;
 }
 
 export interface AgentDeploymentInput extends DeploymentInput {
-    imageId?: number;
-    parallelExecution?: ExecutionInput;
+    imageId: number;
+    parallelExecution: ExecutionInput;
 }
 
 /**
@@ -53,7 +53,7 @@ export interface AgentPoolQueueReference extends ResourceReference {
     /**
      * The ID of the queue.
      */
-    id?: number;
+    id: number;
 }
 
 export enum ApprovalExecutionOrder {
@@ -86,12 +86,12 @@ export enum ApprovalFilters {
 }
 
 export interface ApprovalOptions {
-    autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped?: boolean;
-    enforceIdentityRevalidation?: boolean;
-    executionOrder?: ApprovalExecutionOrder;
-    releaseCreatorCanBeApprover?: boolean;
-    requiredApproverCount?: number;
-    timeoutInMinutes?: number;
+    autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped: boolean;
+    enforceIdentityRevalidation: boolean;
+    executionOrder: ApprovalExecutionOrder;
+    releaseCreatorCanBeApprover: boolean;
+    requiredApproverCount: number;
+    timeoutInMinutes: number;
 }
 
 export enum ApprovalStatus {
@@ -115,131 +115,131 @@ export interface Artifact {
     /**
      * Gets or sets alias.
      */
-    alias?: string;
+    alias: string;
     /**
      * Gets or sets definition reference. e.g. {"project":{"id":"fed755ea-49c5-4399-acea-fd5b5aa90a6c","name":"myProject"},"definition":{"id":"1","name":"mybuildDefinition"},"connection":{"id":"1","name":"myConnection"}}
      */
-    definitionReference?: { [key: string] : ArtifactSourceReference; };
+    definitionReference: { [key: string] : ArtifactSourceReference; };
     /**
      * Gets or sets as artifact is primary or not.
      */
-    isPrimary?: boolean;
-    isRetained?: boolean;
-    sourceId?: string;
+    isPrimary: boolean;
+    isRetained: boolean;
+    sourceId: string;
     /**
      * Gets or sets type. It can have value as 'Build', 'Jenkins', 'GitHub', 'Nuget', 'Team Build (external)', 'ExternalTFSBuild', 'Git', 'TFVC', 'ExternalTfsXamlBuild'.
      */
-    type?: string;
+    type: string;
 }
 
 export interface ArtifactContributionDefinition {
-    artifactTriggerConfiguration?: ArtifactTriggerConfiguration;
-    artifactType?: string;
-    artifactTypeStreamMapping?: { [key: string] : string; };
-    browsableArtifactTypeMapping?: { [key: string] : string; };
-    dataSourceBindings?: DataSourceBinding[];
-    displayName?: string;
-    downloadTaskId?: string;
-    endpointTypeId?: string;
-    inputDescriptors?: FormInputInterfaces.InputDescriptor[];
-    name?: string;
-    taskInputMapping?: { [key: string] : string; };
-    uniqueSourceIdentifier?: string;
+    artifactTriggerConfiguration: ArtifactTriggerConfiguration;
+    artifactType: string;
+    artifactTypeStreamMapping: { [key: string] : string; };
+    browsableArtifactTypeMapping: { [key: string] : string; };
+    dataSourceBindings: DataSourceBinding[];
+    displayName: string;
+    downloadTaskId: string;
+    endpointTypeId: string;
+    inputDescriptors: FormInputInterfaces.InputDescriptor[];
+    name: string;
+    taskInputMapping: { [key: string] : string; };
+    uniqueSourceIdentifier: string;
 }
 
 export interface ArtifactDownloadInputBase {
-    alias?: string;
-    artifactDownloadMode?: string;
-    artifactType?: string;
+    alias: string;
+    artifactDownloadMode: string;
+    artifactType: string;
 }
 
 export interface ArtifactFilter {
-    createReleaseOnBuildTagging?: boolean;
-    sourceBranch?: string;
-    tags?: string[];
-    useBuildDefinitionBranch?: boolean;
+    createReleaseOnBuildTagging: boolean;
+    sourceBranch: string;
+    tags: string[];
+    useBuildDefinitionBranch: boolean;
 }
 
 export interface ArtifactInstanceData {
-    accountName?: string;
-    authenticationToken?: string;
-    tfsUrl?: string;
-    version?: string;
+    accountName: string;
+    authenticationToken: string;
+    tfsUrl: string;
+    version: string;
 }
 
 export interface ArtifactMetadata {
     /**
      * Sets alias of artifact.
      */
-    alias?: string;
+    alias: string;
     /**
      * Sets instance reference of artifact. e.g. for build artifact it is build number.
      */
-    instanceReference?: BuildVersion;
+    instanceReference: BuildVersion;
 }
 
 export interface ArtifactProvider {
-    id?: number;
-    name?: string;
-    sourceUri?: string;
-    version?: string;
+    id: number;
+    name: string;
+    sourceUri: string;
+    version: string;
 }
 
 export interface ArtifactsDownloadInput {
-    downloadInputs?: ArtifactDownloadInputBase[];
+    downloadInputs: ArtifactDownloadInputBase[];
 }
 
 export interface ArtifactSourceId {
-    artifactTypeId?: string;
-    sourceIdInputs?: SourceIdInput[];
+    artifactTypeId: string;
+    sourceIdInputs: SourceIdInput[];
 }
 
 export interface ArtifactSourceIdsQueryResult {
-    artifactSourceIds?: ArtifactSourceId[];
+    artifactSourceIds: ArtifactSourceId[];
 }
 
 export interface ArtifactSourceReference {
-    id?: string;
-    name?: string;
+    id: string;
+    name: string;
 }
 
 export interface ArtifactSourceTrigger extends ReleaseTriggerBase {
     /**
      * Artifact source alias for Artifact Source trigger type
      */
-    artifactAlias?: string;
-    triggerConditions?: ArtifactFilter[];
+    artifactAlias: string;
+    triggerConditions: ArtifactFilter[];
 }
 
 export interface ArtifactTriggerConfiguration {
-    isTriggerSupported?: boolean;
-    isTriggerSupportedOnlyInHosted?: boolean;
-    isWebhookSupportedAtServerLevel?: boolean;
-    payloadHashHeaderName?: string;
-    resources?: { [key: string] : string; };
-    webhookPayloadMapping?: { [key: string] : string; };
+    isTriggerSupported: boolean;
+    isTriggerSupportedOnlyInHosted: boolean;
+    isWebhookSupportedAtServerLevel: boolean;
+    payloadHashHeaderName: string;
+    resources: { [key: string] : string; };
+    webhookPayloadMapping: { [key: string] : string; };
 }
 
 export interface ArtifactTypeDefinition {
-    artifactTriggerConfiguration?: ArtifactTriggerConfiguration;
-    artifactType?: string;
-    displayName?: string;
-    endpointTypeId?: string;
-    inputDescriptors?: FormInputInterfaces.InputDescriptor[];
-    name?: string;
-    uniqueSourceIdentifier?: string;
+    artifactTriggerConfiguration: ArtifactTriggerConfiguration;
+    artifactType: string;
+    displayName: string;
+    endpointTypeId: string;
+    inputDescriptors: FormInputInterfaces.InputDescriptor[];
+    name: string;
+    uniqueSourceIdentifier: string;
 }
 
 export interface ArtifactVersion {
-    alias?: string;
-    defaultVersion?: BuildVersion;
-    errorMessage?: string;
-    sourceId?: string;
-    versions?: BuildVersion[];
+    alias: string;
+    defaultVersion: BuildVersion;
+    errorMessage: string;
+    sourceId: string;
+    versions: BuildVersion[];
 }
 
 export interface ArtifactVersionQueryResult {
-    artifactVersions?: ArtifactVersion[];
+    artifactVersions: ArtifactVersion[];
 }
 
 export enum AuditAction {
@@ -255,53 +255,51 @@ export enum AuthorizationHeaderFor {
 }
 
 export interface AutoTriggerIssue {
-    issue?: Issue;
-    issueSource?: IssueSource;
-    project?: ProjectReference;
-    releaseDefinitionReference?: ReleaseDefinitionShallowReference;
-    releaseTriggerType?: ReleaseTriggerType;
+    issue: Issue;
+    issueSource: IssueSource;
+    project: ProjectReference;
+    releaseDefinitionReference: ReleaseDefinitionShallowReference;
+    releaseTriggerType: ReleaseTriggerType;
 }
 
 export interface AzureKeyVaultVariableGroupProviderData extends VariableGroupProviderData {
-    lastRefreshedOn?: Date;
-    serviceEndpointId?: string;
-    vault?: string;
+    lastRefreshedOn: Date;
+    serviceEndpointId: string;
+    vault: string;
 }
 
 export interface AzureKeyVaultVariableValue extends VariableValue {
-    contentType?: string;
-    enabled?: boolean;
-    expires?: Date;
+    contentType: string;
+    enabled: boolean;
+    expires: Date;
 }
 
 export interface BaseDeploymentInput {
-    condition?: string;
+    condition: string;
     /**
      * Gets or sets the job cancel timeout in minutes for deployment which are cancelled by user for this release environment
      */
-    jobCancelTimeoutInMinutes?: number;
-    overrideInputs?: { [key: string] : string; };
+    jobCancelTimeoutInMinutes: number;
+    overrideInputs: { [key: string] : string; };
     /**
      * Gets or sets the job execution timeout in minutes for deployment which are queued against this release environment
      */
-    timeoutInMinutes?: number;
+    timeoutInMinutes: number;
 }
 
 export interface BuildArtifactDownloadInput extends ArtifactDownloadInputBase {
-    artifactItems?: string[];
+    artifactItems: string[];
 }
 
 export interface BuildVersion {
-    commitMessage?: string;
-    definitionId?: string;
-    definitionName?: string;
-    id?: string;
-    name?: string;
-    sourceBranch?: string;
-    sourcePullRequestVersion?: SourcePullRequestVersion;
-    sourceRepositoryId?: string;
-    sourceRepositoryType?: string;
-    sourceVersion?: string;
+    commitMessage: string;
+    id: string;
+    name: string;
+    sourceBranch: string;
+    sourcePullRequestVersion: SourcePullRequestVersion;
+    sourceRepositoryId: string;
+    sourceRepositoryType: string;
+    sourceVersion: string;
 }
 
 /**
@@ -311,62 +309,62 @@ export interface Change {
     /**
      * The author of the change.
      */
-    author?: VSSInterfaces.IdentityRef;
+    author: VSSInterfaces.IdentityRef;
     /**
      * The type of source. "TfsVersionControl", "TfsGit", etc.
      */
-    changeType?: string;
+    changeType: string;
     /**
      * The location of a user-friendly representation of the resource.
      */
-    displayUri?: string;
+    displayUri: string;
     /**
      * Something that identifies the change. For a commit, this would be the SHA1. For a TFVC changeset, this would be the changeset id.
      */
-    id?: string;
+    id: string;
     /**
      * The location of the full representation of the resource.
      */
-    location?: string;
+    location: string;
     /**
      * A description of the change. This might be a commit message or changeset description.
      */
-    message?: string;
+    message: string;
     /**
      * The person or process that pushed the change.
      */
-    pushedBy?: VSSInterfaces.IdentityRef;
+    pushedBy: VSSInterfaces.IdentityRef;
     /**
      * The person or process that pushed the change.
      */
-    pusher?: string;
+    pusher: string;
     /**
      * A timestamp for the change.
      */
-    timestamp?: Date;
+    timestamp: Date;
 }
 
 export interface CodeRepositoryReference {
-    repositoryReference?: { [key: string] : ReleaseManagementInputValue; };
+    repositoryReference: { [key: string] : ReleaseManagementInputValue; };
     /**
      * It can have value as ‘GitHub’, ‘Vsts’.
      */
-    systemType?: PullRequestSystemType;
+    systemType: PullRequestSystemType;
 }
 
 export interface Condition {
     /**
      * Gets or sets the condition type.
      */
-    conditionType?: ConditionType;
+    conditionType: ConditionType;
     /**
      * Gets or sets the name of the condition. e.g. 'ReleaseStarted'.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or set value of the condition.
      */
-    value?: string;
+    value: string;
 }
 
 export enum ConditionType {
@@ -392,214 +390,209 @@ export interface ConfigurationVariableValue {
     /**
      * Gets or sets if a variable can be overridden at deployment time or not.
      */
-    allowOverride?: boolean;
+    allowOverride: boolean;
     /**
      * Gets or sets as variable is secret or not.
      */
-    isSecret?: boolean;
+    isSecret: boolean;
     /**
      * Gets or sets value of the configuration variable.
      */
-    value?: string;
+    value: string;
 }
 
 export interface Consumer {
-    consumerId?: number;
-    consumerName?: string;
+    consumerId: number;
+    consumerName: string;
 }
 
 export interface ContainerImageTrigger extends ReleaseTriggerBase {
-    alias?: string;
+    alias: string;
 }
 
 export interface ContinuousDeploymentTriggerIssue extends AutoTriggerIssue {
-    artifactType?: string;
-    artifactVersionId?: string;
-    sourceId?: string;
+    artifactType: string;
+    artifactVersionId: string;
+    sourceId: string;
 }
 
 export interface ControlOptions {
-    alwaysRun?: boolean;
-    continueOnError?: boolean;
-    enabled?: boolean;
+    alwaysRun: boolean;
+    continueOnError: boolean;
+    enabled: boolean;
 }
 
 export interface CustomArtifactDownloadInput extends ArtifactDownloadInputBase {
 }
 
 export interface DataSourceBinding {
-    callbackContextTemplate?: string;
-    callBackRequiredTemplate?: string;
-    dataSourceName?: string;
-    endpointId?: string;
-    endpointUrl?: string;
-    initialContextTemplate?: string;
-    parameters?: { [key: string] : string; };
-    requestContent?: string;
-    requestVerb?: string;
-    resultSelector?: string;
-    resultTemplate?: string;
-    target?: string;
+    callbackContextTemplate: string;
+    callBackRequiredTemplate: string;
+    dataSourceName: string;
+    endpointId: string;
+    endpointUrl: string;
+    initialContextTemplate: string;
+    parameters: { [key: string] : string; };
+    requestContent: string;
+    requestVerb: string;
+    resultSelector: string;
+    resultTemplate: string;
+    target: string;
 }
 
 export interface DefinitionEnvironmentReference {
-    definitionEnvironmentId?: number;
-    definitionEnvironmentName?: string;
-    releaseDefinitionId?: number;
-    releaseDefinitionName?: string;
-}
-
-export interface Demand {
-    name?: string;
-    value?: string;
+    definitionEnvironmentId: number;
+    definitionEnvironmentName: string;
+    releaseDefinitionId: number;
+    releaseDefinitionName: string;
 }
 
 export interface Deployment {
     /**
      * Gets links to access the deployment.
      */
-    _links?: any;
+    _links: any;
     /**
      * Gets attempt number.
      */
-    attempt?: number;
+    attempt: number;
     /**
      * Gets the date on which deployment is complete.
      */
-    completedOn?: Date;
+    completedOn: Date;
     /**
      * Gets the list of condition associated with deployment.
      */
-    conditions?: Condition[];
+    conditions: Condition[];
     /**
      * Gets release definition environment id.
      */
-    definitionEnvironmentId?: number;
+    definitionEnvironmentId: number;
     /**
      * Gets status of the deployment.
      */
-    deploymentStatus?: DeploymentStatus;
+    deploymentStatus: DeploymentStatus;
     /**
      * Gets the unique identifier for deployment.
      */
-    id?: number;
+    id: number;
     /**
      * Gets the identity who last modified the deployment.
      */
-    lastModifiedBy?: VSSInterfaces.IdentityRef;
+    lastModifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets the date on which deployment is last modified.
      */
-    lastModifiedOn?: Date;
+    lastModifiedOn: Date;
     /**
      * Gets operation status of deployment.
      */
-    operationStatus?: DeploymentOperationStatus;
+    operationStatus: DeploymentOperationStatus;
     /**
      * Gets list of PostDeployApprovals.
      */
-    postDeployApprovals?: ReleaseApproval[];
+    postDeployApprovals: ReleaseApproval[];
     /**
      * Gets list of PreDeployApprovals.
      */
-    preDeployApprovals?: ReleaseApproval[];
+    preDeployApprovals: ReleaseApproval[];
     /**
      * Gets or sets project reference.
      */
-    projectReference?: ProjectReference;
+    projectReference: ProjectReference;
     /**
      * Gets the date on which deployment is queued.
      */
-    queuedOn?: Date;
+    queuedOn: Date;
     /**
      * Gets reason of deployment.
      */
-    reason?: DeploymentReason;
+    reason: DeploymentReason;
     /**
      * Gets the reference of release.
      */
-    release?: ReleaseReference;
+    release: ReleaseReference;
     /**
      * Gets releaseDefinitionReference which specifies the reference of the release definition to which the deployment is associated.
      */
-    releaseDefinition?: ReleaseDefinitionShallowReference;
+    releaseDefinition: ReleaseDefinitionShallowReference;
     /**
      * Gets releaseEnvironmentReference which specifies the reference of the release environment to which the deployment is associated.
      */
-    releaseEnvironment?: ReleaseEnvironmentShallowReference;
+    releaseEnvironment: ReleaseEnvironmentShallowReference;
     /**
      * Gets the identity who requested.
      */
-    requestedBy?: VSSInterfaces.IdentityRef;
+    requestedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets the identity for whom deployment is requested.
      */
-    requestedFor?: VSSInterfaces.IdentityRef;
+    requestedFor: VSSInterfaces.IdentityRef;
     /**
      * Gets the date on which deployment is scheduled.
      */
-    scheduledDeploymentTime?: Date;
+    scheduledDeploymentTime: Date;
     /**
      * Gets the date on which deployment is started.
      */
-    startedOn?: Date;
+    startedOn: Date;
 }
 
 export interface DeploymentApprovalCompletedEvent {
-    approval?: ReleaseApproval;
-    project?: ProjectReference;
-    release?: Release;
+    approval: ReleaseApproval;
+    project: ProjectReference;
+    release: Release;
 }
 
 export interface DeploymentApprovalPendingEvent {
-    approval?: ReleaseApproval;
-    approvalOptions?: ApprovalOptions;
-    completedApprovals?: ReleaseApproval[];
-    data?: { [key: string] : any; };
-    deployment?: Deployment;
-    isMultipleRankApproval?: boolean;
-    pendingApprovals?: ReleaseApproval[];
-    project?: ProjectReference;
-    release?: Release;
+    approval: ReleaseApproval;
+    approvalOptions: ApprovalOptions;
+    completedApprovals: ReleaseApproval[];
+    data: { [key: string] : any; };
+    deployment: Deployment;
+    isMultipleRankApproval: boolean;
+    pendingApprovals: ReleaseApproval[];
+    project: ProjectReference;
+    release: Release;
 }
 
 export interface DeploymentAttempt {
-    attempt?: number;
-    deploymentId?: number;
+    attempt: number;
+    deploymentId: number;
     /**
      * Error log to show any unexpected error that occurred during executing deploy step
      */
-    errorLog?: string;
+    errorLog: string;
     /**
      * Specifies whether deployment has started or not
      */
-    hasStarted?: boolean;
-    id?: number;
+    hasStarted: boolean;
+    id: number;
     /**
      * All the issues related to the deployment
      */
-    issues?: Issue[];
-    job?: ReleaseTask;
-    lastModifiedBy?: VSSInterfaces.IdentityRef;
-    lastModifiedOn?: Date;
-    operationStatus?: DeploymentOperationStatus;
-    postDeploymentGates?: ReleaseGates;
-    preDeploymentGates?: ReleaseGates;
-    queuedOn?: Date;
-    reason?: DeploymentReason;
-    releaseDeployPhases?: ReleaseDeployPhase[];
-    requestedBy?: VSSInterfaces.IdentityRef;
-    requestedFor?: VSSInterfaces.IdentityRef;
-    runPlanId?: string;
-    status?: DeploymentStatus;
-    tasks?: ReleaseTask[];
+    issues: Issue[];
+    job: ReleaseTask;
+    lastModifiedBy: VSSInterfaces.IdentityRef;
+    lastModifiedOn: Date;
+    operationStatus: DeploymentOperationStatus;
+    postDeploymentGates: ReleaseGates;
+    preDeploymentGates: ReleaseGates;
+    queuedOn: Date;
+    reason: DeploymentReason;
+    releaseDeployPhases: ReleaseDeployPhase[];
+    requestedBy: VSSInterfaces.IdentityRef;
+    requestedFor: VSSInterfaces.IdentityRef;
+    runPlanId: string;
+    status: DeploymentStatus;
+    tasks: ReleaseTask[];
 }
 
 export interface DeploymentAuthorizationInfo {
-    authorizationHeaderFor?: AuthorizationHeaderFor;
-    resources?: string[];
-    tenantId?: string;
-    vstsAccessTokenKey?: string;
+    authorizationHeaderFor: AuthorizationHeaderFor;
+    resources: string[];
+    tenantId: string;
+    vstsAccessTokenKey: string;
 }
 
 export enum DeploymentAuthorizationOwner {
@@ -609,11 +602,11 @@ export enum DeploymentAuthorizationOwner {
 }
 
 export interface DeploymentCompletedEvent {
-    comment?: string;
-    data?: { [key: string] : any; };
-    deployment?: Deployment;
-    environment?: ReleaseEnvironment;
-    project?: ProjectReference;
+    comment: string;
+    data: { [key: string] : any; };
+    deployment: Deployment;
+    environment: ReleaseEnvironment;
+    project: ProjectReference;
 }
 
 export enum DeploymentExpands {
@@ -624,25 +617,25 @@ export enum DeploymentExpands {
 }
 
 export interface DeploymentInput extends BaseDeploymentInput {
-    artifactsDownloadInput?: ArtifactsDownloadInput;
-    demands?: Demand[];
-    enableAccessToken?: boolean;
-    queueId?: number;
-    skipArtifactsDownload?: boolean;
+    artifactsDownloadInput: ArtifactsDownloadInput;
+    demands: any[];
+    enableAccessToken: boolean;
+    queueId: number;
+    skipArtifactsDownload: boolean;
 }
 
 export interface DeploymentJob {
-    job?: ReleaseTask;
-    tasks?: ReleaseTask[];
+    job: ReleaseTask;
+    tasks: ReleaseTask[];
 }
 
 export interface DeploymentManualInterventionPendingEvent {
-    deployment?: Deployment;
-    emailRecipients?: string[];
-    environmentOwner?: VSSInterfaces.IdentityRef;
-    manualIntervention?: ManualIntervention;
-    project?: ProjectReference;
-    release?: Release;
+    deployment: Deployment;
+    emailRecipients: string[];
+    environmentOwner: VSSInterfaces.IdentityRef;
+    manualIntervention: ManualIntervention;
+    project: ProjectReference;
+    release: Release;
 }
 
 export enum DeploymentOperationStatus {
@@ -729,22 +722,22 @@ export enum DeploymentOperationStatus {
 }
 
 export interface DeploymentQueryParameters {
-    artifactSourceId?: string;
-    artifactTypeId?: string;
-    artifactVersions?: string[];
-    deploymentsPerEnvironment?: number;
-    deploymentStatus?: DeploymentStatus;
-    environments?: DefinitionEnvironmentReference[];
-    expands?: DeploymentExpands;
-    isDeleted?: boolean;
-    latestDeploymentsOnly?: boolean;
-    maxDeploymentsPerEnvironment?: number;
-    maxModifiedTime?: Date;
-    minModifiedTime?: Date;
-    operationStatus?: DeploymentOperationStatus;
-    queryOrder?: ReleaseQueryOrder;
-    queryType?: DeploymentsQueryType;
-    sourceBranch?: string;
+    artifactSourceId: string;
+    artifactTypeId: string;
+    artifactVersions: string[];
+    deploymentsPerEnvironment: number;
+    deploymentStatus: DeploymentStatus;
+    environments: DefinitionEnvironmentReference[];
+    expands: DeploymentExpands;
+    isDeleted: boolean;
+    latestDeploymentsOnly: boolean;
+    maxDeploymentsPerEnvironment: number;
+    maxModifiedTime: Date;
+    minModifiedTime: Date;
+    operationStatus: DeploymentOperationStatus;
+    queryOrder: ReleaseQueryOrder;
+    queryType: DeploymentsQueryType;
+    sourceBranch: string;
 }
 
 export enum DeploymentReason {
@@ -776,9 +769,9 @@ export enum DeploymentsQueryType {
 }
 
 export interface DeploymentStartedEvent {
-    environment?: ReleaseEnvironment;
-    project?: ProjectReference;
-    release?: Release;
+    environment: ReleaseEnvironment;
+    project: ProjectReference;
+    release: Release;
 }
 
 export enum DeploymentStatus {
@@ -813,10 +806,10 @@ export enum DeploymentStatus {
 }
 
 export interface DeployPhase {
-    name?: string;
-    phaseType?: DeployPhaseTypes;
-    rank?: number;
-    workflowTasks?: WorkflowTask[];
+    name: string;
+    phaseType: DeployPhaseTypes;
+    rank: number;
+    workflowTasks: WorkflowTask[];
 }
 
 export enum DeployPhaseStatus {
@@ -843,8 +836,8 @@ export enum DeployPhaseTypes {
 }
 
 export interface EmailRecipients {
-    emailAddresses?: string[];
-    tfsIds?: string[];
+    emailAddresses: string[];
+    tfsIds: string[];
 }
 
 /**
@@ -854,29 +847,29 @@ export interface EnvironmentExecutionPolicy {
     /**
      * This policy decides, how many environments would be with Environment Runner.
      */
-    concurrencyCount?: number;
+    concurrencyCount: number;
     /**
      * Queue depth in the EnvironmentQueue table, this table keeps the environment entries till Environment Runner is free [as per it's policy] to take another environment for running.
      */
-    queueDepthCount?: number;
+    queueDepthCount: number;
 }
 
 export interface EnvironmentOptions {
-    autoLinkWorkItems?: boolean;
-    badgeEnabled?: boolean;
-    emailNotificationType?: string;
-    emailRecipients?: string;
-    enableAccessToken?: boolean;
-    publishDeploymentStatus?: boolean;
-    pullRequestDeploymentEnabled?: boolean;
-    skipArtifactsDownload?: boolean;
-    timeoutInMinutes?: number;
+    autoLinkWorkItems: boolean;
+    badgeEnabled: boolean;
+    emailNotificationType: string;
+    emailRecipients: string;
+    enableAccessToken: boolean;
+    publishDeploymentStatus: boolean;
+    pullRequestDeploymentEnabled: boolean;
+    skipArtifactsDownload: boolean;
+    timeoutInMinutes: number;
 }
 
 export interface EnvironmentRetentionPolicy {
-    daysToKeep?: number;
-    releasesToKeep?: number;
-    retainBuild?: boolean;
+    daysToKeep: number;
+    releasesToKeep: number;
+    retainBuild: boolean;
 }
 
 export enum EnvironmentStatus {
@@ -892,15 +885,15 @@ export enum EnvironmentStatus {
 }
 
 export interface EnvironmentTrigger {
-    definitionEnvironmentId?: number;
-    releaseDefinitionId?: number;
-    triggerContent?: string;
-    triggerType?: EnvironmentTriggerType;
+    definitionEnvironmentId: number;
+    releaseDefinitionId: number;
+    triggerContent: string;
+    triggerType: EnvironmentTriggerType;
 }
 
 export interface EnvironmentTriggerContent {
-    action?: string;
-    eventTypes?: string[];
+    action: string;
+    eventTypes: string[];
 }
 
 export enum EnvironmentTriggerType {
@@ -909,7 +902,7 @@ export enum EnvironmentTriggerType {
 }
 
 export interface ExecutionInput {
-    parallelExecutionType?: ParallelExecutionTypes;
+    parallelExecutionType: ParallelExecutionTypes;
 }
 
 /**
@@ -919,28 +912,28 @@ export interface FavoriteItem {
     /**
      * Application specific data for the entry
      */
-    data?: string;
+    data: string;
     /**
      * Unique Id of the the entry
      */
-    id?: string;
+    id: string;
     /**
      * Display text for favorite entry
      */
-    name?: string;
+    name: string;
     /**
      * Application specific favorite entry type. Empty or Null represents that Favorite item is a Folder
      */
-    type?: string;
+    type: string;
 }
 
 export interface Folder {
-    createdBy?: VSSInterfaces.IdentityRef;
-    createdOn?: Date;
-    description?: string;
-    lastChangedBy?: VSSInterfaces.IdentityRef;
-    lastChangedDate?: Date;
-    path?: string;
+    createdBy: VSSInterfaces.IdentityRef;
+    createdOn: Date;
+    description: string;
+    lastChangedBy: VSSInterfaces.IdentityRef;
+    lastChangedDate: Date;
+    path: string;
 }
 
 export enum FolderPathQueryOrder {
@@ -959,13 +952,13 @@ export enum FolderPathQueryOrder {
 }
 
 export interface GatesDeploymentInput extends BaseDeploymentInput {
-    minimumSuccessDuration?: number;
-    samplingInterval?: number;
-    stabilizationTime?: number;
+    minimumSuccessDuration: number;
+    samplingInterval: number;
+    stabilizationTime: number;
 }
 
 export interface GatesDeployPhase extends DeployPhase {
-    deploymentInput?: GatesDeploymentInput;
+    deploymentInput: GatesDeploymentInput;
 }
 
 export enum GateStatus {
@@ -981,11 +974,11 @@ export interface GateUpdateMetadata {
     /**
      * Comment
      */
-    comment?: string;
+    comment: string;
     /**
      * Name of gate to be ignored.
      */
-    gatesToIgnore?: string[];
+    gatesToIgnore: string[];
 }
 
 export interface GitArtifactDownloadInput extends ArtifactDownloadInputBase {
@@ -998,17 +991,17 @@ export interface IgnoredGate {
     /**
      * Gets the date on which gate is last ignored.
      */
-    lastModifiedOn?: Date;
+    lastModifiedOn: Date;
     /**
      * Name of gate ignored.
      */
-    name?: string;
+    name: string;
 }
 
 export interface Issue {
-    data?: { [key: string] : string; };
-    issueType?: string;
-    message?: string;
+    data: { [key: string] : string; };
+    issueType: string;
+    message: string;
 }
 
 export enum IssueSource {
@@ -1018,30 +1011,30 @@ export enum IssueSource {
 }
 
 export interface JenkinsArtifactDownloadInput extends ArtifactDownloadInputBase {
-    artifactItems?: string[];
+    artifactItems: string[];
 }
 
 export interface MachineGroupBasedDeployPhase extends DeployPhase {
-    deploymentInput?: MachineGroupDeploymentInput;
+    deploymentInput: MachineGroupDeploymentInput;
 }
 
 export interface MachineGroupDeploymentInput extends DeploymentInput {
-    deploymentHealthOption?: string;
-    healthPercent?: number;
-    tags?: string[];
+    deploymentHealthOption: string;
+    healthPercent: number;
+    tags: string[];
 }
 
 export interface MailMessage {
-    body?: string;
-    cC?: EmailRecipients;
-    inReplyTo?: string;
-    messageId?: string;
-    replyBy?: Date;
-    replyTo?: EmailRecipients;
-    sections?: MailSectionType[];
-    senderType?: SenderType;
-    subject?: string;
-    to?: EmailRecipients;
+    body: string;
+    cC: EmailRecipients;
+    inReplyTo: string;
+    messageId: string;
+    replyBy: Date;
+    replyTo: EmailRecipients;
+    sections: MailSectionType[];
+    senderType: SenderType;
+    subject: string;
+    to: EmailRecipients;
 }
 
 export enum MailSectionType {
@@ -1057,55 +1050,55 @@ export interface ManualIntervention {
     /**
      * Gets or sets the identity who should approve.
      */
-    approver?: VSSInterfaces.IdentityRef;
+    approver: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets comments for approval.
      */
-    comments?: string;
+    comments: string;
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets the unique identifier for manual intervention.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets instructions for approval.
      */
-    instructions?: string;
+    instructions: string;
     /**
      * Gets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets or sets the name.
      */
-    name?: string;
+    name: string;
     /**
      * Gets releaseReference for manual intervention.
      */
-    release?: ReleaseShallowReference;
+    release: ReleaseShallowReference;
     /**
      * Gets releaseDefinitionReference for manual intervention.
      */
-    releaseDefinition?: ReleaseDefinitionShallowReference;
+    releaseDefinition: ReleaseDefinitionShallowReference;
     /**
      * Gets releaseEnvironmentReference for manual intervention.
      */
-    releaseEnvironment?: ReleaseEnvironmentShallowReference;
+    releaseEnvironment: ReleaseEnvironmentShallowReference;
     /**
      * Gets or sets the status of the manual intervention.
      */
-    status?: ManualInterventionStatus;
+    status: ManualInterventionStatus;
     /**
      * Get task instance identifier.
      */
-    taskInstanceId?: string;
+    taskInstanceId: string;
     /**
      * Gets url to access the manual intervention.
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -1138,36 +1131,36 @@ export interface ManualInterventionUpdateMetadata {
     /**
      * Sets the comment for manual intervention update.
      */
-    comment?: string;
+    comment: string;
     /**
      * Sets the status of the manual intervention.
      */
-    status?: ManualInterventionStatus;
+    status: ManualInterventionStatus;
 }
 
 export interface MappingDetails {
-    mappings?: { [key: string] : FormInputInterfaces.InputValue; };
+    mappings: { [key: string] : FormInputInterfaces.InputValue; };
 }
 
 export interface Metric {
-    name?: string;
-    value?: number;
+    name: string;
+    value: number;
 }
 
 export interface MultiConfigInput extends ParallelExecutionInputBase {
-    multipliers?: string;
+    multipliers: string;
 }
 
 export interface MultiMachineInput extends ParallelExecutionInputBase {
 }
 
 export interface PackageTrigger extends ReleaseTriggerBase {
-    alias?: string;
+    alias: string;
 }
 
 export interface ParallelExecutionInputBase extends ExecutionInput {
-    continueOnError?: boolean;
-    maxNumberOfAgents?: number;
+    continueOnError: boolean;
+    maxNumberOfAgents: number;
 }
 
 export enum ParallelExecutionTypes {
@@ -1177,7 +1170,7 @@ export enum ParallelExecutionTypes {
 }
 
 export interface PipelineProcess {
-    type?: PipelineProcessTypes;
+    type: PipelineProcessTypes;
 }
 
 export enum PipelineProcessTypes {
@@ -1189,16 +1182,16 @@ export interface ProjectReference {
     /**
      * Gets the unique identifier of this field.
      */
-    id?: string;
+    id: string;
     /**
      * Gets name of project.
      */
-    name?: string;
+    name: string;
 }
 
 export interface PropertySelector {
-    properties?: string[];
-    selectorType?: PropertySelectorType;
+    properties: string[];
+    selectorType: PropertySelectorType;
 }
 
 export enum PropertySelectorType {
@@ -1207,16 +1200,16 @@ export enum PropertySelectorType {
 }
 
 export interface PullRequestConfiguration {
-    codeRepositoryReference?: CodeRepositoryReference;
+    codeRepositoryReference: CodeRepositoryReference;
     /**
      * In case of Source based artifacts, Code reference will be present in Artifact details.
      */
-    useArtifactReference?: boolean;
+    useArtifactReference: boolean;
 }
 
 export interface PullRequestFilter {
-    tags?: string[];
-    targetBranch?: string;
+    tags: string[];
+    targetBranch: string;
 }
 
 export enum PullRequestSystemType {
@@ -1226,398 +1219,398 @@ export enum PullRequestSystemType {
 }
 
 export interface PullRequestTrigger extends ReleaseTriggerBase {
-    artifactAlias?: string;
-    pullRequestConfiguration?: PullRequestConfiguration;
-    statusPolicyName?: string;
-    triggerConditions?: PullRequestFilter[];
+    artifactAlias: string;
+    pullRequestConfiguration: PullRequestConfiguration;
+    statusPolicyName: string;
+    triggerConditions: PullRequestFilter[];
 }
 
 export interface QueuedReleaseData {
-    projectId?: string;
-    queuePosition?: number;
-    releaseId?: number;
+    projectId: string;
+    queuePosition: number;
+    releaseId: number;
 }
 
 export interface RealtimeReleaseDefinitionEvent {
-    definitionId?: number;
-    projectId?: string;
+    definitionId: number;
+    projectId: string;
 }
 
 export interface RealtimeReleaseEvent {
-    environmentId?: number;
-    projectId?: string;
-    releaseId?: number;
+    environmentId: number;
+    projectId: string;
+    releaseId: number;
 }
 
 export interface Release {
     /**
      * Gets links to access the release.
      */
-    _links?: any;
+    _links: any;
     /**
      * Gets or sets the list of artifacts.
      */
-    artifacts?: Artifact[];
+    artifacts: Artifact[];
     /**
      * Gets or sets comment.
      */
-    comment?: string;
+    comment: string;
     /**
      * Gets or sets the identity who created.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets revision number of definition snapshot.
      */
-    definitionSnapshotRevision?: number;
+    definitionSnapshotRevision: number;
     /**
      * Gets or sets description of release.
      */
-    description?: string;
+    description: string;
     /**
      * Gets list of environments.
      */
-    environments?: ReleaseEnvironment[];
+    environments: ReleaseEnvironment[];
     /**
      * Gets the unique identifier of this field.
      */
-    id?: number;
+    id: number;
     /**
      * Whether to exclude the release from retention policies.
      */
-    keepForever?: boolean;
+    keepForever: boolean;
     /**
      * Gets logs container url.
      */
-    logsContainerUrl?: string;
+    logsContainerUrl: string;
     /**
      * Gets or sets the identity who modified.
      */
-    modifiedBy?: VSSInterfaces.IdentityRef;
+    modifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets name.
      */
-    name?: string;
+    name: string;
     /**
      * Gets pool name.
      */
-    poolName?: string;
+    poolName: string;
     /**
      * Gets or sets project reference.
      */
-    projectReference?: ProjectReference;
-    properties?: any;
+    projectReference: ProjectReference;
+    properties: any;
     /**
      * Gets reason of release.
      */
-    reason?: ReleaseReason;
+    reason: ReleaseReason;
     /**
      * Gets releaseDefinitionReference which specifies the reference of the release definition to which this release is associated.
      */
-    releaseDefinition?: ReleaseDefinitionShallowReference;
+    releaseDefinition: ReleaseDefinitionShallowReference;
     /**
      * Gets release name format.
      */
-    releaseNameFormat?: string;
+    releaseNameFormat: string;
     /**
      * Gets status.
      */
-    status?: ReleaseStatus;
+    status: ReleaseStatus;
     /**
      * Gets or sets list of tags.
      */
-    tags?: string[];
-    triggeringArtifactAlias?: string;
-    url?: string;
+    tags: string[];
+    triggeringArtifactAlias: string;
+    url: string;
     /**
      * Gets the list of variable groups.
      */
-    variableGroups?: VariableGroup[];
+    variableGroups: VariableGroup[];
     /**
      * Gets or sets the dictionary of variables.
      */
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    variables: { [key: string] : ConfigurationVariableValue; };
 }
 
 export interface ReleaseAbandonedEvent {
-    project?: ProjectReference;
-    release?: Release;
+    project: ProjectReference;
+    release: Release;
 }
 
 export interface ReleaseApproval {
     /**
      * Gets or sets the type of approval.
      */
-    approvalType?: ApprovalType;
+    approvalType: ApprovalType;
     /**
      * Gets the identity who approved.
      */
-    approvedBy?: VSSInterfaces.IdentityRef;
+    approvedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets the identity who should approve.
      */
-    approver?: VSSInterfaces.IdentityRef;
+    approver: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets attempt which specifies as which deployment attempt it belongs.
      */
-    attempt?: number;
+    attempt: number;
     /**
      * Gets or sets comments for approval.
      */
-    comments?: string;
+    comments: string;
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets history which specifies all approvals associated with this approval.
      */
-    history?: ReleaseApprovalHistory[];
+    history: ReleaseApprovalHistory[];
     /**
      * Gets the unique identifier of this field.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets as approval is automated or not.
      */
-    isAutomated?: boolean;
-    isNotificationOn?: boolean;
+    isAutomated: boolean;
+    isNotificationOn: boolean;
     /**
      * Gets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets or sets rank which specifies the order of the approval. e.g. Same rank denotes parallel approval.
      */
-    rank?: number;
+    rank: number;
     /**
      * Gets releaseReference which specifies the reference of the release to which this approval is associated.
      */
-    release?: ReleaseShallowReference;
+    release: ReleaseShallowReference;
     /**
      * Gets releaseDefinitionReference which specifies the reference of the release definition to which this approval is associated.
      */
-    releaseDefinition?: ReleaseDefinitionShallowReference;
+    releaseDefinition: ReleaseDefinitionShallowReference;
     /**
      * Gets releaseEnvironmentReference which specifies the reference of the release environment to which this approval is associated.
      */
-    releaseEnvironment?: ReleaseEnvironmentShallowReference;
+    releaseEnvironment: ReleaseEnvironmentShallowReference;
     /**
      * Gets the revision number.
      */
-    revision?: number;
+    revision: number;
     /**
      * Gets or sets the status of the approval.
      */
-    status?: ApprovalStatus;
-    trialNumber?: number;
+    status: ApprovalStatus;
+    trialNumber: number;
     /**
      * Gets url to access the approval.
      */
-    url?: string;
+    url: string;
 }
 
 export interface ReleaseApprovalHistory {
-    approver?: VSSInterfaces.IdentityRef;
-    changedBy?: VSSInterfaces.IdentityRef;
-    comments?: string;
-    createdOn?: Date;
-    modifiedOn?: Date;
-    revision?: number;
+    approver: VSSInterfaces.IdentityRef;
+    changedBy: VSSInterfaces.IdentityRef;
+    comments: string;
+    createdOn: Date;
+    modifiedOn: Date;
+    revision: number;
 }
 
 export interface ReleaseApprovalPendingEvent {
-    approval?: ReleaseApproval;
-    approvalOptions?: ApprovalOptions;
-    completedApprovals?: ReleaseApproval[];
-    definitionName?: string;
-    deployment?: Deployment;
-    environmentId?: number;
-    environmentName?: string;
-    environments?: ReleaseEnvironment[];
-    isMultipleRankApproval?: boolean;
-    pendingApprovals?: ReleaseApproval[];
-    releaseCreator?: string;
-    releaseName?: string;
-    title?: string;
-    webAccessUri?: string;
+    approval: ReleaseApproval;
+    approvalOptions: ApprovalOptions;
+    completedApprovals: ReleaseApproval[];
+    definitionName: string;
+    deployment: Deployment;
+    environmentId: number;
+    environmentName: string;
+    environments: ReleaseEnvironment[];
+    isMultipleRankApproval: boolean;
+    pendingApprovals: ReleaseApproval[];
+    releaseCreator: string;
+    releaseName: string;
+    title: string;
+    webAccessUri: string;
 }
 
 export interface ReleaseArtifact {
-    artifactProvider?: ArtifactProvider;
-    artifactType?: string;
-    definitionData?: string;
-    definitionId?: number;
-    description?: string;
-    id?: number;
-    name?: string;
-    releaseId?: number;
+    artifactProvider: ArtifactProvider;
+    artifactType: string;
+    definitionData: string;
+    definitionId: number;
+    description: string;
+    id: number;
+    name: string;
+    releaseId: number;
 }
 
 export interface ReleaseCondition extends Condition {
-    result?: boolean;
+    result: boolean;
 }
 
 export interface ReleaseCreatedEvent {
-    project?: ProjectReference;
-    release?: Release;
+    project: ProjectReference;
+    release: Release;
 }
 
 export interface ReleaseDefinition extends ReleaseDefinitionShallowReference {
     /**
      * Gets or sets the list of artifacts.
      */
-    artifacts?: Artifact[];
+    artifacts: Artifact[];
     /**
      * Gets or sets comment.
      */
-    comment?: string;
+    comment: string;
     /**
      * Gets or sets the identity who created.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets or sets the description.
      */
-    description?: string;
+    description: string;
     /**
      * Gets or sets the list of environments.
      */
-    environments?: ReleaseDefinitionEnvironment[];
+    environments: ReleaseDefinitionEnvironment[];
     /**
      * Whether release definition is deleted.
      */
-    isDeleted?: boolean;
+    isDeleted: boolean;
     /**
      * Gets the reference of last release.
      */
-    lastRelease?: ReleaseReference;
+    lastRelease: ReleaseReference;
     /**
      * Gets or sets the identity who modified.
      */
-    modifiedBy?: VSSInterfaces.IdentityRef;
+    modifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets or sets pipeline process.
      */
-    pipelineProcess?: PipelineProcess;
+    pipelineProcess: PipelineProcess;
     /**
      * Gets or sets properties.
      */
-    properties?: any;
+    properties: any;
     /**
      * Gets or sets the release name format.
      */
-    releaseNameFormat?: string;
-    retentionPolicy?: RetentionPolicy;
+    releaseNameFormat: string;
+    retentionPolicy: RetentionPolicy;
     /**
      * Gets the revision number.
      */
-    revision?: number;
+    revision: number;
     /**
      * Gets or sets source of release definition.
      */
-    source?: ReleaseDefinitionSource;
+    source: ReleaseDefinitionSource;
     /**
      * Gets or sets list of tags.
      */
-    tags?: string[];
+    tags: string[];
     /**
      * Gets or sets the list of triggers.
      */
-    triggers?: ReleaseTriggerBase[];
+    triggers: ReleaseTriggerBase[];
     /**
      * Gets or sets the list of variable groups.
      */
-    variableGroups?: number[];
+    variableGroups: number[];
     /**
      * Gets or sets the dictionary of variables.
      */
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    variables: { [key: string] : ConfigurationVariableValue; };
 }
 
 export interface ReleaseDefinitionApprovals {
-    approvalOptions?: ApprovalOptions;
-    approvals?: ReleaseDefinitionApprovalStep[];
+    approvalOptions: ApprovalOptions;
+    approvals: ReleaseDefinitionApprovalStep[];
 }
 
 export interface ReleaseDefinitionApprovalStep extends ReleaseDefinitionEnvironmentStep {
-    approver?: VSSInterfaces.IdentityRef;
-    isAutomated?: boolean;
-    isNotificationOn?: boolean;
-    rank?: number;
+    approver: VSSInterfaces.IdentityRef;
+    isAutomated: boolean;
+    isNotificationOn: boolean;
+    rank: number;
 }
 
 export interface ReleaseDefinitionDeployStep extends ReleaseDefinitionEnvironmentStep {
     /**
      * The list of steps for this definition.
      */
-    tasks?: WorkflowTask[];
+    tasks: WorkflowTask[];
 }
 
 export interface ReleaseDefinitionEnvironment {
-    badgeUrl?: string;
-    conditions?: Condition[];
-    currentRelease?: ReleaseShallowReference;
-    demands?: Demand[];
-    deployPhases?: DeployPhase[];
-    deployStep?: ReleaseDefinitionDeployStep;
-    environmentOptions?: EnvironmentOptions;
-    environmentTriggers?: EnvironmentTrigger[];
-    executionPolicy?: EnvironmentExecutionPolicy;
-    id?: number;
-    name?: string;
-    owner?: VSSInterfaces.IdentityRef;
-    postDeployApprovals?: ReleaseDefinitionApprovals;
-    postDeploymentGates?: ReleaseDefinitionGatesStep;
-    preDeployApprovals?: ReleaseDefinitionApprovals;
-    preDeploymentGates?: ReleaseDefinitionGatesStep;
-    processParameters?: DistributedTaskCommonInterfaces.ProcessParameters;
-    properties?: any;
-    queueId?: number;
-    rank?: number;
-    retentionPolicy?: EnvironmentRetentionPolicy;
-    runOptions?: { [key: string] : string; };
-    schedules?: ReleaseSchedule[];
-    variableGroups?: number[];
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    badgeUrl: string;
+    conditions: Condition[];
+    currentRelease: ReleaseShallowReference;
+    demands: any[];
+    deployPhases: DeployPhase[];
+    deployStep: ReleaseDefinitionDeployStep;
+    environmentOptions: EnvironmentOptions;
+    environmentTriggers: EnvironmentTrigger[];
+    executionPolicy: EnvironmentExecutionPolicy;
+    id: number;
+    name: string;
+    owner: VSSInterfaces.IdentityRef;
+    postDeployApprovals: ReleaseDefinitionApprovals;
+    postDeploymentGates: ReleaseDefinitionGatesStep;
+    preDeployApprovals: ReleaseDefinitionApprovals;
+    preDeploymentGates: ReleaseDefinitionGatesStep;
+    processParameters: DistributedTaskCommonInterfaces.ProcessParameters;
+    properties: any;
+    queueId: number;
+    rank: number;
+    retentionPolicy: EnvironmentRetentionPolicy;
+    runOptions: { [key: string] : string; };
+    schedules: ReleaseSchedule[];
+    variableGroups: number[];
+    variables: { [key: string] : ConfigurationVariableValue; };
 }
 
 export interface ReleaseDefinitionEnvironmentStep {
-    id?: number;
+    id: number;
 }
 
 export interface ReleaseDefinitionEnvironmentSummary {
-    id?: number;
-    lastReleases?: ReleaseShallowReference[];
-    name?: string;
+    id: number;
+    lastReleases: ReleaseShallowReference[];
+    name: string;
 }
 
 export interface ReleaseDefinitionEnvironmentTemplate {
-    canDelete?: boolean;
-    category?: string;
-    description?: string;
-    environment?: ReleaseDefinitionEnvironment;
-    iconTaskId?: string;
-    iconUri?: string;
-    id?: string;
-    isDeleted?: boolean;
-    name?: string;
+    canDelete: boolean;
+    category: string;
+    description: string;
+    environment: ReleaseDefinitionEnvironment;
+    iconTaskId: string;
+    iconUri: string;
+    id: string;
+    isDeleted: boolean;
+    name: string;
 }
 
 export enum ReleaseDefinitionExpands {
@@ -1631,21 +1624,21 @@ export enum ReleaseDefinitionExpands {
 }
 
 export interface ReleaseDefinitionGate {
-    tasks?: WorkflowTask[];
+    tasks: WorkflowTask[];
 }
 
 export interface ReleaseDefinitionGatesOptions {
-    isEnabled?: boolean;
-    minimumSuccessDuration?: number;
-    samplingInterval?: number;
-    stabilizationTime?: number;
-    timeout?: number;
+    isEnabled: boolean;
+    minimumSuccessDuration: number;
+    samplingInterval: number;
+    stabilizationTime: number;
+    timeout: number;
 }
 
 export interface ReleaseDefinitionGatesStep {
-    gates?: ReleaseDefinitionGate[];
-    gatesOptions?: ReleaseDefinitionGatesOptions;
-    id?: number;
+    gates: ReleaseDefinitionGate[];
+    gatesOptions: ReleaseDefinitionGatesOptions;
+    id: number;
 }
 
 export enum ReleaseDefinitionQueryOrder {
@@ -1659,62 +1652,62 @@ export interface ReleaseDefinitionRevision {
     /**
      * Gets api-version for revision object.
      */
-    apiVersion?: string;
+    apiVersion: string;
     /**
      * Gets the identity who did change.
      */
-    changedBy?: VSSInterfaces.IdentityRef;
+    changedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got changed.
      */
-    changedDate?: Date;
+    changedDate: Date;
     /**
      * Gets type of change.
      */
-    changeType?: AuditAction;
+    changeType: AuditAction;
     /**
      * Gets comments for revision.
      */
-    comment?: string;
+    comment: string;
     /**
      * Get id of the definition.
      */
-    definitionId?: number;
+    definitionId: number;
     /**
      * Gets definition url.
      */
-    definitionUrl?: string;
+    definitionUrl: string;
     /**
      * Get revision number of the definition.
      */
-    revision?: number;
+    revision: number;
 }
 
 export interface ReleaseDefinitionShallowReference {
     /**
      * Gets the links to related resources, APIs, and views for the release definition.
      */
-    _links?: any;
+    _links: any;
     /**
      * Gets the unique identifier of release definition.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets the name of the release definition.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets the path of the release definition.
      */
-    path?: string;
+    path: string;
     /**
      * Gets or sets project reference.
      */
-    projectReference?: ProjectReference;
+    projectReference: ProjectReference;
     /**
      * Gets the REST API url to access the release definition.
      */
-    url?: string;
+    url: string;
 }
 
 export enum ReleaseDefinitionSource {
@@ -1726,228 +1719,222 @@ export enum ReleaseDefinitionSource {
 }
 
 export interface ReleaseDefinitionSummary {
-    environments?: ReleaseDefinitionEnvironmentSummary[];
-    releaseDefinition?: ReleaseDefinitionShallowReference;
-    releases?: Release[];
+    environments: ReleaseDefinitionEnvironmentSummary[];
+    releaseDefinition: ReleaseDefinitionShallowReference;
+    releases: Release[];
 }
 
 export interface ReleaseDefinitionUndeleteParameter {
     /**
      * Gets or sets comment.
      */
-    comment?: string;
+    comment: string;
 }
 
 export interface ReleaseDeployPhase {
-    deploymentJobs?: DeploymentJob[];
-    errorLog?: string;
-    id?: number;
-    manualInterventions?: ManualIntervention[];
-    name?: string;
-    phaseId?: string;
-    phaseType?: DeployPhaseTypes;
-    rank?: number;
-    runPlanId?: string;
+    deploymentJobs: DeploymentJob[];
+    errorLog: string;
+    id: number;
+    manualInterventions: ManualIntervention[];
+    name: string;
+    phaseId: string;
+    phaseType: DeployPhaseTypes;
+    rank: number;
+    runPlanId: string;
     /**
      * Phase start time
      */
-    startedOn?: Date;
-    status?: DeployPhaseStatus;
+    startedOn: Date;
+    status: DeployPhaseStatus;
 }
 
 export interface ReleaseEnvironment {
     /**
      * Gets list of conditions.
      */
-    conditions?: ReleaseCondition[];
+    conditions: ReleaseCondition[];
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets definition environment id.
      */
-    definitionEnvironmentId?: number;
+    definitionEnvironmentId: number;
     /**
      * Gets demands.
      */
-    demands?: Demand[];
+    demands: any[];
     /**
      * Gets list of deploy phases snapshot.
      */
-    deployPhasesSnapshot?: DeployPhase[];
+    deployPhasesSnapshot: DeployPhase[];
     /**
      * Gets deploy steps.
      */
-    deploySteps?: DeploymentAttempt[];
+    deploySteps: DeploymentAttempt[];
     /**
      * Gets environment options.
      */
-    environmentOptions?: EnvironmentOptions;
+    environmentOptions: EnvironmentOptions;
     /**
      * Gets the unique identifier of this field.
      */
-    id?: number;
+    id: number;
     /**
      * Gets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets name.
      */
-    name?: string;
+    name: string;
     /**
      * Gets next scheduled UTC time.
      */
-    nextScheduledUtcTime?: Date;
+    nextScheduledUtcTime: Date;
     /**
      * Gets the identity who is owner for release environment.
      */
-    owner?: VSSInterfaces.IdentityRef;
+    owner: VSSInterfaces.IdentityRef;
     /**
      * Gets list of post deploy approvals snapshot.
      */
-    postApprovalsSnapshot?: ReleaseDefinitionApprovals;
+    postApprovalsSnapshot: ReleaseDefinitionApprovals;
     /**
      * Gets list of post deploy approvals.
      */
-    postDeployApprovals?: ReleaseApproval[];
-    postDeploymentGatesSnapshot?: ReleaseDefinitionGatesStep;
+    postDeployApprovals: ReleaseApproval[];
+    postDeploymentGatesSnapshot: ReleaseDefinitionGatesStep;
     /**
      * Gets list of pre deploy approvals snapshot.
      */
-    preApprovalsSnapshot?: ReleaseDefinitionApprovals;
+    preApprovalsSnapshot: ReleaseDefinitionApprovals;
     /**
      * Gets list of pre deploy approvals.
      */
-    preDeployApprovals?: ReleaseApproval[];
-    preDeploymentGatesSnapshot?: ReleaseDefinitionGatesStep;
+    preDeployApprovals: ReleaseApproval[];
+    preDeploymentGatesSnapshot: ReleaseDefinitionGatesStep;
     /**
      * Gets process parameters.
      */
-    processParameters?: DistributedTaskCommonInterfaces.ProcessParameters;
+    processParameters: DistributedTaskCommonInterfaces.ProcessParameters;
     /**
      * Gets queue id.
      */
-    queueId?: number;
+    queueId: number;
     /**
      * Gets rank.
      */
-    rank?: number;
+    rank: number;
     /**
      * Gets release reference which specifies the reference of the release to which this release environment is associated.
      */
-    release?: ReleaseShallowReference;
+    release: ReleaseShallowReference;
     /**
      * Gets the identity who created release.
      */
-    releaseCreatedBy?: VSSInterfaces.IdentityRef;
+    releaseCreatedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets releaseDefinitionReference which specifies the reference of the release definition to which this release environment is associated.
      */
-    releaseDefinition?: ReleaseDefinitionShallowReference;
+    releaseDefinition: ReleaseDefinitionShallowReference;
     /**
      * Gets release description.
      */
-    releaseDescription?: string;
+    releaseDescription: string;
     /**
      * Gets release id.
      */
-    releaseId?: number;
+    releaseId: number;
     /**
      * Gets schedule deployment time of release environment.
      */
-    scheduledDeploymentTime?: Date;
+    scheduledDeploymentTime: Date;
     /**
      * Gets list of schedules.
      */
-    schedules?: ReleaseSchedule[];
+    schedules: ReleaseSchedule[];
     /**
      * Gets environment status.
      */
-    status?: EnvironmentStatus;
+    status: EnvironmentStatus;
     /**
      * Gets time to deploy.
      */
-    timeToDeploy?: number;
+    timeToDeploy: number;
     /**
      * Gets trigger reason.
      */
-    triggerReason?: string;
+    triggerReason: string;
     /**
      * Gets the list of variable groups.
      */
-    variableGroups?: VariableGroup[];
+    variableGroups: VariableGroup[];
     /**
      * Gets the dictionary of variables.
      */
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    variables: { [key: string] : ConfigurationVariableValue; };
     /**
      * Gets list of workflow tasks.
      */
-    workflowTasks?: WorkflowTask[];
+    workflowTasks: WorkflowTask[];
 }
 
 export interface ReleaseEnvironmentCompletedEvent {
-    createdByName?: string;
-    definitionId?: number;
-    definitionName?: string;
-    environment?: ReleaseEnvironment;
-    environmentId?: number;
-    projectName?: string;
-    reason?: DeploymentReason;
-    releaseCreatedBy?: VSSInterfaces.IdentityRef;
-    releaseLogsUri?: string;
-    releaseName?: string;
-    status?: string;
-    title?: string;
-    webAccessUri?: string;
+    createdByName: string;
+    definitionId: number;
+    definitionName: string;
+    environment: ReleaseEnvironment;
+    environmentId: number;
+    projectName: string;
+    reason: DeploymentReason;
+    releaseCreatedBy: VSSInterfaces.IdentityRef;
+    releaseLogsUri: string;
+    releaseName: string;
+    status: string;
+    title: string;
+    webAccessUri: string;
 }
 
 export interface ReleaseEnvironmentShallowReference {
     /**
      * Gets the links to related resources, APIs, and views for the release environment.
      */
-    _links?: any;
+    _links: any;
     /**
      * Gets the unique identifier of release environment.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets the name of the release environment.
      */
-    name?: string;
+    name: string;
     /**
      * Gets the REST API url to access the release environment.
      */
-    url?: string;
+    url: string;
 }
 
 export interface ReleaseEnvironmentStatusUpdatedEvent extends RealtimeReleaseDefinitionEvent {
-    environmentId?: number;
-    environmentStatus?: EnvironmentStatus;
-    latestDeploymentOperationStatus?: DeploymentOperationStatus;
-    latestDeploymentStatus?: DeploymentStatus;
-    releaseId?: number;
+    environmentId: number;
+    environmentStatus: EnvironmentStatus;
+    releaseId: number;
 }
 
 export interface ReleaseEnvironmentUpdateMetadata {
     /**
      * Gets or sets comment.
      */
-    comment?: string;
+    comment: string;
     /**
      * Gets or sets scheduled deployment time.
      */
-    scheduledDeploymentTime?: Date;
+    scheduledDeploymentTime: Date;
     /**
      * Gets or sets status of environment.
      */
-    status?: EnvironmentStatus;
-    /**
-     * Sets list of environment variables to be overridden at deployment time.
-     */
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    status: EnvironmentStatus;
 }
 
 export enum ReleaseExpands {
@@ -1961,32 +1948,32 @@ export enum ReleaseExpands {
 }
 
 export interface ReleaseGates {
-    deploymentJobs?: DeploymentJob[];
-    id?: number;
-    ignoredGates?: IgnoredGate[];
-    lastModifiedOn?: Date;
-    runPlanId?: string;
-    stabilizationCompletedOn?: Date;
-    startedOn?: Date;
-    status?: GateStatus;
-    succeedingSince?: Date;
+    deploymentJobs: DeploymentJob[];
+    id: number;
+    ignoredGates: IgnoredGate[];
+    lastModifiedOn: Date;
+    runPlanId: string;
+    stabilizationCompletedOn: Date;
+    startedOn: Date;
+    status: GateStatus;
+    succeedingSince: Date;
 }
 
 export interface ReleaseGatesPhase extends ReleaseDeployPhase {
-    ignoredGates?: IgnoredGate[];
-    stabilizationCompletedOn?: Date;
-    succeedingSince?: Date;
+    ignoredGates: IgnoredGate[];
+    stabilizationCompletedOn: Date;
+    succeedingSince: Date;
 }
 
 export interface ReleaseManagementInputValue {
     /**
      * The text to show for the display of this value
      */
-    displayValue?: string;
+    displayValue: string;
     /**
      * The value to store for this input
      */
-    value?: string;
+    value: string;
 }
 
 export enum ReleaseQueryOrder {
@@ -2006,148 +1993,148 @@ export interface ReleaseReference {
     /**
      * Gets links to access the release.
      */
-    _links?: any;
+    _links: any;
     /**
      * Gets list of artifacts.
      */
-    artifacts?: Artifact[];
+    artifacts: Artifact[];
     /**
      * Gets the identity who created.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets description.
      */
-    description?: string;
+    description: string;
     /**
      * Gets the unique identifier of this field.
      */
-    id?: number;
+    id: number;
     /**
      * Gets the identity who modified.
      */
-    modifiedBy?: VSSInterfaces.IdentityRef;
+    modifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets name of release.
      */
-    name?: string;
+    name: string;
     /**
      * Gets reason for release.
      */
-    reason?: ReleaseReason;
+    reason: ReleaseReason;
     /**
      * Gets release definition shallow reference.
      */
-    releaseDefinition?: ReleaseDefinitionShallowReference;
-    url?: string;
-    webAccessUri?: string;
+    releaseDefinition: ReleaseDefinitionShallowReference;
+    url: string;
+    webAccessUri: string;
 }
 
 export interface ReleaseRevision {
-    changedBy?: VSSInterfaces.IdentityRef;
-    changedDate?: Date;
-    changeDetails?: string;
-    changeType?: string;
-    comment?: string;
-    definitionSnapshotRevision?: number;
-    releaseId?: number;
+    changedBy: VSSInterfaces.IdentityRef;
+    changedDate: Date;
+    changeDetails: string;
+    changeType: string;
+    comment: string;
+    definitionSnapshotRevision: number;
+    releaseId: number;
 }
 
 export interface ReleaseSchedule {
     /**
      * Days of the week to release
      */
-    daysToRelease?: ScheduleDays;
+    daysToRelease: ScheduleDays;
     /**
      * Team Foundation Job Definition Job Id
      */
-    jobId?: string;
+    jobId: string;
     /**
      * Local time zone hour to start
      */
-    startHours?: number;
+    startHours: number;
     /**
      * Local time zone minute to start
      */
-    startMinutes?: number;
+    startMinutes: number;
     /**
      * Time zone Id of release schedule, such as 'UTC'
      */
-    timeZoneId?: string;
+    timeZoneId: string;
 }
 
 export interface ReleaseSettings {
-    retentionSettings?: RetentionSettings;
+    retentionSettings: RetentionSettings;
 }
 
 export interface ReleaseShallowReference {
     /**
      * Gets the links to related resources, APIs, and views for the release.
      */
-    _links?: any;
+    _links: any;
     /**
      * Gets the unique identifier of release.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets the name of the release.
      */
-    name?: string;
+    name: string;
     /**
      * Gets the REST API url to access the release.
      */
-    url?: string;
+    url: string;
 }
 
 export interface ReleaseStartEnvironmentMetadata {
     /**
      * Sets release definition environment id.
      */
-    definitionEnvironmentId?: number;
+    definitionEnvironmentId: number;
     /**
      * Sets list of environments variables to be overridden at deployment time.
      */
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    variables: { [key: string] : ConfigurationVariableValue; };
 }
 
 export interface ReleaseStartMetadata {
     /**
      * Sets list of artifact to create a release.
      */
-    artifacts?: ArtifactMetadata[];
+    artifacts: ArtifactMetadata[];
     /**
      * Sets definition Id to create a release.
      */
-    definitionId?: number;
+    definitionId: number;
     /**
      * Sets description to create a release.
      */
-    description?: string;
+    description: string;
     /**
      * Sets list of environments meta data.
      */
-    environmentsMetadata?: ReleaseStartEnvironmentMetadata[];
+    environmentsMetadata: ReleaseStartEnvironmentMetadata[];
     /**
      * Sets 'true' to create release in draft mode, 'false' otherwise.
      */
-    isDraft?: boolean;
+    isDraft: boolean;
     /**
      * Sets list of environments to manual as condition.
      */
-    manualEnvironments?: string[];
-    properties?: any;
+    manualEnvironments: string[];
+    properties: any;
     /**
      * Sets reason to create a release.
      */
-    reason?: ReleaseReason;
+    reason: ReleaseReason;
     /**
      * Sets list of release variables to be overridden at deployment time.
      */
-    variables?: { [key: string] : ConfigurationVariableValue; };
+    variables: { [key: string] : ConfigurationVariableValue; };
 }
 
 export enum ReleaseStatus {
@@ -2158,51 +2145,50 @@ export enum ReleaseStatus {
 }
 
 export interface ReleaseTask {
-    agentName?: string;
-    dateEnded?: Date;
-    dateStarted?: Date;
-    finishTime?: Date;
-    id?: number;
-    issues?: Issue[];
-    lineCount?: number;
-    logUrl?: string;
-    name?: string;
-    percentComplete?: number;
-    rank?: number;
-    resultCode?: string;
-    startTime?: Date;
-    status?: TaskStatus;
-    task?: WorkflowTaskReference;
-    timelineRecordId?: string;
+    agentName: string;
+    dateEnded: Date;
+    dateStarted: Date;
+    finishTime: Date;
+    id: number;
+    issues: Issue[];
+    lineCount: number;
+    logUrl: string;
+    name: string;
+    percentComplete: number;
+    rank: number;
+    startTime: Date;
+    status: TaskStatus;
+    task: WorkflowTaskReference;
+    timelineRecordId: string;
 }
 
 export interface ReleaseTaskAttachment {
-    _links?: any;
-    createdOn?: Date;
-    modifiedBy?: VSSInterfaces.IdentityRef;
-    modifiedOn?: Date;
-    name?: string;
-    recordId?: string;
-    timelineId?: string;
-    type?: string;
+    _links: any;
+    createdOn: Date;
+    modifiedBy: VSSInterfaces.IdentityRef;
+    modifiedOn: Date;
+    name: string;
+    recordId: string;
+    timelineId: string;
+    type: string;
 }
 
 export interface ReleaseTaskLogUpdatedEvent extends RealtimeReleaseEvent {
-    lines?: string[];
-    stepRecordId?: string;
-    timelineRecordId?: string;
+    lines: string[];
+    stepRecordId: string;
+    timelineRecordId: string;
 }
 
 export interface ReleaseTasksUpdatedEvent extends RealtimeReleaseEvent {
-    job?: ReleaseTask;
-    planId?: string;
-    releaseDeployPhaseId?: number;
-    releaseStepId?: number;
-    tasks?: ReleaseTask[];
+    job: ReleaseTask;
+    planId: string;
+    releaseDeployPhaseId: number;
+    releaseStepId: number;
+    tasks: ReleaseTask[];
 }
 
 export interface ReleaseTriggerBase {
-    triggerType?: ReleaseTriggerType;
+    triggerType: ReleaseTriggerType;
 }
 
 export enum ReleaseTriggerType {
@@ -2216,35 +2202,35 @@ export enum ReleaseTriggerType {
 }
 
 export interface ReleaseUpdatedEvent extends RealtimeReleaseEvent {
-    release?: Release;
+    release: Release;
 }
 
 export interface ReleaseUpdateMetadata {
     /**
      * Sets comment for release.
      */
-    comment?: string;
+    comment: string;
     /**
      * Set 'true' to exclude the release from retention policies.
      */
-    keepForever?: boolean;
+    keepForever: boolean;
     /**
      * Sets list of manual environments.
      */
-    manualEnvironments?: string[];
+    manualEnvironments: string[];
     /**
      * Sets status of the release.
      */
-    status?: ReleaseStatus;
+    status: ReleaseStatus;
 }
 
 export interface ReleaseWorkItemRef {
-    assignee?: string;
-    id?: string;
-    state?: string;
-    title?: string;
-    type?: string;
-    url?: string;
+    assignee: string;
+    id: string;
+    state: string;
+    title: string;
+    type: string;
+    url: string;
 }
 
 /**
@@ -2254,21 +2240,21 @@ export interface ResourceReference {
     /**
      * An alias to be used when referencing the resource.
      */
-    alias?: string;
+    alias: string;
 }
 
 export interface RetentionPolicy {
-    daysToKeep?: number;
+    daysToKeep: number;
 }
 
 export interface RetentionSettings {
-    daysToKeepDeletedReleases?: number;
-    defaultEnvironmentRetentionPolicy?: EnvironmentRetentionPolicy;
-    maximumEnvironmentRetentionPolicy?: EnvironmentRetentionPolicy;
+    daysToKeepDeletedReleases: number;
+    defaultEnvironmentRetentionPolicy: EnvironmentRetentionPolicy;
+    maximumEnvironmentRetentionPolicy: EnvironmentRetentionPolicy;
 }
 
 export interface RunOnServerDeployPhase extends DeployPhase {
-    deploymentInput?: ServerDeploymentInput;
+    deploymentInput: ServerDeploymentInput;
 }
 
 export enum ScheduleDays {
@@ -2287,7 +2273,7 @@ export interface ScheduledReleaseTrigger extends ReleaseTriggerBase {
     /**
      * Release schedule for Scheduled Release trigger type
      */
-    schedule?: ReleaseSchedule;
+    schedule: ReleaseSchedule;
 }
 
 export enum SenderType {
@@ -2296,7 +2282,7 @@ export enum SenderType {
 }
 
 export interface ServerDeploymentInput extends BaseDeploymentInput {
-    parallelExecution?: ExecutionInput;
+    parallelExecution: ExecutionInput;
 }
 
 /**
@@ -2306,7 +2292,7 @@ export interface ServiceEndpointReference extends ResourceReference {
     /**
      * The ID of the service endpoint.
      */
-    id?: string;
+    id: string;
 }
 
 export enum SingleReleaseExpands {
@@ -2315,41 +2301,41 @@ export enum SingleReleaseExpands {
 }
 
 export interface SourceIdInput {
-    id?: string;
-    name?: string;
+    id: string;
+    name: string;
 }
 
 export interface SourcePullRequestVersion {
     /**
      * Pull Request Id for which the release will publish status
      */
-    pullRequestId?: string;
-    pullRequestMergedAt?: Date;
+    pullRequestId: string;
+    pullRequestMergedAt: Date;
     /**
      * Source branch commit Id of the Pull Request for which the release will publish status
      */
-    sourceBranchCommitId?: string;
+    sourceBranchCommitId: string;
 }
 
 export interface SourceRepoTrigger extends ReleaseTriggerBase {
-    alias?: string;
-    branchFilters?: string[];
+    alias: string;
+    branchFilters: string[];
 }
 
 export interface SummaryMailSection {
-    htmlContent?: string;
-    rank?: number;
-    sectionType?: MailSectionType;
-    title?: string;
+    htmlContent: string;
+    rank: number;
+    sectionType: MailSectionType;
+    title: string;
 }
 
 export interface TaskOrchestrationPlanGroupReference {
-    planGroup?: string;
-    projectId?: string;
+    planGroup: string;
+    projectId: string;
 }
 
 export interface TaskOrchestrationPlanGroupsStartedEvent {
-    planGroups?: TaskOrchestrationPlanGroupReference[];
+    planGroups: TaskOrchestrationPlanGroupReference[];
 }
 
 export enum TaskStatus {
@@ -2369,53 +2355,53 @@ export interface TfvcArtifactDownloadInput extends ArtifactDownloadInputBase {
 }
 
 export interface TimeZone {
-    displayName?: string;
-    id?: string;
+    displayName: string;
+    id: string;
 }
 
 export interface TimeZoneList {
-    utcTimeZone?: TimeZone;
-    validTimeZones?: TimeZone[];
+    utcTimeZone: TimeZone;
+    validTimeZones: TimeZone[];
 }
 
 export interface VariableGroup {
     /**
      * Gets or sets the identity who created.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets or sets description.
      */
-    description?: string;
+    description: string;
     /**
      * Gets the unique identifier of this field.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets the identity who modified.
      */
-    modifiedBy?: VSSInterfaces.IdentityRef;
+    modifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets or sets name.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets provider data.
      */
-    providerData?: VariableGroupProviderData;
+    providerData: VariableGroupProviderData;
     /**
      * Gets or sets type.
      */
-    type?: string;
-    variables?: { [key: string] : VariableValue; };
+    type: string;
+    variables: { [key: string] : VariableValue; };
 }
 
 export enum VariableGroupActionFilter {
@@ -2428,38 +2414,38 @@ export interface VariableGroupProviderData {
 }
 
 export interface VariableValue {
-    isSecret?: boolean;
-    value?: string;
+    isSecret: boolean;
+    value: string;
 }
 
 export interface WorkflowTask {
-    alwaysRun?: boolean;
-    condition?: string;
-    continueOnError?: boolean;
-    definitionType?: string;
-    enabled?: boolean;
-    environment?: { [key: string] : string; };
-    inputs?: { [key: string] : string; };
-    name?: string;
-    overrideInputs?: { [key: string] : string; };
-    refName?: string;
+    alwaysRun: boolean;
+    condition: string;
+    continueOnError: boolean;
+    definitionType: string;
+    enabled: boolean;
+    environment: { [key: string] : string; };
+    inputs: { [key: string] : string; };
+    name: string;
+    overrideInputs: { [key: string] : string; };
+    refName: string;
     taskId: string;
-    timeoutInMinutes?: number;
+    timeoutInMinutes: number;
     version: string;
 }
 
 export interface WorkflowTaskReference {
-    id?: string;
-    name?: string;
-    version?: string;
+    id: string;
+    name: string;
+    version: string;
 }
 
 export interface YamlFileSource {
     /**
      * Gets or sets definition reference. e.g. {"project":{"id":"fed755ea-49c5-4399-acea-fd5b5aa90a6c","name":"myProject"},"definition":{"id":"1","name":"mybuildDefinition"},"connection":{"id":"1","name":"myConnection"}}
      */
-    sourceReference?: { [key: string] : YamlSourceReference; };
-    type?: YamlFileSourceTypes;
+    sourceReference: { [key: string] : YamlSourceReference; };
+    type: YamlFileSourceTypes;
 }
 
 export enum YamlFileSourceTypes {
@@ -2468,20 +2454,20 @@ export enum YamlFileSourceTypes {
 }
 
 export interface YamlPipelineProcess extends PipelineProcess {
-    errors?: string[];
-    filename?: string;
-    fileSource?: YamlFileSource;
-    resources?: YamlPipelineProcessResources;
+    errors: string[];
+    filename: string;
+    fileSource: YamlFileSource;
+    resources: YamlPipelineProcessResources;
 }
 
 export interface YamlPipelineProcessResources {
-    endpoints?: ServiceEndpointReference[];
-    queues?: AgentPoolQueueReference[];
+    endpoints: ServiceEndpointReference[];
+    queues: AgentPoolQueueReference[];
 }
 
 export interface YamlSourceReference {
-    id?: string;
-    name?: string;
+    id: string;
+    name: string;
 }
 
 export var TypeInfo = {
@@ -3723,12 +3709,6 @@ TypeInfo.ReleaseEnvironmentCompletedEvent.fields = {
 TypeInfo.ReleaseEnvironmentStatusUpdatedEvent.fields = {
     environmentStatus: {
         enumType: TypeInfo.EnvironmentStatus
-    },
-    latestDeploymentOperationStatus: {
-        enumType: TypeInfo.DeploymentOperationStatus
-    },
-    latestDeploymentStatus: {
-        enumType: TypeInfo.DeploymentStatus
     }
 };
 

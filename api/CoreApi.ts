@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import CoreInterfaces = require("./interfaces/CoreInterfaces");
 import OperationsInterfaces = require("./interfaces/common/OperationsInterfaces");
@@ -984,9 +986,6 @@ export class CoreApi extends basem.ClientApiBase implements ICoreApi {
         proxyUrl: string,
         site?: string
         ): Promise<void> {
-        if (proxyUrl == null) {
-            throw new TypeError('proxyUrl can not be null or undefined');
-        }
 
         return new Promise<void>(async (resolve, reject) => {
             let routeValues: any = {

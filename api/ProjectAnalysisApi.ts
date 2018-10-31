@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import ProjectAnalysisInterfaces = require("./interfaces/ProjectAnalysisInterfaces");
 
@@ -79,12 +81,6 @@ export class ProjectAnalysisApi extends basem.ClientApiBase implements IProjectA
         fromDate: Date,
         aggregationType: ProjectAnalysisInterfaces.AggregationType
         ): Promise<ProjectAnalysisInterfaces.ProjectActivityMetrics> {
-        if (fromDate == null) {
-            throw new TypeError('fromDate can not be null or undefined');
-        }
-        if (aggregationType == null) {
-            throw new TypeError('aggregationType can not be null or undefined');
-        }
 
         return new Promise<ProjectAnalysisInterfaces.ProjectActivityMetrics>(async (resolve, reject) => {
             let routeValues: any = {
@@ -140,18 +136,6 @@ export class ProjectAnalysisApi extends basem.ClientApiBase implements IProjectA
         skip: number,
         top: number
         ): Promise<ProjectAnalysisInterfaces.RepositoryActivityMetrics[]> {
-        if (fromDate == null) {
-            throw new TypeError('fromDate can not be null or undefined');
-        }
-        if (aggregationType == null) {
-            throw new TypeError('aggregationType can not be null or undefined');
-        }
-        if (skip == null) {
-            throw new TypeError('skip can not be null or undefined');
-        }
-        if (top == null) {
-            throw new TypeError('top can not be null or undefined');
-        }
 
         return new Promise<ProjectAnalysisInterfaces.RepositoryActivityMetrics[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -205,12 +189,6 @@ export class ProjectAnalysisApi extends basem.ClientApiBase implements IProjectA
         fromDate: Date,
         aggregationType: ProjectAnalysisInterfaces.AggregationType
         ): Promise<ProjectAnalysisInterfaces.RepositoryActivityMetrics> {
-        if (fromDate == null) {
-            throw new TypeError('fromDate can not be null or undefined');
-        }
-        if (aggregationType == null) {
-            throw new TypeError('aggregationType can not be null or undefined');
-        }
 
         return new Promise<ProjectAnalysisInterfaces.RepositoryActivityMetrics>(async (resolve, reject) => {
             let routeValues: any = {

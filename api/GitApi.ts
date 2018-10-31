@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import GitInterfaces = require("./interfaces/GitInterfaces");
 import TfsCoreInterfaces = require("./interfaces/CoreInterfaces");
@@ -33,7 +35,6 @@ export interface IGitApi extends basem.ClientApiBase {
     createCherryPick(cherryPickToCreate: GitInterfaces.GitAsyncRefOperationParameters, project: string, repositoryId: string): Promise<GitInterfaces.GitCherryPick>;
     getCherryPick(project: string, cherryPickId: number, repositoryId: string): Promise<GitInterfaces.GitCherryPick>;
     getCherryPickForRefName(project: string, repositoryId: string, refName: string): Promise<GitInterfaces.GitCherryPick>;
-    getCommitDiffs(repositoryId: string, project?: string, diffCommonCommit?: boolean, top?: number, skip?: number, baseVersionDescriptor?: GitInterfaces.GitBaseVersionDescriptor, targetVersionDescriptor?: GitInterfaces.GitTargetVersionDescriptor): Promise<GitInterfaces.GitCommitDiffs>;
     getCommit(commitId: string, repositoryId: string, project?: string, changeCount?: number): Promise<GitInterfaces.GitCommit>;
     getCommits(repositoryId: string, searchCriteria: GitInterfaces.GitQueryCommitsCriteria, project?: string, skip?: number, top?: number): Promise<GitInterfaces.GitCommitRef[]>;
     getPushCommits(repositoryId: string, pushId: number, project?: string, top?: number, skip?: number, includeLinks?: boolean): Promise<GitInterfaces.GitCommitRef[]>;
@@ -117,7 +118,7 @@ export interface IGitApi extends basem.ClientApiBase {
     deleteRepositoryFromRecycleBin(project: string, repositoryId: string): Promise<void>;
     getRecycleBinRepositories(project: string): Promise<GitInterfaces.GitDeletedRepository[]>;
     restoreRepositoryFromRecycleBin(repositoryDetails: GitInterfaces.GitRecycleBinRepositoryDetails, project: string, repositoryId: string): Promise<GitInterfaces.GitRepository>;
-    getRefs(repositoryId: string, project?: string, filter?: string, includeLinks?: boolean, includeStatuses?: boolean, includeMyBranches?: boolean, latestStatusesOnly?: boolean, peelTags?: boolean, filterContains?: string): Promise<GitInterfaces.GitRef[]>;
+    getRefs(repositoryId: string, project?: string, filter?: string, includeLinks?: boolean, includeStatuses?: boolean, includeMyBranches?: boolean, latestStatusesOnly?: boolean, peelTags?: boolean): Promise<GitInterfaces.GitRef[]>;
     updateRef(newRefInfo: GitInterfaces.GitRefUpdate, repositoryId: string, filter: string, project?: string, projectId?: string): Promise<GitInterfaces.GitRef>;
     updateRefs(refUpdates: GitInterfaces.GitRefUpdate[], repositoryId: string, project?: string, projectId?: string): Promise<GitInterfaces.GitRefUpdateResult[]>;
     createFavorite(favorite: GitInterfaces.GitRefFavorite, project: string): Promise<GitInterfaces.GitRefFavorite>;
@@ -463,9 +464,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         project?: string,
         baseVersionDescriptor?: GitInterfaces.GitVersionDescriptor
         ): Promise<GitInterfaces.GitBranchStats> {
-        if (name == null) {
-            throw new TypeError('name can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitBranchStats>(async (resolve, reject) => {
             let routeValues: any = {
@@ -817,9 +815,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         repositoryId: string,
         refName: string
         ): Promise<GitInterfaces.GitCherryPick> {
-        if (refName == null) {
-            throw new TypeError('refName can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitCherryPick>(async (resolve, reject) => {
             let routeValues: any = {
@@ -848,69 +843,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
 
                 let ret = this.formatResponse(res.result,
                                               GitInterfaces.TypeInfo.GitCherryPick,
-                                              false);
-
-                resolve(ret);
-                
-            }
-            catch (err) {
-                reject(err);
-            }
-        });
-    }
-
-    /**
-     * Find the closest common commit (the merge base) between base and target commits, and get the diff between either the base and target commits or common and target commits.
-     * 
-     * @param {string} repositoryId - The name or ID of the repository.
-     * @param {string} project - Project ID or project name
-     * @param {boolean} diffCommonCommit - If true, diff between common and target commits. If false, diff between base and target commits.
-     * @param {number} top - Maximum number of changes to return. Defaults to 100.
-     * @param {number} skip - Number of changes to skip
-     * @param {GitInterfaces.GitBaseVersionDescriptor} baseVersionDescriptor - Descriptor for base commit.
-     * @param {GitInterfaces.GitTargetVersionDescriptor} targetVersionDescriptor - Descriptor for target commit.
-     */
-    public async getCommitDiffs(
-        repositoryId: string,
-        project?: string,
-        diffCommonCommit?: boolean,
-        top?: number,
-        skip?: number,
-        baseVersionDescriptor?: GitInterfaces.GitBaseVersionDescriptor,
-        targetVersionDescriptor?: GitInterfaces.GitTargetVersionDescriptor
-        ): Promise<GitInterfaces.GitCommitDiffs> {
-
-        return new Promise<GitInterfaces.GitCommitDiffs>(async (resolve, reject) => {
-            let routeValues: any = {
-                project: project,
-                repositoryId: repositoryId
-            };
-
-            let queryValues: any = {
-                diffCommonCommit: diffCommonCommit,
-                '$top': top,
-                '$skip': skip,
-                baseVersionDescriptor: baseVersionDescriptor,
-                targetVersionDescriptor: targetVersionDescriptor,
-            };
-            
-            try {
-                let verData: vsom.ClientVersioningData = await this.vsoClient.getVersioningData(
-                    "5.0-preview.1",
-                    "git",
-                    "615588d5-c0c7-4b88-88f8-e625306446e8",
-                    routeValues,
-                    queryValues);
-
-                let url: string = verData.requestUrl;
-                let options: restm.IRequestOptions = this.createRequestOptions('application/json', 
-                                                                                verData.apiVersion);
-
-                let res: restm.IRestResponse<GitInterfaces.GitCommitDiffs>;
-                res = await this.rest.get<GitInterfaces.GitCommitDiffs>(url, options);
-
-                let ret = this.formatResponse(res.result,
-                                              GitInterfaces.TypeInfo.GitCommitDiffs,
                                               false);
 
                 resolve(ret);
@@ -992,9 +924,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         skip?: number,
         top?: number
         ): Promise<GitInterfaces.GitCommitRef[]> {
-        if (searchCriteria == null) {
-            throw new TypeError('searchCriteria can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitCommitRef[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1054,9 +983,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         skip?: number,
         includeLinks?: boolean
         ): Promise<GitInterfaces.GitCommitRef[]> {
-        if (pushId == null) {
-            throw new TypeError('pushId can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitCommitRef[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1635,9 +1561,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         includeContent?: boolean,
         resolveLfs?: boolean
         ): Promise<GitInterfaces.GitItem> {
-        if (path == null) {
-            throw new TypeError('path can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitItem>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1713,9 +1636,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         includeContent?: boolean,
         resolveLfs?: boolean
         ): Promise<NodeJS.ReadableStream> {
-        if (path == null) {
-            throw new TypeError('path can not be null or undefined');
-        }
 
         return new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1852,9 +1772,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         includeContent?: boolean,
         resolveLfs?: boolean
         ): Promise<NodeJS.ReadableStream> {
-        if (path == null) {
-            throw new TypeError('path can not be null or undefined');
-        }
 
         return new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1922,9 +1839,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         includeContent?: boolean,
         resolveLfs?: boolean
         ): Promise<NodeJS.ReadableStream> {
-        if (path == null) {
-            throw new TypeError('path can not be null or undefined');
-        }
 
         return new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
             let routeValues: any = {
@@ -2028,9 +1942,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         otherCollectionId?: string,
         otherRepositoryId?: string
         ): Promise<GitInterfaces.GitCommitRef[]> {
-        if (otherCommitId == null) {
-            throw new TypeError('otherCommitId can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitCommitRef[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -2314,7 +2225,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
     /**
      * Add a like on a comment.
      * 
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - The ID of the thread that contains the comment.
      * @param {number} commentId - The ID of the comment.
@@ -2349,7 +2260,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<void>;
-                res = await this.rest.create<void>(url, null, options);
+                res = await this.rest.create<void>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               null,
@@ -2367,7 +2278,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
     /**
      * Delete a like on a comment.
      * 
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - The ID of the thread that contains the comment.
      * @param {number} commentId - The ID of the comment.
@@ -2420,7 +2331,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
     /**
      * Get likes for a comment.
      * 
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - The ID of the thread that contains the comment.
      * @param {number} commentId - The ID of the comment.
@@ -3944,9 +3855,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         skip?: number,
         top?: number
         ): Promise<GitInterfaces.GitPullRequest[]> {
-        if (searchCriteria == null) {
-            throw new TypeError('searchCriteria can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitPullRequest[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -4125,9 +4033,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         skip?: number,
         top?: number
         ): Promise<GitInterfaces.GitPullRequest[]> {
-        if (searchCriteria == null) {
-            throw new TypeError('searchCriteria can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitPullRequest[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -4522,7 +4427,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
      * Create a comment on a specific thread in a pull request.
      * 
      * @param {GitInterfaces.Comment} comment - The comment to create.
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - ID of the thread that the desired comment is in.
      * @param {string} project - Project ID or project name
@@ -4573,7 +4478,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
     /**
      * Delete a comment associated with a specific thread in a pull request.
      * 
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - ID of the thread that the desired comment is in.
      * @param {number} commentId - ID of the comment.
@@ -4626,7 +4531,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
     /**
      * Retrieve a comment associated with a specific thread in a pull request.
      * 
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - ID of the thread that the desired comment is in.
      * @param {number} commentId - ID of the comment.
@@ -4679,7 +4584,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
     /**
      * Retrieve all comments associated with a specific thread in a pull request.
      * 
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - ID of the thread.
      * @param {string} project - Project ID or project name
@@ -4730,7 +4635,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
      * Update a comment associated with a specific thread in a pull request.
      * 
      * @param {GitInterfaces.Comment} comment - The comment content that should be updated.
-     * @param {string} repositoryId - The repository ID of the pull request's target branch.
+     * @param {string} repositoryId - The repository ID of the pull request’s target branch.
      * @param {number} pullRequestId - ID of the pull request.
      * @param {number} threadId - ID of the thread that the desired comment is in.
      * @param {number} commentId - ID of the comment to update.
@@ -5342,13 +5247,12 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
      * 
      * @param {string} repositoryId - The name or ID of the repository.
      * @param {string} project - Project ID or project name
-     * @param {string} filter - [optional] A filter to apply to the refs (starts with).
+     * @param {string} filter - [optional] A filter to apply to the refs.
      * @param {boolean} includeLinks - [optional] Specifies if referenceLinks should be included in the result. default is false.
      * @param {boolean} includeStatuses - [optional] Includes up to the first 1000 commit statuses for each ref. The default value is false.
      * @param {boolean} includeMyBranches - [optional] Includes only branches that the user owns, the branches the user favorites, and the default branch. The default value is false. Cannot be combined with the filter parameter.
      * @param {boolean} latestStatusesOnly - [optional] True to include only the tip commit status for each ref. This option requires `includeStatuses` to be true. The default value is false.
      * @param {boolean} peelTags - [optional] Annotated tags will populate the PeeledObjectId property. default is false.
-     * @param {string} filterContains - [optional] A filter to apply to the refs (contains).
      */
     public async getRefs(
         repositoryId: string,
@@ -5358,8 +5262,7 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         includeStatuses?: boolean,
         includeMyBranches?: boolean,
         latestStatusesOnly?: boolean,
-        peelTags?: boolean,
-        filterContains?: string
+        peelTags?: boolean
         ): Promise<GitInterfaces.GitRef[]> {
 
         return new Promise<GitInterfaces.GitRef[]>(async (resolve, reject) => {
@@ -5375,7 +5278,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
                 includeMyBranches: includeMyBranches,
                 latestStatusesOnly: latestStatusesOnly,
                 peelTags: peelTags,
-                filterContains: filterContains,
             };
             
             try {
@@ -5422,9 +5324,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         project?: string,
         projectId?: string
         ): Promise<GitInterfaces.GitRef> {
-        if (filter == null) {
-            throw new TypeError('filter can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitRef>(async (resolve, reject) => {
             let routeValues: any = {
@@ -5904,9 +5803,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         includeParent: boolean,
         project?: string
         ): Promise<GitInterfaces.GitRepository> {
-        if (includeParent == null) {
-            throw new TypeError('includeParent can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitRepository>(async (resolve, reject) => {
             let routeValues: any = {
@@ -6097,9 +5993,6 @@ export class GitApi extends basem.ClientApiBase implements IGitApi {
         repositoryId: string,
         refName: string
         ): Promise<GitInterfaces.GitRevert> {
-        if (refName == null) {
-            throw new TypeError('refName can not be null or undefined');
-        }
 
         return new Promise<GitInterfaces.GitRevert>(async (resolve, reject) => {
             let routeValues: any = {

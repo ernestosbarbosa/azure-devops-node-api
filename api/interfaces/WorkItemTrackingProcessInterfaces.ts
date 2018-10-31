@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -19,23 +19,23 @@ export interface AddProcessWorkItemTypeFieldRequest {
     /**
      * Allow setting field value to a group identity. Only applies to identity fields.
      */
-    allowGroups?: boolean;
+    allowGroups: boolean;
     /**
      * The default value of the field.
      */
-    defaultValue?: any;
+    defaultValue: any;
     /**
      * If true the field cannot be edited.
      */
-    readOnly?: boolean;
+    readOnly: boolean;
     /**
      * Reference name of the field.
      */
-    referenceName?: string;
+    referenceName: string;
     /**
      * If true the field cannot be empty.
      */
-    required?: boolean;
+    required: boolean;
 }
 
 /**
@@ -45,74 +45,74 @@ export interface Control {
     /**
      * Contribution for the control.
      */
-    contribution?: WitContribution;
+    contribution: WitContribution;
     /**
      * Type of the control.
      */
-    controlType?: string;
+    controlType: string;
     /**
      * Height of the control, for html controls.
      */
-    height?: number;
+    height: number;
     /**
      * The id for the layout node.
      */
-    id?: string;
+    id: string;
     /**
      * A value indicating whether this layout node has been inherited. from a parent layout.  This is expected to only be only set by the combiner.
      */
-    inherited?: boolean;
+    inherited: boolean;
     /**
      * A value indicating if the layout node is contribution or not.
      */
-    isContribution?: boolean;
+    isContribution: boolean;
     /**
      * Label for the field.
      */
-    label?: string;
+    label: string;
     /**
      * Inner text of the control.
      */
-    metadata?: string;
+    metadata: string;
     /**
      * Order in which the control should appear in its group.
      */
-    order?: number;
+    order: number;
     /**
      * A value indicating whether this layout node has been overridden . by a child layout.
      */
-    overridden?: boolean;
+    overridden: boolean;
     /**
      * A value indicating if the control is readonly.
      */
-    readOnly?: boolean;
+    readOnly: boolean;
     /**
      * A value indicating if the control should be hidden or not.
      */
-    visible?: boolean;
+    visible: boolean;
     /**
      * Watermark text for the textbox.
      */
-    watermark?: string;
+    watermark: string;
 }
 
 export interface CreateProcessModel {
     /**
      * Description of the process
      */
-    description?: string;
+    description: string;
     /**
      * Name of the process
      */
-    name?: string;
+    name: string;
     /**
      * The ID of the parent process
      */
-    parentProcessTypeId?: string;
+    parentProcessTypeId: string;
     /**
      * Reference name of the process
      */
-    referenceName?: string;
+    referenceName: string;
 }
 
 /**
@@ -122,19 +122,19 @@ export interface CreateProcessRuleRequest {
     /**
      * List of actions to take when the rule is triggered.
      */
-    actions?: RuleAction[];
+    actions: RuleAction[];
     /**
      * List of conditions when the rule should be triggered.
      */
-    conditions?: RuleCondition[];
+    conditions: RuleCondition[];
     /**
      * Indicates if the rule is disabled.
      */
-    isDisabled?: boolean;
+    isDisabled: boolean;
     /**
      * Name for the rule.
      */
-    name?: string;
+    name: string;
 }
 
 /**
@@ -144,27 +144,27 @@ export interface CreateProcessWorkItemTypeRequest {
     /**
      * Color hexadecimal code to represent the work item type
      */
-    color?: string;
+    color: string;
     /**
      * Description of the work item type
      */
-    description?: string;
+    description: string;
     /**
      * Icon to represent the work item type
      */
-    icon?: string;
+    icon: string;
     /**
      * Parent work item type for work item type
      */
-    inheritsFrom?: string;
+    inheritsFrom: string;
     /**
      * True if the work item type need to be disabled
      */
-    isDisabled?: boolean;
+    isDisabled: boolean;
     /**
      * Name of work item type
      */
-    name?: string;
+    name: string;
 }
 
 /**
@@ -192,25 +192,25 @@ export interface Extension {
     /**
      * Id of the extension
      */
-    id?: string;
+    id: string;
 }
 
 export interface FieldModel {
-    description?: string;
-    id?: string;
-    isIdentity?: boolean;
-    name?: string;
-    type?: FieldType;
-    url?: string;
+    description: string;
+    id: string;
+    isIdentity: boolean;
+    name: string;
+    type: FieldType;
+    url: string;
 }
 
 export interface FieldRuleModel {
-    actions?: RuleActionModel[];
-    conditions?: RuleConditionModel[];
-    friendlyName?: string;
-    id?: string;
-    isDisabled?: boolean;
-    isSystem?: boolean;
+    actions: RuleActionModel[];
+    conditions: RuleConditionModel[];
+    friendlyName: string;
+    id: string;
+    isDisabled: boolean;
+    isSystem: boolean;
 }
 
 /**
@@ -240,15 +240,15 @@ export interface FormLayout {
     /**
      * Gets and sets extensions list.
      */
-    extensions?: Extension[];
+    extensions: Extension[];
     /**
      * Top level tabs of the layout.
      */
-    pages?: Page[];
+    pages: Page[];
     /**
      * Headers controls of the layout.
      */
-    systemControls?: Control[];
+    systemControls: Control[];
 }
 
 /**
@@ -291,47 +291,47 @@ export interface Group {
     /**
      * Contribution for the group.
      */
-    contribution?: WitContribution;
+    contribution: WitContribution;
     /**
      * Controls to be put in the group.
      */
-    controls?: Control[];
+    controls: Control[];
     /**
      * The height for the contribution.
      */
-    height?: number;
+    height: number;
     /**
      * The id for the layout node.
      */
-    id?: string;
+    id: string;
     /**
      * A value indicating whether this layout node has been inherited from a parent layout.  This is expected to only be only set by the combiner.
      */
-    inherited?: boolean;
+    inherited: boolean;
     /**
      * A value indicating if the layout node is contribution are not.
      */
-    isContribution?: boolean;
+    isContribution: boolean;
     /**
      * Label for the group.
      */
-    label?: string;
+    label: string;
     /**
      * Order in which the group should appear in the section.
      */
-    order?: number;
+    order: number;
     /**
      * A value indicating whether this layout node has been overridden by a child layout.
      */
-    overridden?: boolean;
+    overridden: boolean;
     /**
      * A value indicating if the group should be hidden or not.
      */
-    visible?: boolean;
+    visible: boolean;
 }
 
 export interface HideStateModel {
-    hidden?: boolean;
+    hidden: boolean;
 }
 
 /**
@@ -341,47 +341,47 @@ export interface Page {
     /**
      * Contribution for the page.
      */
-    contribution?: WitContribution;
+    contribution: WitContribution;
     /**
      * The id for the layout node.
      */
-    id?: string;
+    id: string;
     /**
      * A value indicating whether this layout node has been inherited from a parent layout.  This is expected to only be only set by the combiner.
      */
-    inherited?: boolean;
+    inherited: boolean;
     /**
      * A value indicating if the layout node is contribution are not.
      */
-    isContribution?: boolean;
+    isContribution: boolean;
     /**
      * The label for the page.
      */
-    label?: string;
+    label: string;
     /**
      * A value indicating whether any user operations are permitted on this page and the contents of this page
      */
-    locked?: boolean;
+    locked: boolean;
     /**
      * Order in which the page should appear in the layout.
      */
-    order?: number;
+    order: number;
     /**
      * A value indicating whether this layout node has been overridden by a child layout.
      */
-    overridden?: boolean;
+    overridden: boolean;
     /**
      * The icon for the page.
      */
-    pageType?: PageType;
+    pageType: PageType;
     /**
      * The sections of the page.
      */
-    sections?: Section[];
+    sections: Section[];
     /**
      * A value indicating if the page should be hidden or not.
      */
-    visible?: boolean;
+    visible: boolean;
 }
 
 /**
@@ -401,7 +401,7 @@ export interface PickList extends PickListMetadata {
     /**
      * A list of PicklistItemModel.
      */
-    items?: string[];
+    items: string[];
 }
 
 /**
@@ -411,23 +411,23 @@ export interface PickListMetadata {
     /**
      * ID of the picklist
      */
-    id?: string;
+    id: string;
     /**
      * Indicates whether items outside of suggested list are allowed
      */
-    isSuggested?: boolean;
+    isSuggested: boolean;
     /**
      * Name of the picklist
      */
-    name?: string;
+    name: string;
     /**
      * DataType of picklist
      */
-    type?: string;
+    type: string;
     /**
      * Url of the picklist
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -437,39 +437,39 @@ export interface ProcessBehavior {
     /**
      * Color.
      */
-    color?: string;
+    color: string;
     /**
      * Indicates the type of customization on this work item. System behaviors are inherited from parent process but not modified. Inherited behaviors are modified modified behaviors that were inherited from parent process. Custom behaviors are behaviors created by user in current process.
      */
-    customization?: CustomizationType;
+    customization: CustomizationType;
     /**
      * . Description
      */
-    description?: string;
+    description: string;
     /**
      * Process Behavior Fields.
      */
-    fields?: ProcessBehaviorField[];
+    fields: ProcessBehaviorField[];
     /**
      * Parent behavior reference.
      */
-    inherits?: ProcessBehaviorReference;
+    inherits: ProcessBehaviorReference;
     /**
      * Behavior Name.
      */
-    name?: string;
+    name: string;
     /**
      * Rank of the behavior
      */
-    rank?: number;
+    rank: number;
     /**
      * Behavior Id
      */
-    referenceName?: string;
+    referenceName: string;
     /**
      * Url of the behavior.
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -479,19 +479,19 @@ export interface ProcessBehaviorCreateRequest {
     /**
      * Color.
      */
-    color?: string;
+    color: string;
     /**
      * Parent behavior id.
      */
-    inherits?: string;
+    inherits: string;
     /**
      * Name of the behavior.
      */
-    name?: string;
+    name: string;
     /**
      * ReferenceName is optional, if not specified will be auto-generated.
      */
-    referenceName?: string;
+    referenceName: string;
 }
 
 /**
@@ -501,15 +501,15 @@ export interface ProcessBehaviorField {
     /**
      * Name of the field.
      */
-    name?: string;
+    name: string;
     /**
      * Reference name of the field.
      */
-    referenceName?: string;
+    referenceName: string;
     /**
      * Url to field.
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -519,11 +519,11 @@ export interface ProcessBehaviorReference {
     /**
      * Id of a Behavior.
      */
-    behaviorRefName?: string;
+    behaviorRefName: string;
     /**
      * Url to behavior.
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -533,11 +533,11 @@ export interface ProcessBehaviorUpdateRequest {
     /**
      * Color.
      */
-    color?: string;
+    color: string;
     /**
      * Behavior Name.
      */
-    name?: string;
+    name: string;
 }
 
 export enum ProcessClass {
@@ -553,66 +553,62 @@ export interface ProcessInfo {
     /**
      * Indicates the type of customization on this process. System Process is default process. Inherited Process is modified process that was System process before.
      */
-    customizationType?: CustomizationType;
+    customizationType: CustomizationType;
     /**
      * Description of the process.
      */
-    description?: string;
-    /**
-     * Is the process default.
-     */
-    isDefault?: boolean;
+    description: string;
     /**
      * Is the process enabled.
      */
-    isEnabled?: boolean;
+    isEnabled: boolean;
     /**
      * Name of the process.
      */
-    name?: string;
+    name: string;
     /**
      * ID of the parent process.
      */
-    parentProcessTypeId?: string;
+    parentProcessTypeId: string;
     /**
      * Projects in this process to which the user is subscribed to.
      */
-    projects?: ProjectReference[];
+    projects: ProjectReference[];
     /**
      * Reference name of the process.
      */
-    referenceName?: string;
+    referenceName: string;
     /**
      * The ID of the process.
      */
-    typeId?: string;
+    typeId: string;
 }
 
 export interface ProcessModel {
     /**
      * Description of the process
      */
-    description?: string;
+    description: string;
     /**
      * Name of the process
      */
-    name?: string;
+    name: string;
     /**
      * Projects in this process
      */
-    projects?: ProjectReference[];
+    projects: ProjectReference[];
     /**
      * Properties of the process
      */
-    properties?: ProcessProperties;
+    properties: ProcessProperties;
     /**
      * Reference name of the process
      */
-    referenceName?: string;
+    referenceName: string;
     /**
      * The ID of the process
      */
-    typeId?: string;
+    typeId: string;
 }
 
 /**
@@ -622,23 +618,23 @@ export interface ProcessProperties {
     /**
      * Class of the process.
      */
-    class?: ProcessClass;
+    class: ProcessClass;
     /**
      * Is the process default process.
      */
-    isDefault?: boolean;
+    isDefault: boolean;
     /**
      * Is the process enabled.
      */
-    isEnabled?: boolean;
+    isEnabled: boolean;
     /**
      * ID of the parent process.
      */
-    parentProcessTypeId?: string;
+    parentProcessTypeId: string;
     /**
      * Version of the process.
      */
-    version?: string;
+    version: string;
 }
 
 /**
@@ -648,60 +644,60 @@ export interface ProcessRule extends CreateProcessRuleRequest {
     /**
      * Indicates if the rule is system generated or created by user.
      */
-    customizationType?: CustomizationType;
+    customizationType: CustomizationType;
     /**
      * Id to uniquely identify the rule.
      */
-    id?: string;
+    id: string;
     /**
      * Resource Url.
      */
-    url?: string;
+    url: string;
 }
 
 /**
  * Class that describes a work item type object
  */
 export interface ProcessWorkItemType {
-    behaviors?: WorkItemTypeBehavior[];
+    behaviors: WorkItemTypeBehavior[];
     /**
      * Color hexadecimal code to represent the work item type
      */
-    color?: string;
+    color: string;
     /**
      * Indicates the type of customization on this work item System work item types are inherited from parent process but not modified Inherited work item types are modified work item that were inherited from parent process Custom work item types are work item types that were created in the current process
      */
-    customization?: CustomizationType;
+    customization: CustomizationType;
     /**
      * Description of the work item type
      */
-    description?: string;
+    description: string;
     /**
      * Icon to represent the work item typ
      */
-    icon?: string;
+    icon: string;
     /**
      * Reference name of the parent work item type
      */
-    inherits?: string;
+    inherits: string;
     /**
      * Indicates if a work item type is disabled
      */
-    isDisabled?: boolean;
-    layout?: FormLayout;
+    isDisabled: boolean;
+    layout: FormLayout;
     /**
      * Name of the work item type
      */
-    name?: string;
+    name: string;
     /**
      * Reference name of work item type
      */
-    referenceName?: string;
-    states?: WorkItemStateResultModel[];
+    referenceName: string;
+    states: WorkItemStateResultModel[];
     /**
      * Url of the work item type
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -711,80 +707,80 @@ export interface ProcessWorkItemTypeField {
     /**
      * Allow setting field value to a group identity. Only applies to identity fields.
      */
-    allowGroups?: boolean;
-    customization?: CustomizationType;
+    allowGroups: boolean;
+    customization: CustomizationType;
     /**
      * The default value of the field.
      */
-    defaultValue?: any;
+    defaultValue: any;
     /**
      * Description of the field.
      */
-    description?: string;
+    description: string;
     /**
      * Name of the field.
      */
-    name?: string;
+    name: string;
     /**
      * If true the field cannot be edited.
      */
-    readOnly?: boolean;
+    readOnly: boolean;
     /**
      * Reference name of the field.
      */
-    referenceName?: string;
+    referenceName: string;
     /**
      * If true the field cannot be empty.
      */
-    required?: boolean;
+    required: boolean;
     /**
      * Type of the field.
      */
-    type?: FieldType;
+    type: FieldType;
     /**
      * Resource URL of the field.
      */
-    url?: string;
+    url: string;
 }
 
 export interface ProjectReference {
     /**
      * Description of the project
      */
-    description?: string;
+    description: string;
     /**
      * The ID of the project
      */
-    id?: string;
+    id: string;
     /**
      * Name of the project
      */
-    name?: string;
+    name: string;
     /**
      * Url of the project
      */
-    url?: string;
+    url: string;
 }
 
 export interface RuleAction {
     /**
      * Type of action to take when the rule is triggered.
      */
-    actionType?: RuleActionType;
+    actionType: RuleActionType;
     /**
      * Field on which the action should be taken.
      */
-    targetField?: string;
+    targetField: string;
     /**
      * Value to apply on target field, once the action is taken.
      */
-    value?: string;
+    value: string;
 }
 
 export interface RuleActionModel {
-    actionType?: string;
-    targetField?: string;
-    value?: string;
+    actionType: string;
+    targetField: string;
+    value: string;
 }
 
 /**
@@ -852,21 +848,21 @@ export interface RuleCondition {
     /**
      * Type of condition. $When. This condition limits the execution of its children to cases when another field has a particular value, i.e. when the Is value of the referenced field is equal to the given literal value. $WhenNot.This condition limits the execution of its children to cases when another field does not have a particular value, i.e.when the Is value of the referenced field is not equal to the given literal value. $WhenChanged.This condition limits the execution of its children to cases when another field has changed, i.e.when the Is value of the referenced field is not equal to the Was value of that field. $WhenNotChanged.This condition limits the execution of its children to cases when another field has not changed, i.e.when the Is value of the referenced field is equal to the Was value of that field.
      */
-    conditionType?: RuleConditionType;
+    conditionType: RuleConditionType;
     /**
      * Field that defines condition.
      */
-    field?: string;
+    field: string;
     /**
      * Value of field to define the condition for rule.
      */
-    value?: string;
+    value: string;
 }
 
 export interface RuleConditionModel {
-    conditionType?: string;
-    field?: string;
-    value?: string;
+    conditionType: string;
+    field: string;
+    value: string;
 }
 
 /**
@@ -904,15 +900,15 @@ export interface Section {
     /**
      * List of child groups in this section
      */
-    groups?: Group[];
+    groups: Group[];
     /**
      * The id for the layout node.
      */
-    id?: string;
+    id: string;
     /**
      * A value indicating whether this layout node has been overridden by a child layout.
      */
-    overridden?: boolean;
+    overridden: boolean;
 }
 
 /**
@@ -922,19 +918,19 @@ export interface UpdateProcessModel {
     /**
      * New description of the process
      */
-    description?: string;
+    description: string;
     /**
      * If true new projects will use this process by default
      */
-    isDefault?: boolean;
+    isDefault: boolean;
     /**
      * If false the process will be disabled and cannot be used to create projects
      */
-    isEnabled?: boolean;
+    isEnabled: boolean;
     /**
      * New name of the process
      */
-    name?: string;
+    name: string;
 }
 
 /**
@@ -944,7 +940,7 @@ export interface UpdateProcessRuleRequest extends CreateProcessRuleRequest {
     /**
      * Id to uniquely identify the rule.
      */
-    id?: string;
+    id: string;
 }
 
 /**
@@ -954,19 +950,19 @@ export interface UpdateProcessWorkItemTypeFieldRequest {
     /**
      * Allow setting field value to a group identity. Only applies to identity fields.
      */
-    allowGroups?: boolean;
+    allowGroups: boolean;
     /**
      * The default value of the field.
      */
-    defaultValue?: any;
+    defaultValue: any;
     /**
      * If true the field cannot be edited.
      */
-    readOnly?: boolean;
+    readOnly: boolean;
     /**
      * The default value of the field.
      */
-    required?: boolean;
+    required: boolean;
 }
 
 /**
@@ -976,19 +972,19 @@ export interface UpdateProcessWorkItemTypeRequest {
     /**
      * Color of the work item type
      */
-    color?: string;
+    color: string;
     /**
      * Description of the work item type
      */
-    description?: string;
+    description: string;
     /**
      * Icon of the work item type
      */
-    icon?: string;
+    icon: string;
     /**
      * If set will disable the work item type
      */
-    isDisabled?: boolean;
+    isDisabled: boolean;
 }
 
 /**
@@ -998,73 +994,73 @@ export interface WitContribution {
     /**
      * The id for the contribution.
      */
-    contributionId?: string;
+    contributionId: string;
     /**
      * The height for the contribution.
      */
-    height?: number;
+    height: number;
     /**
      * A dictionary holding key value pairs for contribution inputs.
      */
-    inputs?: { [key: string] : any; };
+    inputs: { [key: string] : any; };
     /**
      * A value indicating if the contribution should be show on deleted workItem.
      */
-    showOnDeletedWorkItem?: boolean;
+    showOnDeletedWorkItem: boolean;
 }
 
 export interface WorkItemBehavior {
-    abstract?: boolean;
-    color?: string;
-    description?: string;
-    fields?: WorkItemBehaviorField[];
-    id?: string;
-    inherits?: WorkItemBehaviorReference;
-    name?: string;
-    overriden?: boolean;
-    rank?: number;
-    url?: string;
+    abstract: boolean;
+    color: string;
+    description: string;
+    fields: WorkItemBehaviorField[];
+    id: string;
+    inherits: WorkItemBehaviorReference;
+    name: string;
+    overriden: boolean;
+    rank: number;
+    url: string;
 }
 
 export interface WorkItemBehaviorField {
-    behaviorFieldId?: string;
-    id?: string;
-    url?: string;
+    behaviorFieldId: string;
+    id: string;
+    url: string;
 }
 
 export interface WorkItemBehaviorReference {
-    id?: string;
-    url?: string;
+    id: string;
+    url: string;
 }
 
 export interface WorkItemStateInputModel {
     /**
      * Color of the state
      */
-    color?: string;
+    color: string;
     /**
      * Name of the state
      */
-    name?: string;
+    name: string;
     /**
      * Order in which state should appear
      */
-    order?: number;
+    order: number;
     /**
      * Category of the state
      */
-    stateCategory?: string;
+    stateCategory: string;
 }
 
 export interface WorkItemStateResultModel {
-    color?: string;
-    customizationType?: CustomizationType;
-    hidden?: boolean;
-    id?: string;
-    name?: string;
-    order?: number;
-    stateCategory?: string;
-    url?: string;
+    color: string;
+    customizationType: CustomizationType;
+    hidden: boolean;
+    id: string;
+    name: string;
+    order: number;
+    stateCategory: string;
+    url: string;
 }
 
 /**
@@ -1074,15 +1070,15 @@ export interface WorkItemTypeBehavior {
     /**
      * Reference to the behavior of a work item type
      */
-    behavior?: WorkItemBehaviorReference;
+    behavior: WorkItemBehaviorReference;
     /**
      * If true the work item type is the default work item type in the behavior
      */
-    isDefault?: boolean;
+    isDefault: boolean;
     /**
      * URL of the work item type behavior
      */
-    url?: string;
+    url: string;
 }
 
 export enum WorkItemTypeClass {
@@ -1092,21 +1088,21 @@ export enum WorkItemTypeClass {
 }
 
 export interface WorkItemTypeModel {
-    behaviors?: WorkItemTypeBehavior[];
-    class?: WorkItemTypeClass;
-    color?: string;
-    description?: string;
-    icon?: string;
-    id?: string;
+    behaviors: WorkItemTypeBehavior[];
+    class: WorkItemTypeClass;
+    color: string;
+    description: string;
+    icon: string;
+    id: string;
     /**
      * Parent WIT Id/Internal ReferenceName that it inherits from
      */
-    inherits?: string;
-    isDisabled?: boolean;
-    layout?: FormLayout;
-    name?: string;
-    states?: WorkItemStateResultModel[];
-    url?: string;
+    inherits: string;
+    isDisabled: boolean;
+    layout: FormLayout;
+    name: string;
+    states: WorkItemStateResultModel[];
+    url: string;
 }
 
 export var TypeInfo = {

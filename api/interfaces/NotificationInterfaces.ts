@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -18,34 +18,34 @@ export interface ActorFilter extends RoleBasedFilter {
 }
 
 export interface ActorNotificationReason extends NotificationReason {
-    matchedRoles?: string[];
+    matchedRoles: string[];
 }
 
 /**
  * Artifact filter options. Used in "follow" subscriptions.
  */
 export interface ArtifactFilter extends BaseSubscriptionFilter {
-    artifactId?: string;
-    artifactType?: string;
-    artifactUri?: string;
-    type?: string;
+    artifactId: string;
+    artifactType: string;
+    artifactUri: string;
+    type: string;
 }
 
 export interface BaseSubscriptionFilter {
-    eventType?: string;
-    type?: string;
+    eventType: string;
+    type: string;
 }
 
 export interface BatchNotificationOperation {
-    notificationOperation?: NotificationOperation;
-    notificationQueryConditions?: NotificationQueryCondition[];
+    notificationOperation: NotificationOperation;
+    notificationQueryConditions: NotificationQueryCondition[];
 }
 
 export interface BlockFilter extends RoleBasedFilter {
 }
 
 export interface BlockSubscriptionChannel {
-    type?: string;
+    type: string;
 }
 
 /**
@@ -57,33 +57,33 @@ export enum DefaultGroupDeliveryPreference {
 }
 
 export interface DiagnosticIdentity {
-    displayName?: string;
-    emailAddress?: string;
-    id?: string;
+    displayName: string;
+    emailAddress: string;
+    id: string;
 }
 
 export interface DiagnosticNotification {
-    eventId?: number;
-    eventType?: string;
-    id?: number;
-    messages?: NotificationDiagnosticLogMessage[];
-    recipients?: { [key: string] : DiagnosticRecipient; };
-    result?: string;
-    stats?: { [key: string] : number; };
-    subscriptionId?: string;
+    eventId: number;
+    eventType: string;
+    id: number;
+    messages: NotificationDiagnosticLogMessage[];
+    recipients: { [key: string] : DiagnosticRecipient; };
+    result: string;
+    stats: { [key: string] : number; };
+    subscriptionId: string;
 }
 
 export interface DiagnosticRecipient {
-    recipient?: DiagnosticIdentity;
-    status?: string;
+    recipient: DiagnosticIdentity;
+    status: string;
 }
 
 export interface EmailHtmlSubscriptionChannel extends SubscriptionChannelWithAddress {
-    type?: string;
+    type: string;
 }
 
 export interface EmailPlaintextSubscriptionChannel extends SubscriptionChannelWithAddress {
-    type?: string;
+    type: string;
 }
 
 /**
@@ -125,33 +125,33 @@ export enum EvaluationOperationStatus {
 }
 
 export interface EventBacklogStatus {
-    captureTime?: Date;
-    jobId?: string;
-    lastEventBatchStartTime?: Date;
-    lastEventProcessedTime?: Date;
-    lastJobBatchStartTime?: Date;
-    lastJobProcessedTime?: Date;
-    oldestPendingEventTime?: Date;
-    publisher?: string;
-    unprocessedEvents?: number;
+    captureTime: Date;
+    jobId: string;
+    lastEventBatchStartTime: Date;
+    lastEventProcessedTime: Date;
+    lastJobBatchStartTime: Date;
+    lastJobProcessedTime: Date;
+    oldestPendingEventTime: Date;
+    publisher: string;
+    unprocessedEvents: number;
 }
 
 export interface EventBatch {
-    endTime?: any;
-    eventCounts?: { [key: string] : number; };
-    eventIds?: string;
-    notificationCounts?: { [key: string] : number; };
-    preProcessEndTime?: any;
-    preProcessStartTime?: any;
-    processEndTime?: any;
-    processStartTime?: any;
-    startTime?: any;
-    subscriptionCounts?: { [key: string] : number; };
+    endTime: any;
+    eventCounts: { [key: string] : number; };
+    eventIds: string;
+    notificationCounts: { [key: string] : number; };
+    preProcessEndTime: any;
+    preProcessStartTime: any;
+    processEndTime: any;
+    processStartTime: any;
+    startTime: any;
+    subscriptionCounts: { [key: string] : number; };
 }
 
 export interface EventProcessingLog extends NotificationJobDiagnosticLog {
-    batches?: EventBatch[];
-    matcherResults?: MatcherResult[];
+    batches: EventBatch[];
+    matcherResults: MatcherResult[];
 }
 
 /**
@@ -172,11 +172,11 @@ export interface EventsEvaluationResult {
     /**
      * Count of events evaluated.
      */
-    count?: number;
+    count: number;
     /**
      * Count of matched events.
      */
-    matchedCount?: number;
+    matchedCount: number;
 }
 
 /**
@@ -208,11 +208,11 @@ export interface EventTransformResult {
     /**
      * Calculated data.
      */
-    data?: any;
+    data: any;
     /**
      * Calculated system inputs.
      */
-    systemInputs?: { [key: string] : string; };
+    systemInputs: { [key: string] : string; };
 }
 
 /**
@@ -227,25 +227,25 @@ export enum EventTypeQueryFlags {
 }
 
 export interface ExpressionFilter extends BaseSubscriptionFilter {
-    criteria?: ExpressionFilterModel;
-    type?: string;
+    criteria: ExpressionFilterModel;
+    type: string;
 }
 
 /**
  * Subscription Filter Clause represents a single clause in a subscription filter e.g. If the subscription has the following criteria "Project Name = [Current Project] AND Assigned To = [Me] it will be represented as two Filter Clauses Clause 1: Index = 1, Logical Operator: NULL  , FieldName = 'Project Name', Operator = '=', Value = '[Current Project]' Clause 2: Index = 2, Logical Operator: 'AND' , FieldName = 'Assigned To' , Operator = '=', Value = '[Me]'
  */
 export interface ExpressionFilterClause {
-    fieldName?: string;
+    fieldName: string;
     /**
      * The order in which this clause appeared in the filter query
      */
-    index?: number;
+    index: number;
     /**
      * Logical Operator 'AND', 'OR' or NULL (only for the first clause in the filter)
      */
-    logicalOperator?: string;
-    operator?: string;
-    value?: string;
+    logicalOperator: string;
+    operator: string;
+    value: string;
 }
 
 /**
@@ -255,120 +255,120 @@ export interface ExpressionFilterGroup {
     /**
      * The index of the last FilterClause in this group
      */
-    end?: number;
+    end: number;
     /**
      * Level of the group, since groups can be nested for each nested group the level will increase by 1
      */
-    level?: number;
+    level: number;
     /**
      * The index of the first FilterClause in this group
      */
-    start?: number;
+    start: number;
 }
 
 export interface ExpressionFilterModel {
     /**
      * Flat list of clauses in this subscription
      */
-    clauses?: ExpressionFilterClause[];
+    clauses: ExpressionFilterClause[];
     /**
      * Grouping of clauses in the subscription
      */
-    groups?: ExpressionFilterGroup[];
+    groups: ExpressionFilterGroup[];
     /**
      * Max depth of the Subscription tree
      */
-    maxGroupLevel?: number;
+    maxGroupLevel: number;
 }
 
 export interface FieldInputValues extends FormInputInterfaces.InputValues {
-    operators?: number[];
+    operators: number[];
 }
 
 export interface FieldValuesQuery extends FormInputInterfaces.InputValuesQuery {
-    inputValues?: FieldInputValues[];
-    scope?: string;
+    inputValues: FieldInputValues[];
+    scope: string;
 }
 
 export interface GeneratedNotification {
-    recipients?: DiagnosticIdentity[];
+    recipients: DiagnosticIdentity[];
 }
 
 export interface GroupSubscriptionChannel extends SubscriptionChannelWithAddress {
-    type?: string;
+    type: string;
 }
 
 /**
  * Abstraction interface for the diagnostic log.  Primarily for deserialization.
  */
 export interface INotificationDiagnosticLog {
-    activityId?: string;
-    description?: string;
-    endTime?: Date;
-    id?: string;
-    logType?: string;
-    messages?: NotificationDiagnosticLogMessage[];
-    properties?: { [key: string] : string; };
-    source?: string;
-    startTime?: Date;
+    activityId: string;
+    description: string;
+    endTime: Date;
+    id: string;
+    logType: string;
+    messages: NotificationDiagnosticLogMessage[];
+    properties: { [key: string] : string; };
+    source: string;
+    startTime: Date;
 }
 
 export interface ISubscriptionChannel {
-    type?: string;
+    type: string;
 }
 
 export interface ISubscriptionFilter {
-    eventType?: string;
-    type?: string;
+    eventType: string;
+    type: string;
 }
 
 export interface MatcherResult {
-    matcher?: string;
-    stats?: { [key: string] : { [key: string] : number; }; };
+    matcher: string;
+    stats: { [key: string] : { [key: string] : number; }; };
 }
 
 export interface MessageQueueSubscriptionChannel {
-    type?: string;
+    type: string;
 }
 
 export interface NotificationAdminSettings {
     /**
      * The default group delivery preference for groups in this collection
      */
-    defaultGroupDeliveryPreference?: DefaultGroupDeliveryPreference;
+    defaultGroupDeliveryPreference: DefaultGroupDeliveryPreference;
 }
 
 export interface NotificationAdminSettingsUpdateParameters {
-    defaultGroupDeliveryPreference?: DefaultGroupDeliveryPreference;
+    defaultGroupDeliveryPreference: DefaultGroupDeliveryPreference;
 }
 
 export interface NotificationBacklogStatus {
-    captureTime?: Date;
-    channel?: string;
-    jobId?: string;
-    lastJobBatchStartTime?: Date;
-    lastJobProcessedTime?: Date;
-    lastNotificationBatchStartTime?: Date;
-    lastNotificationProcessedTime?: Date;
-    oldestPendingNotificationTime?: Date;
-    publisher?: string;
+    captureTime: Date;
+    channel: string;
+    jobId: string;
+    lastJobBatchStartTime: Date;
+    lastJobProcessedTime: Date;
+    lastNotificationBatchStartTime: Date;
+    lastNotificationProcessedTime: Date;
+    oldestPendingNotificationTime: Date;
+    publisher: string;
     /**
      * Null status is unprocessed
      */
-    status?: string;
-    unprocessedNotifications?: number;
+    status: string;
+    unprocessedNotifications: number;
 }
 
 export interface NotificationBatch {
-    endTime?: any;
-    notificationCount?: number;
-    notificationIds?: string;
-    problematicNotifications?: DiagnosticNotification[];
-    startTime?: any;
+    endTime: any;
+    notificationCount: number;
+    notificationIds: string;
+    problematicNotifications: DiagnosticNotification[];
+    startTime: any;
 }
 
 export interface NotificationDeliveryLog extends NotificationJobDiagnosticLog {
-    batches?: NotificationBatch[];
+    batches: NotificationBatch[];
 }
 
 /**
@@ -378,37 +378,37 @@ export interface NotificationDiagnosticLog {
     /**
      * Identifier used for correlating to other diagnostics that may have been recorded elsewhere.
      */
-    activityId?: string;
-    description?: string;
-    endTime?: Date;
-    errors?: number;
+    activityId: string;
+    description: string;
+    endTime: Date;
+    errors: number;
     /**
      * Unique instance identifier.
      */
-    id?: string;
-    logType?: string;
-    messages?: NotificationDiagnosticLogMessage[];
-    properties?: { [key: string] : string; };
+    id: string;
+    logType: string;
+    messages: NotificationDiagnosticLogMessage[];
+    properties: { [key: string] : string; };
     /**
      * This identifier depends on the logType.  For notification jobs, this will be the job Id. For subscription tracing, this will be a special root Guid with the subscription Id encoded.
      */
-    source?: string;
-    startTime?: Date;
-    warnings?: number;
+    source: string;
+    startTime: Date;
+    warnings: number;
 }
 
 export interface NotificationDiagnosticLogMessage {
     /**
      * Corresponds to .Net TraceLevel enumeration
      */
-    level?: number;
-    message?: string;
-    time?: any;
+    level: number;
+    message: string;
+    time: any;
 }
 
 export interface NotificationEventBacklogStatus {
-    eventBacklogStatus?: EventBacklogStatus[];
-    notificationBacklogStatus?: NotificationBacklogStatus[];
+    eventBacklogStatus: EventBacklogStatus[];
+    notificationBacklogStatus: NotificationBacklogStatus[];
 }
 
 /**
@@ -418,23 +418,23 @@ export interface NotificationEventField {
     /**
      * Gets or sets the type of this field.
      */
-    fieldType?: NotificationEventFieldType;
+    fieldType: NotificationEventFieldType;
     /**
      * Gets or sets the unique identifier of this field.
      */
-    id?: string;
+    id: string;
     /**
      * Gets or sets the name of this field.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets the path to the field in the event object. This path can be either Json Path or XPath, depending on if the event will be serialized into Json or XML
      */
-    path?: string;
+    path: string;
     /**
      * Gets or sets the scopes that this field supports. If not specified then the event type scopes apply.
      */
-    supportedScopes?: string[];
+    supportedScopes: string[];
 }
 
 /**
@@ -444,11 +444,11 @@ export interface NotificationEventFieldOperator {
     /**
      * Gets or sets the display name of an operator
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Gets or sets the id of an operator
      */
-    id?: string;
+    id: string;
 }
 
 /**
@@ -458,26 +458,26 @@ export interface NotificationEventFieldType {
     /**
      * Gets or sets the unique identifier of this field type.
      */
-    id?: string;
-    operatorConstraints?: OperatorConstraint[];
+    id: string;
+    operatorConstraints: OperatorConstraint[];
     /**
      * Gets or sets the list of operators that this type supports.
      */
-    operators?: NotificationEventFieldOperator[];
-    subscriptionFieldType?: SubscriptionFieldType;
+    operators: NotificationEventFieldOperator[];
+    subscriptionFieldType: SubscriptionFieldType;
     /**
      * Gets or sets the value definition of this field like the getValuesMethod and template to display in the UI
      */
-    value?: ValueDefinition;
+    value: ValueDefinition;
 }
 
 /**
  * Encapsulates the properties of a notification event publisher.
  */
 export interface NotificationEventPublisher {
-    id?: string;
-    subscriptionManagementInfo?: SubscriptionManagement;
-    url?: string;
+    id: string;
+    subscriptionManagementInfo: SubscriptionManagement;
+    url: string;
 }
 
 /**
@@ -487,51 +487,51 @@ export interface NotificationEventRole {
     /**
      * Gets or sets an Id for that role, this id is used by the event.
      */
-    id?: string;
+    id: string;
     /**
      * Gets or sets the Name for that role, this name is used for UI display.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets whether this role can be a group or just an individual user
      */
-    supportsGroups?: boolean;
+    supportsGroups: boolean;
 }
 
 /**
  * Encapsulates the properties of an event type. It defines the fields, that can be used for filtering, for that event type.
  */
 export interface NotificationEventType {
-    category?: NotificationEventTypeCategory;
+    category: NotificationEventTypeCategory;
     /**
      * Gets or sets the color representing this event type. Example: rgb(128,245,211) or #fafafa
      */
-    color?: string;
-    customSubscriptionsAllowed?: boolean;
-    eventPublisher?: NotificationEventPublisher;
-    fields?: { [key: string] : NotificationEventField; };
-    hasInitiator?: boolean;
+    color: string;
+    customSubscriptionsAllowed: boolean;
+    eventPublisher: NotificationEventPublisher;
+    fields: { [key: string] : NotificationEventField; };
+    hasInitiator: boolean;
     /**
      * Gets or sets the icon representing this event type. Can be a URL or a CSS class. Example: css://some-css-class
      */
-    icon?: string;
+    icon: string;
     /**
      * Gets or sets the unique identifier of this event definition.
      */
-    id?: string;
+    id: string;
     /**
      * Gets or sets the name of this event definition.
      */
-    name?: string;
-    roles?: NotificationEventRole[];
+    name: string;
+    roles: NotificationEventRole[];
     /**
      * Gets or sets the scopes that this event type supports
      */
-    supportedScopes?: string[];
+    supportedScopes: string[];
     /**
      * Gets or sets the rest end point to get this event type details (fields, fields types)
      */
-    url?: string;
+    url: string;
 }
 
 /**
@@ -541,16 +541,16 @@ export interface NotificationEventTypeCategory {
     /**
      * Gets or sets the unique identifier of this category.
      */
-    id?: string;
+    id: string;
     /**
      * Gets or sets the friendly name of this category.
      */
-    name?: string;
+    name: string;
 }
 
 export interface NotificationJobDiagnosticLog extends NotificationDiagnosticLog {
-    result?: string;
-    stats?: { [key: string] : { [key: string] : number; }; };
+    result: string;
+    stats: { [key: string] : { [key: string] : number; }; };
 }
 
 export enum NotificationOperation {
@@ -559,15 +559,15 @@ export enum NotificationOperation {
 }
 
 export interface NotificationQueryCondition {
-    eventInitiator?: string;
-    eventType?: string;
-    subscriber?: string;
-    subscriptionId?: string;
+    eventInitiator: string;
+    eventType: string;
+    subscriber: string;
+    subscriptionId: string;
 }
 
 export interface NotificationReason {
-    notificationReasonType?: NotificationReasonType;
-    targetIdentities?: VSSInterfaces.IdentityRef[];
+    notificationReasonType: NotificationReasonType;
+    targetIdentities: VSSInterfaces.IdentityRef[];
 }
 
 export enum NotificationReasonType {
@@ -592,28 +592,28 @@ export interface NotificationsEvaluationResult {
     /**
      * Count of generated notifications
      */
-    count?: number;
+    count: number;
 }
 
 export interface NotificationStatistic {
-    date?: Date;
-    hitCount?: number;
-    path?: string;
-    type?: NotificationStatisticType;
-    user?: VSSInterfaces.IdentityRef;
+    date: Date;
+    hitCount: number;
+    path: string;
+    type: NotificationStatisticType;
+    user: VSSInterfaces.IdentityRef;
 }
 
 export interface NotificationStatisticsQuery {
-    conditions?: NotificationStatisticsQueryConditions[];
+    conditions: NotificationStatisticsQueryConditions[];
 }
 
 export interface NotificationStatisticsQueryConditions {
-    endDate?: Date;
-    hitCountMinimum?: number;
-    path?: string;
-    startDate?: Date;
-    type?: NotificationStatisticType;
-    user?: VSSInterfaces.IdentityRef;
+    endDate: Date;
+    hitCountMinimum: number;
+    path: string;
+    startDate: Date;
+    type: NotificationStatisticType;
+    user: VSSInterfaces.IdentityRef;
 }
 
 export enum NotificationStatisticType {
@@ -655,16 +655,16 @@ export interface NotificationSubscriber {
     /**
      * Indicates how the subscriber should be notified by default.
      */
-    deliveryPreference?: NotificationSubscriberDeliveryPreference;
-    flags?: SubscriberFlags;
+    deliveryPreference: NotificationSubscriberDeliveryPreference;
+    flags: SubscriberFlags;
     /**
      * Identifier of the subscriber.
      */
-    id?: string;
+    id: string;
     /**
      * Preferred email address of the subscriber. A null or empty value indicates no preferred email address has been set.
      */
-    preferredEmailAddress?: string;
+    preferredEmailAddress: string;
 }
 
 /**
@@ -687,11 +687,11 @@ export interface NotificationSubscriberUpdateParameters {
     /**
      * New delivery preference for the subscriber (indicates how the subscriber should be notified).
      */
-    deliveryPreference?: NotificationSubscriberDeliveryPreference;
+    deliveryPreference: NotificationSubscriberDeliveryPreference;
     /**
      * New preferred email address for the subscriber. Specify an empty string to clear the current address.
      */
-    preferredEmailAddress?: string;
+    preferredEmailAddress: string;
 }
 
 /**
@@ -701,27 +701,27 @@ export interface NotificationSubscription {
     /**
      * Links to related resources, APIs, and views for the subscription.
      */
-    _links?: any;
+    _links: any;
     /**
      * Admin-managed settings for the subscription. Only applies when the subscriber is a group.
      */
-    adminSettings?: SubscriptionAdminSettings;
+    adminSettings: SubscriptionAdminSettings;
     /**
      * Channel for delivering notifications triggered by the subscription.
      */
-    channel?: ISubscriptionChannel;
+    channel: ISubscriptionChannel;
     /**
      * Description of the subscription. Typically describes filter criteria which helps identity the subscription.
      */
-    description?: string;
+    description: string;
     /**
      * Diagnostics for this subscription.
      */
-    diagnostics?: SubscriptionDiagnostics;
+    diagnostics: SubscriptionDiagnostics;
     /**
      * Any extra properties like detailed description for different contexts, user/group contexts
      */
-    extendedProperties?: { [key: string] : string; };
+    extendedProperties: { [key: string] : string; };
     /**
      * Matching criteria for the subscription. ExpressionFilter
      */
@@ -729,47 +729,47 @@ export interface NotificationSubscription {
     /**
      * Read-only indicators that further describe the subscription.
      */
-    flags?: SubscriptionFlags;
+    flags: SubscriptionFlags;
     /**
      * Subscription identifier.
      */
-    id?: string;
+    id: string;
     /**
      * User that last modified (or created) the subscription.
      */
-    lastModifiedBy?: VSSInterfaces.IdentityRef;
+    lastModifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Date when the subscription was last modified. If the subscription has not been updated since it was created, this value will indicate when the subscription was created.
      */
-    modifiedDate?: Date;
+    modifiedDate: Date;
     /**
      * The permissions the user have for this subscriptions.
      */
-    permissions?: SubscriptionPermissions;
+    permissions: SubscriptionPermissions;
     /**
      * The container in which events must be published from in order to be matched by the subscription. If empty, the scope is the current host (typically an account or project collection). For example, a subscription scoped to project A will not produce notifications for events published from project B.
      */
-    scope?: SubscriptionScope;
+    scope: SubscriptionScope;
     /**
      * Status of the subscription. Typically indicates whether the subscription is enabled or not.
      */
-    status?: SubscriptionStatus;
+    status: SubscriptionStatus;
     /**
      * Message that provides more details about the status of the subscription.
      */
-    statusMessage?: string;
+    statusMessage: string;
     /**
      * User or group that will receive notifications for events matching the subscription's filter criteria.
      */
-    subscriber?: VSSInterfaces.IdentityRef;
+    subscriber: VSSInterfaces.IdentityRef;
     /**
      * REST API URL of the subscriotion.
      */
-    url?: string;
+    url: string;
     /**
      * User-managed settings for the subscription. Only applies when the subscriber is a group. Typically used to indicate whether the calling user is opted in or out of a group subscription.
      */
-    userSettings?: SubscriptionUserSettings;
+    userSettings: SubscriptionUserSettings;
 }
 
 /**
@@ -779,11 +779,11 @@ export interface NotificationSubscriptionCreateParameters {
     /**
      * Channel for delivering notifications triggered by the new subscription.
      */
-    channel?: ISubscriptionChannel;
+    channel: ISubscriptionChannel;
     /**
      * Brief description for the new subscription. Typically describes filter criteria which helps identity the subscription.
      */
-    description?: string;
+    description: string;
     /**
      * Matching criteria for the new subscription. ExpressionFilter
      */
@@ -791,19 +791,19 @@ export interface NotificationSubscriptionCreateParameters {
     /**
      * The container in which events must be published from in order to be matched by the new subscription. If not specified, defaults to the current host (typically an account or project collection). For example, a subscription scoped to project A will not produce notifications for events published from project B.
      */
-    scope?: SubscriptionScope;
+    scope: SubscriptionScope;
     /**
      * User or group that will receive notifications for events matching the subscription's filter criteria. If not specified, defaults to the calling user.
      */
-    subscriber?: VSSInterfaces.IdentityRef;
+    subscriber: VSSInterfaces.IdentityRef;
 }
 
 export interface NotificationSubscriptionTemplate {
-    description?: string;
+    description: string;
     filter: ISubscriptionFilter;
-    id?: string;
-    notificationEventInformation?: NotificationEventType;
-    type?: SubscriptionTemplateType;
+    id: string;
+    notificationEventInformation: NotificationEventType;
+    type: SubscriptionTemplateType;
 }
 
 /**
@@ -813,102 +813,102 @@ export interface NotificationSubscriptionUpdateParameters {
     /**
      * Admin-managed settings for the subscription. Only applies to subscriptions where the subscriber is a group.
      */
-    adminSettings?: SubscriptionAdminSettings;
+    adminSettings: SubscriptionAdminSettings;
     /**
      * Channel for delivering notifications triggered by the subscription.
      */
-    channel?: ISubscriptionChannel;
+    channel: ISubscriptionChannel;
     /**
      * Updated description for the subscription. Typically describes filter criteria which helps identity the subscription.
      */
-    description?: string;
+    description: string;
     /**
      * Matching criteria for the subscription. ExpressionFilter
      */
-    filter?: ISubscriptionFilter;
+    filter: ISubscriptionFilter;
     /**
      * The container in which events must be published from in order to be matched by the new subscription. If not specified, defaults to the current host (typically the current account or project collection). For example, a subscription scoped to project A will not produce notifications for events published from project B.
      */
-    scope?: SubscriptionScope;
+    scope: SubscriptionScope;
     /**
      * Updated status for the subscription. Typically used to enable or disable a subscription.
      */
-    status?: SubscriptionStatus;
+    status: SubscriptionStatus;
     /**
      * Optional message that provides more details about the updated status.
      */
-    statusMessage?: string;
+    statusMessage: string;
     /**
      * User-managed settings for the subscription. Only applies to subscriptions where the subscriber is a group. Typically used to opt-in or opt-out a user from a group subscription.
      */
-    userSettings?: SubscriptionUserSettings;
+    userSettings: SubscriptionUserSettings;
 }
 
 /**
  * Encapsulates the properties of an operator constraint. An operator constraint defines if some operator is available only for specific scope like a project scope.
  */
 export interface OperatorConstraint {
-    operator?: string;
+    operator: string;
     /**
      * Gets or sets the list of scopes that this type supports.
      */
-    supportedScopes?: string[];
+    supportedScopes: string[];
 }
 
 export interface ProcessedEvent {
     /**
      * All of the users that were associtated with this event and their role.
      */
-    actors?: VSSInterfaces.EventActor[];
-    allowedChannels?: string;
-    artifactUri?: string;
-    deliveryIdentities?: ProcessingIdentities;
+    actors: VSSInterfaces.EventActor[];
+    allowedChannels: string;
+    artifactUri: string;
+    deliveryIdentities: ProcessingIdentities;
     /**
      * Evaluations for each user
      */
-    evaluations?: { [key: string] : SubscriptionEvaluation; };
-    eventId?: number;
+    evaluations: { [key: string] : SubscriptionEvaluation; };
+    eventId: number;
     /**
      * Which members were excluded from evaluation (only applies to ActorMatcher subscriptions)
      */
-    exclusions?: VSSInterfaces.EventActor[];
+    exclusions: VSSInterfaces.EventActor[];
     /**
      * Which members were included for evaluation (only applies to ActorMatcher subscriptions)
      */
-    inclusions?: VSSInterfaces.EventActor[];
-    notifications?: GeneratedNotification[];
+    inclusions: VSSInterfaces.EventActor[];
+    notifications: GeneratedNotification[];
 }
 
 export interface ProcessingDiagnosticIdentity extends DiagnosticIdentity {
-    deliveryPreference?: string;
-    isActive?: boolean;
-    isGroup?: boolean;
-    message?: string;
+    deliveryPreference: string;
+    isActive: boolean;
+    isGroup: boolean;
+    message: string;
 }
 
 export interface ProcessingIdentities {
-    excludedIdentities?: { [key: string] : ProcessingDiagnosticIdentity; };
-    includedIdentities?: { [key: string] : ProcessingDiagnosticIdentity; };
-    messages?: NotificationDiagnosticLogMessage[];
-    missingIdentities?: string[];
-    properties?: { [key: string] : string; };
+    excludedIdentities: { [key: string] : ProcessingDiagnosticIdentity; };
+    includedIdentities: { [key: string] : ProcessingDiagnosticIdentity; };
+    messages: NotificationDiagnosticLogMessage[];
+    missingIdentities: string[];
+    properties: { [key: string] : string; };
 }
 
 export interface RoleBasedFilter extends ExpressionFilter {
-    exclusions?: string[];
-    inclusions?: string[];
+    exclusions: string[];
+    inclusions: string[];
 }
 
 export interface ServiceBusSubscriptionChannel {
-    type?: string;
+    type: string;
 }
 
 export interface ServiceHooksSubscriptionChannel {
-    type?: string;
+    type: string;
 }
 
 export interface SoapSubscriptionChannel extends SubscriptionChannelWithAddress {
-    type?: string;
+    type: string;
 }
 
 export enum SubscriberFlags {
@@ -954,26 +954,26 @@ export interface SubscriptionAdminSettings {
 }
 
 export interface SubscriptionChannelWithAddress {
-    address?: string;
-    type?: string;
-    useCustomAddress?: boolean;
+    address: string;
+    type: string;
+    useCustomAddress: boolean;
 }
 
 export interface SubscriptionDiagnostics {
-    deliveryResults?: SubscriptionTracing;
-    deliveryTracing?: SubscriptionTracing;
-    evaluationTracing?: SubscriptionTracing;
+    deliveryResults: SubscriptionTracing;
+    deliveryTracing: SubscriptionTracing;
+    evaluationTracing: SubscriptionTracing;
 }
 
 export interface SubscriptionEvaluation {
-    clauses?: SubscriptionEvaluationClause[];
-    user?: DiagnosticIdentity;
+    clauses: SubscriptionEvaluationClause[];
+    user: DiagnosticIdentity;
 }
 
 export interface SubscriptionEvaluationClause {
-    clause?: string;
-    order?: number;
-    result?: boolean;
+    clause: string;
+    order: number;
+    result: boolean;
 }
 
 /**
@@ -987,7 +987,7 @@ export interface SubscriptionEvaluationRequest {
     /**
      * User or group that will receive notifications for events matching the subscription's filter criteria. If not specified, defaults to the calling user.
      */
-    subscriptionCreateParameters?: NotificationSubscriptionCreateParameters;
+    subscriptionCreateParameters: NotificationSubscriptionCreateParameters;
 }
 
 /**
@@ -997,19 +997,19 @@ export interface SubscriptionEvaluationResult {
     /**
      * Subscription evaluation job status
      */
-    evaluationJobStatus?: EvaluationOperationStatus;
+    evaluationJobStatus: EvaluationOperationStatus;
     /**
      * Subscription evaluation events results.
      */
-    events?: EventsEvaluationResult;
+    events: EventsEvaluationResult;
     /**
      * The requestId which is the subscription evaluation jobId
      */
-    id?: string;
+    id: string;
     /**
      * Subscription evaluation  notification results.
      */
-    notifications?: NotificationsEvaluationResult;
+    notifications: NotificationsEvaluationResult;
 }
 
 /**
@@ -1019,19 +1019,19 @@ export interface SubscriptionEvaluationSettings {
     /**
      * Indicates whether subscription evaluation before saving is enabled or not
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Time interval to check on subscription evaluation job in seconds
      */
-    interval?: number;
+    interval: number;
     /**
      * Threshold on the number of notifications for considering a subscription too noisy
      */
-    threshold?: number;
+    threshold: number;
     /**
      * Time out for the subscription evaluation check in seconds
      */
-    timeOut?: number;
+    timeOut: number;
 }
 
 export enum SubscriptionFieldType {
@@ -1082,8 +1082,8 @@ export enum SubscriptionFlags {
  * Encapsulates the properties needed to manage subscriptions, opt in and out of subscriptions.
  */
 export interface SubscriptionManagement {
-    serviceInstanceType?: string;
-    url?: string;
+    serviceInstanceType: string;
+    url: string;
 }
 
 /**
@@ -1119,7 +1119,7 @@ export interface SubscriptionQuery {
     /**
      * Flags the refine the types of subscriptions that will be returned from the query.
      */
-    queryFlags?: SubscriptionQueryFlags;
+    queryFlags: SubscriptionQueryFlags;
 }
 
 /**
@@ -1129,23 +1129,23 @@ export interface SubscriptionQueryCondition {
     /**
      * Filter conditions that matching subscriptions must have. Typically only the filter's type and event type are used for matching.
      */
-    filter?: ISubscriptionFilter;
+    filter: ISubscriptionFilter;
     /**
      * Flags to specify the the type subscriptions to query for.
      */
-    flags?: SubscriptionFlags;
+    flags: SubscriptionFlags;
     /**
      * Scope that matching subscriptions must have.
      */
-    scope?: string;
+    scope: string;
     /**
      * ID of the subscriber (user or group) that matching subscriptions must be subscribed to.
      */
-    subscriberId?: string;
+    subscriberId: string;
     /**
      * ID of the subscription to query for.
      */
-    subscriptionId?: string;
+    subscriptionId: string;
 }
 
 /**
@@ -1189,10 +1189,6 @@ export enum SubscriptionStatus {
      * Subscription is disabled and will be deleted.
      */
     PendingDeletion = -100,
-    /**
-     * Subscription is disabled because of an Argument Exception while processing the subscription
-     */
-    DisabledArgumentException = -12,
     /**
      * Subscription is disabled because the project is invalid
      */
@@ -1281,26 +1277,26 @@ export interface SubscriptionTraceDiagnosticLog extends NotificationDiagnosticLo
     /**
      * Indicates the job Id that processed or delivered this subscription
      */
-    jobId?: string;
+    jobId: string;
     /**
      * Indicates unique instance identifier for the job that processed or delivered this subscription
      */
-    jobInstanceId?: string;
-    subscriptionId?: string;
+    jobInstanceId: string;
+    subscriptionId: string;
 }
 
 export interface SubscriptionTraceEventProcessingLog extends SubscriptionTraceDiagnosticLog {
-    channel?: string;
-    evaluationIdentities?: ProcessingIdentities;
+    channel: string;
+    evaluationIdentities: ProcessingIdentities;
     /**
      * Which members opted out from receiving notifications from this subscription
      */
-    optedOut?: DiagnosticIdentity[];
-    processedEvents?: { [key: number] : ProcessedEvent; };
+    optedOut: DiagnosticIdentity[];
+    processedEvents: { [key: number] : ProcessedEvent; };
 }
 
 export interface SubscriptionTraceNotificationDeliveryLog extends SubscriptionTraceDiagnosticLog {
-    notifications?: DiagnosticNotification[];
+    notifications: DiagnosticNotification[];
 }
 
 export interface SubscriptionTracing {
@@ -1308,19 +1304,19 @@ export interface SubscriptionTracing {
     /**
      * Trace until the specified end date.
      */
-    endDate?: Date;
+    endDate: Date;
     /**
      * The maximum number of result details to trace.
      */
-    maxTracedEntries?: number;
+    maxTracedEntries: number;
     /**
      * The date and time tracing started.
      */
-    startDate?: Date;
+    startDate: Date;
     /**
      * Trace until remaining count reaches 0.
      */
-    tracedEntries?: number;
+    tracedEntries: number;
 }
 
 /**
@@ -1334,17 +1330,17 @@ export interface SubscriptionUserSettings {
 }
 
 export interface UnsupportedFilter extends BaseSubscriptionFilter {
-    type?: string;
+    type: string;
 }
 
 export interface UnsupportedSubscriptionChannel {
-    type?: string;
+    type: string;
 }
 
 export interface UpdateSubscripitonDiagnosticsParameters {
-    deliveryResults?: UpdateSubscripitonTracingParameters;
-    deliveryTracing?: UpdateSubscripitonTracingParameters;
-    evaluationTracing?: UpdateSubscripitonTracingParameters;
+    deliveryResults: UpdateSubscripitonTracingParameters;
+    deliveryTracing: UpdateSubscripitonTracingParameters;
+    evaluationTracing: UpdateSubscripitonTracingParameters;
 }
 
 export interface UpdateSubscripitonTracingParameters {
@@ -1352,11 +1348,11 @@ export interface UpdateSubscripitonTracingParameters {
 }
 
 export interface UserSubscriptionChannel extends SubscriptionChannelWithAddress {
-    type?: string;
+    type: string;
 }
 
 export interface UserSystemSubscriptionChannel extends SubscriptionChannelWithAddress {
-    type?: string;
+    type: string;
 }
 
 /**
@@ -1366,15 +1362,15 @@ export interface ValueDefinition {
     /**
      * Gets or sets the data source.
      */
-    dataSource?: FormInputInterfaces.InputValue[];
+    dataSource: FormInputInterfaces.InputValue[];
     /**
      * Gets or sets the rest end point.
      */
-    endPoint?: string;
+    endPoint: string;
     /**
      * Gets or sets the result template.
      */
-    resultTemplate?: string;
+    resultTemplate: string;
 }
 
 export var TypeInfo = {
@@ -1590,7 +1586,6 @@ export var TypeInfo = {
         enumValues: {
             "jailedByNotificationsVolume": -200,
             "pendingDeletion": -100,
-            "disabledArgumentException": -12,
             "disabledProjectInvalid": -11,
             "disabledMissingPermissions": -10,
             "disabledFromProbation": -9,

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import TfsCoreInterfaces = require("./interfaces/CoreInterfaces");
 import WorkInterfaces = require("./interfaces/WorkInterfaces");
@@ -82,12 +84,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BacklogConfiguration> {
 
         return new Promise<WorkInterfaces.BacklogConfiguration>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -133,12 +131,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BacklogLevelWorkItems> {
 
         return new Promise<WorkInterfaces.BacklogLevelWorkItems>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -185,12 +179,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BacklogLevelConfiguration> {
 
         return new Promise<WorkInterfaces.BacklogLevelConfiguration>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -235,12 +225,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BacklogLevelConfiguration[]> {
 
         return new Promise<WorkInterfaces.BacklogLevelConfiguration[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -327,20 +313,10 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         childBacklogContextCategoryRefName: string,
         workitemIds: number[]
         ): Promise<WorkInterfaces.ParentChildWIMap[]> {
-        if (childBacklogContextCategoryRefName == null) {
-            throw new TypeError('childBacklogContextCategoryRefName can not be null or undefined');
-        }
-        if (workitemIds == null) {
-            throw new TypeError('workitemIds can not be null or undefined');
-        }
 
         return new Promise<WorkInterfaces.ParentChildWIMap[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -433,12 +409,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.Board> {
 
         return new Promise<WorkInterfaces.Board>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -483,12 +455,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardReference[]> {
 
         return new Promise<WorkInterfaces.BoardReference[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -536,12 +504,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<{ [key: string] : string; }> {
 
         return new Promise<{ [key: string] : string; }>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -588,12 +552,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardUserSettings> {
 
         return new Promise<WorkInterfaces.BoardUserSettings>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -642,12 +602,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardUserSettings> {
 
         return new Promise<WorkInterfaces.BoardUserSettings>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -694,12 +650,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamMemberCapacity[]> {
 
         return new Promise<WorkInterfaces.TeamMemberCapacity[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -748,12 +700,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamMemberCapacity> {
 
         return new Promise<WorkInterfaces.TeamMemberCapacity>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -803,12 +751,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamMemberCapacity[]> {
 
         return new Promise<WorkInterfaces.TeamMemberCapacity[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -859,12 +803,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamMemberCapacity> {
 
         return new Promise<WorkInterfaces.TeamMemberCapacity>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -912,12 +852,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardCardRuleSettings> {
 
         return new Promise<WorkInterfaces.BoardCardRuleSettings>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -966,12 +902,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardCardRuleSettings> {
 
         return new Promise<WorkInterfaces.BoardCardRuleSettings>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1018,12 +950,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardCardSettings> {
 
         return new Promise<WorkInterfaces.BoardCardSettings>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1072,12 +1000,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardCardSettings> {
 
         return new Promise<WorkInterfaces.BoardCardSettings>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1126,12 +1050,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardChart> {
 
         return new Promise<WorkInterfaces.BoardChart>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1179,12 +1099,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardChartReference[]> {
 
         return new Promise<WorkInterfaces.BoardChartReference[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1235,12 +1151,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardChart> {
 
         return new Promise<WorkInterfaces.BoardChart>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1288,12 +1200,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardColumn[]> {
 
         return new Promise<WorkInterfaces.BoardColumn[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1342,12 +1250,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardColumn[]> {
 
         return new Promise<WorkInterfaces.BoardColumn[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1451,12 +1355,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<void> {
 
         return new Promise<void>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1503,12 +1403,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSettingsIteration> {
 
         return new Promise<WorkInterfaces.TeamSettingsIteration>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1555,12 +1451,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSettingsIteration[]> {
 
         return new Promise<WorkInterfaces.TeamSettingsIteration[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1611,12 +1503,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSettingsIteration> {
 
         return new Promise<WorkInterfaces.TeamSettingsIteration>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1921,12 +1809,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardRow[]> {
 
         return new Promise<WorkInterfaces.BoardRow[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -1975,12 +1859,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.BoardRow[]> {
 
         return new Promise<WorkInterfaces.BoardRow[]>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2027,12 +1907,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSettingsDaysOff> {
 
         return new Promise<WorkInterfaces.TeamSettingsDaysOff>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2081,12 +1957,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSettingsDaysOff> {
 
         return new Promise<WorkInterfaces.TeamSettingsDaysOff>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2131,12 +2003,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamFieldValues> {
 
         return new Promise<WorkInterfaces.TeamFieldValues>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2182,12 +2050,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamFieldValues> {
 
         return new Promise<WorkInterfaces.TeamFieldValues>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2231,12 +2095,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSetting> {
 
         return new Promise<WorkInterfaces.TeamSetting>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2282,12 +2142,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.TeamSetting> {
 
         return new Promise<WorkInterfaces.TeamSetting>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,
@@ -2333,12 +2189,8 @@ export class WorkApi extends basem.ClientApiBase implements IWorkApi {
         ): Promise<WorkInterfaces.IterationWorkItems> {
 
         return new Promise<WorkInterfaces.IterationWorkItems>(async (resolve, reject) => {
-            let project = null;
-            let team = null;
-            if (teamContext) {
-                project = teamContext.projectId || teamContext.project;
-                team = teamContext.teamId || teamContext.team;
-            }
+            let project = teamContext.projectId || teamContext.project;
+            let team = teamContext.teamId || teamContext.team;
 
             let routeValues: any = {
                 project: project,

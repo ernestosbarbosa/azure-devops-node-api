@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import ExtensionManagementInterfaces = require("./interfaces/ExtensionManagementInterfaces");
 import GalleryInterfaces = require("./interfaces/GalleryInterfaces");
@@ -69,9 +71,6 @@ export class ExtensionManagementApi extends basem.ClientApiBase implements IExte
         isConnectedServer?: boolean,
         isBuyOperationValid?: boolean
         ): Promise<ExtensionManagementInterfaces.AcquisitionOptions> {
-        if (itemId == null) {
-            throw new TypeError('itemId can not be null or undefined');
-        }
 
         return new Promise<ExtensionManagementInterfaces.AcquisitionOptions>(async (resolve, reject) => {
             let routeValues: any = {
@@ -183,7 +182,7 @@ export class ExtensionManagementApi extends basem.ClientApiBase implements IExte
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<ExtensionManagementInterfaces.ExtensionAuthorization>;
-                res = await this.rest.replace<ExtensionManagementInterfaces.ExtensionAuthorization>(url, null, options);
+                res = await this.rest.replace<ExtensionManagementInterfaces.ExtensionAuthorization>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               null,
@@ -828,7 +827,7 @@ export class ExtensionManagementApi extends basem.ClientApiBase implements IExte
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<ExtensionManagementInterfaces.InstalledExtension>;
-                res = await this.rest.create<ExtensionManagementInterfaces.InstalledExtension>(url, null, options);
+                res = await this.rest.create<ExtensionManagementInterfaces.InstalledExtension>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               ExtensionManagementInterfaces.TypeInfo.InstalledExtension,
@@ -950,9 +949,6 @@ export class ExtensionManagementApi extends basem.ClientApiBase implements IExte
         requesterId: string,
         state: ExtensionManagementInterfaces.ExtensionRequestState
         ): Promise<number> {
-        if (state == null) {
-            throw new TypeError('state can not be null or undefined');
-        }
 
         return new Promise<number>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1041,9 +1037,6 @@ export class ExtensionManagementApi extends basem.ClientApiBase implements IExte
         extensionName: string,
         state: ExtensionManagementInterfaces.ExtensionRequestState
         ): Promise<number> {
-        if (state == null) {
-            throw new TypeError('state can not be null or undefined');
-        }
 
         return new Promise<number>(async (resolve, reject) => {
             let routeValues: any = {

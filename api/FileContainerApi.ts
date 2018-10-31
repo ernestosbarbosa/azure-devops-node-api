@@ -11,7 +11,7 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import stream = require("stream");
-import * as zlib from "zlib";
+// import * as zlib from "zlib";
 import * as restm from 'typed-rest-client/RestClient';
 import * as httpm from 'typed-rest-client//HttpClient';
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
@@ -101,9 +101,9 @@ export class FileContainerApi extends FileContainerApiBase.FileContainerApiBase 
                 else {
                     // if the response is gzipped, unzip it
                     if (res.message.headers["content-encoding"] === "gzip") {
-                        let unzipStream = zlib.createGunzip();
-                        res.message.pipe(unzipStream);
-                        rres.result = unzipStream;
+                        // let unzipStream = zlib.createGunzip();
+                        // res.message.pipe(unzipStream);
+                        // rres.result = unzipStream;
                     }
                     else {
                         rres.result = res.message;

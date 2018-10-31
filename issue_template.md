@@ -5,7 +5,7 @@
 Node version: 
 Npm version: 
 OS and version: 
-azure-devops-node-api version: 
+vsts-node-api version: 
 
 ### Issue Description
 <!--- Please provide a short description of the issue -->

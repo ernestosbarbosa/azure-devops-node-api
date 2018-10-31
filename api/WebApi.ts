@@ -10,6 +10,7 @@ import extmgmtm = require("./ExtensionManagementApi");
 import featuremgmtm = require("./FeatureManagementApi");
 import filecontainerm = require('./FileContainerApi');
 import gitm = require('./GitApi');
+//import graphm = require('./GraphApi');
 import locationsm = require('./LocationsApi');
 import notificationm = require('./NotificationApi');
 import policym = require('./PolicyApi');
@@ -35,11 +36,8 @@ import * as rm from 'typed-rest-client/RestClient';
 import vsom = require('./VsoClient');
 import lim = require("./interfaces/LocationsInterfaces");
 
-import crypto = require('crypto');
 import fs = require('fs');
-import os = require('os');
-import url = require('url');
-import path = require('path');
+import crypto = require('crypto');
 
 /**
  * Methods to return handler objects (see handlers folder)
@@ -70,11 +68,6 @@ export function getHandlerFromToken(token: string): VsoBaseInterfaces.IRequestHa
     }
 }
 
-export interface IWebApiRequestSettings {
-    productName: string,
-    productVersion: string
-};
-
 // ---------------------------------------------------------------------------
 // Factory to return client apis
 // When new APIs are added, a method must be added here to instantiate the API
@@ -94,24 +87,22 @@ export class WebApi {
      * @param defaultUrl default server url to use when creating new apis from factory methods
      * @param authHandler default authentication credentials to use when creating new apis from factory methods
      */
-    constructor(defaultUrl: string, authHandler: VsoBaseInterfaces.IRequestHandler, options?: VsoBaseInterfaces.IRequestOptions, requestSettings?: IWebApiRequestSettings) {
+    constructor(defaultUrl: string, authHandler: VsoBaseInterfaces.IRequestHandler, options?: VsoBaseInterfaces.IRequestOptions) {
         this.serverUrl = defaultUrl;
         this.authHandler = authHandler;
         this.options = options || {};
 
-        if (!this.isNoProxyHost(this.serverUrl)) {
-            // try to get proxy setting from environment variable set by VSTS-Task-Lib if there is no proxy setting in the options
-            if (!this.options.proxy || !this.options.proxy.proxyUrl) {
-                if (global['_vsts_task_lib_proxy']) {
-                    let proxyFromEnv: VsoBaseInterfaces.IProxyConfiguration = {
-                        proxyUrl: global['_vsts_task_lib_proxy_url'],
-                        proxyUsername: global['_vsts_task_lib_proxy_username'],
-                        proxyPassword: this._readTaskLibSecrets(global['_vsts_task_lib_proxy_password']),
-                        proxyBypassHosts: JSON.parse(global['_vsts_task_lib_proxy_bypass'] || "[]"),
-                    };
+        // try get proxy setting from environment variable set by VSTS-Task-Lib if there is no proxy setting in the options
+        if (!this.options.proxy || !this.options.proxy.proxyUrl) {
+            if (global['_vsts_task_lib_proxy']) {
+                let proxyFromEnv: VsoBaseInterfaces.IProxyConfiguration = {
+                    proxyUrl: global['_vsts_task_lib_proxy_url'],
+                    proxyUsername: global['_vsts_task_lib_proxy_username'],
+                    proxyPassword: this._readTaskLibSecrets(global['_vsts_task_lib_proxy_password']),
+                    proxyBypassHosts: JSON.parse(global['_vsts_task_lib_proxy_bypass'] || "[]"),
+                };
 
-                    this.options.proxy = proxyFromEnv;
-                }
+                this.options.proxy = proxyFromEnv;
             }
         }
 
@@ -134,19 +125,7 @@ export class WebApi {
             this.options.ignoreSslError = !!global['_vsts_task_lib_skip_cert_validation'];
         }
 
-        let userAgent: string;
-        const nodeApiName: string = 'azure-devops-node-api';
-        const nodeApiVersion: string = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf8')).version;
-        const osName: string = os.platform();
-        const osVersion: string = os.release();
-
-        if (requestSettings) {
-            userAgent = `${requestSettings.productName}/${requestSettings.productVersion} (${nodeApiName} ${nodeApiVersion}; ${osName} ${osVersion})`;
-        }
-        else {
-            userAgent = `${nodeApiName}/${nodeApiVersion} (${osName} ${osVersion})`;
-        }
-        this.rest = new rm.RestClient(userAgent, null, [this.authHandler], this.options);
+        this.rest = new rm.RestClient('vsts-node-api', null, [this.authHandler], this.options);
         this.vsoClient = new vsom.VsoClient(defaultUrl, this.rest);
     }
 
@@ -183,7 +162,12 @@ export class WebApi {
         return new buildm.BuildApi(serverUrl, handlers, this.options);
     }
 
-    public async getCoreApi(serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<corem.ICoreApi> {
+    public async getCoreApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<corem.ICoreApi> {
+        if(type == "tfs"){
+            serverUrl = "http://tfs.lojasrenner.com.br/tfs/LojasRennerCollection/";
+            handlers = handlers || [this.authHandler];
+            return new corem.CoreApi(serverUrl, handlers, this.options);
+        }
         // TODO: Load RESOURCE_AREA_ID correctly.
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, "79134c72-4a58-4b42-976c-04e7115f32bf");
         handlers = handlers || [this.authHandler];
@@ -287,7 +271,12 @@ export class WebApi {
         return new taskagentm.TaskAgentApi(serverUrl, handlers, this.options);
     }
 
-    public async getTestApi(serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<testm.ITestApi> {
+    public async getTestApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<testm.ITestApi> {
+        if(type == "tfs"){
+            serverUrl = "http://tfs.lojasrenner.com.br/tfs/LojasRennerCollection/";
+            handlers = handlers || [this.authHandler];
+            return new testm.TestApi(serverUrl, handlers, this.options, type);
+        }
         // TODO: Load RESOURCE_AREA_ID correctly.
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, "c2aa639c-3ccc-4740-b3b6-ce2a1e1d984e");
         handlers = handlers || [this.authHandler];
@@ -315,7 +304,12 @@ export class WebApi {
         return new workm.WorkApi(serverUrl, handlers, this.options);
     }
 
-    public async getWorkItemTrackingApi(serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workitemtrackingm.IWorkItemTrackingApi> {
+    public async getWorkItemTrackingApi(type:string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workitemtrackingm.IWorkItemTrackingApi> {
+        if(type == "tfs"){
+            serverUrl = "http://tfs.lojasrenner.com.br/tfs/LojasRennerCollection/";
+            handlers = handlers || [this.authHandler];
+            return new workitemtrackingm.WorkItemTrackingApi(serverUrl, handlers, this.options);
+        }
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, workitemtrackingm.WorkItemTrackingApi.RESOURCE_AREA_ID);
         handlers = handlers || [this.authHandler];
         return new workitemtrackingm.WorkItemTrackingApi(serverUrl, handlers, this.options);
@@ -333,22 +327,6 @@ export class WebApi {
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, "5264459e-e5e0-4bd8-b118-0985e68a4ec5");
         handlers = handlers || [this.authHandler];
         return new workitemtrackingprocessdefinitionm.WorkItemTrackingProcessDefinitionsApi(serverUrl, handlers, this.options);
-    }
-
-    /**
-     * Determines if the domain is exluded for proxy via the no_proxy env var
-     * @param url: the server url
-     */
-    public isNoProxyHost = function(_url: string) {
-        if (!process.env.no_proxy) {
-            return false;
-        }
-        const noProxyDomains = (process.env.no_proxy || '')
-        .split(',')
-        .map(v => v.toLowerCase());
-        const serverUrl = url.parse(_url).host.toLowerCase();
-        // return true if the no_proxy includes the host
-        return noProxyDomains.indexOf(serverUrl) !== -1;
     }
 
     private async _getResourceAreaUrl(serverUrl: string, resourceId: string): Promise<string> {

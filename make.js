@@ -7,6 +7,7 @@ var rp = function(relPath) {
 }
 
 var buildPath = path.join(__dirname, '_build');
+var testPath = path.join(__dirname, '_test');
 
 var run = function(cl) {
     console.log('> ' + cl);
@@ -19,6 +20,7 @@ var run = function(cl) {
 
 target.clean = function() {
     rm('-Rf', buildPath);
+    rm('-Rf', testPath);
 };
 
 target.build = function() {
@@ -38,24 +40,8 @@ target.build = function() {
     rm(path.join(buildPath, 'index.*'));
 }
 
-
-target.units = function() {
-    target.build();
-
-    pushd('test');
-    run('npm install ../_build');
-    popd();
-
-    console.log("-------Unit Tests-------");
-    run('tsc -p ./test/units');
-    run('mocha test/units');
-}
-
+// test is just building samples
 target.test = function() {
-    target.units();
-}
-
-target.samples = function() {
     target.build();
 
     var modPath = path.join(__dirname, 'samples', 'node_modules');
@@ -65,6 +51,10 @@ target.samples = function() {
     run('npm install ../_build');
     popd();
     run('tsc -p samples');
+}
+
+target.samples = function() {
+    target.test();
 
     pushd('samples');
     run('node run.js');

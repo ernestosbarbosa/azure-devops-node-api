@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -17,15 +17,15 @@ export interface GraphCachePolicies {
     /**
      * Size of the cache
      */
-    cacheSize?: number;
+    cacheSize: number;
 }
 
 export interface GraphDescriptorResult {
     /**
      * This field contains zero or more interesting links about the graph descriptor. These links may be invoked to obtain additional relationships or more detailed information about this graph descriptor.
      */
-    _links?: any;
-    value?: string;
+    _links: any;
+    value: string;
 }
 
 /**
@@ -35,45 +35,45 @@ export interface GraphFederatedProviderData {
     /**
      * The access token that can be used to communicated with the federated provider on behalf on the target identity, if we were able to successfully acquire one, otherwise <code>null</code>, if we were not.
      */
-    accessToken?: string;
+    accessToken: string;
     /**
      * Whether or not the immediate provider (i.e. AAD) has indicated that we can call them to attempt to get an access token to communicate with the federated provider on behalf of the target identity.
      */
-    canQueryAccessToken?: boolean;
+    canQueryAccessToken: boolean;
     /**
      * The name of the federated provider, e.g. "github.com".
      */
-    providerName?: string;
+    providerName: string;
     /**
      * The descriptor of the graph subject to which this federated provider data corresponds.
      */
-    subjectDescriptor?: string;
+    subjectDescriptor: string;
     /**
      * The version number of this federated provider data, which corresponds to when it was last updated. Can be used to prevent returning stale provider data from the cache when the caller is aware of a newer version, such as to prevent local cache poisoning from a remote cache or store. This is the app layer equivalent of the data layer sequence ID.
      */
-    version?: number;
+    version: number;
 }
 
 export interface GraphGlobalExtendedPropertyBatch {
-    propertyNameFilters?: string[];
-    subjectDescriptors?: string[];
+    propertyNameFilters: string[];
+    subjectDescriptors: string[];
 }
 
 export interface GraphGroup extends GraphMember {
     /**
      * A short phrase to help human readers disambiguate groups with similar names
      */
-    description?: string;
-    isCrossProject?: boolean;
-    isDeleted?: boolean;
-    isGlobalScope?: boolean;
-    isRestrictedVisible?: boolean;
-    localScopeId?: string;
-    scopeId?: string;
-    scopeName?: string;
-    scopeType?: string;
-    securingHostId?: string;
-    specialType?: string;
+    description: string;
+    isCrossProject: boolean;
+    isDeleted: boolean;
+    isGlobalScope: boolean;
+    isRestrictedVisible: boolean;
+    localScopeId: string;
+    scopeId: string;
+    scopeName: string;
+    scopeType: string;
+    securingHostId: string;
+    specialType: string;
 }
 
 /**
@@ -83,7 +83,7 @@ export interface GraphGroupCreationContext {
     /**
      * Optional: If provided, we will use this identifier for the storage key of the created group
      */
-    storageKey?: string;
+    storageKey: string;
 }
 
 /**
@@ -113,12 +113,12 @@ export interface GraphGroupVstsCreationContext extends GraphGroupCreationContext
     /**
      * For internal use only in back compat scenarios.
      */
-    crossProject?: boolean;
+    crossProject: boolean;
     /**
      * Used by VSTS groups; if set this will be the group description, otherwise ignored
      */
-    description?: string;
-    descriptor?: string;
+    description: string;
+    descriptor: string;
     /**
      * Used by VSTS groups; if set this will be the group DisplayName, otherwise ignored
      */
@@ -126,26 +126,26 @@ export interface GraphGroupVstsCreationContext extends GraphGroupCreationContext
     /**
      * For internal use only in back compat scenarios.
      */
-    restrictedVisibility?: boolean;
+    restrictedVisibility: boolean;
     /**
      * For internal use only in back compat scenarios.
      */
-    specialGroupType?: string;
+    specialGroupType: string;
 }
 
 export interface GraphMember extends GraphSubject {
     /**
      * This represents the name of the container of origin for a graph member. (For MSA this is "Windows Live ID", for AD the name of the domain, for AAD the tenantID of the directory, for VSTS groups the ScopeId, etc)
      */
-    domain?: string;
+    domain: string;
     /**
      * The email address of record for a given graph member. This may be different than the principal name.
      */
-    mailAddress?: string;
+    mailAddress: string;
     /**
      * This is the PrincipalName of this graph member from the source provider. The source provider may change this field over time and it is not guaranteed to be immutable for the life of the graph member by VSTS.
      */
-    principalName?: string;
+    principalName: string;
 }
 
 export enum GraphMemberSearchFactor {
@@ -187,40 +187,40 @@ export interface GraphMembership {
     /**
      * This field contains zero or more interesting links about the graph membership. These links may be invoked to obtain additional relationships or more detailed information about this graph membership.
      */
-    _links?: any;
-    containerDescriptor?: string;
-    memberDescriptor?: string;
+    _links: any;
+    containerDescriptor: string;
+    memberDescriptor: string;
 }
 
 export interface GraphMembershipState {
     /**
      * This field contains zero or more interesting links about the graph membership state. These links may be invoked to obtain additional relationships or more detailed information about this graph membership state.
      */
-    _links?: any;
-    active?: boolean;
+    _links: any;
+    active: boolean;
 }
 
 export interface GraphMembershipTraversal {
     /**
      * Reason why the subject could not be traversed completely
      */
-    incompletenessReason?: string;
+    incompletenessReason: string;
     /**
      * When true, the subject is traversed completely
      */
-    isComplete?: boolean;
+    isComplete: boolean;
     /**
      * The traversed subject descriptor
      */
-    subjectDescriptor?: string;
+    subjectDescriptor: string;
     /**
      * Subject descriptor ids of the traversed members
      */
-    traversedSubjectIds?: string[];
+    traversedSubjectIds: string[];
     /**
      * Subject descriptors of the traversed members
      */
-    traversedSubjects?: string[];
+    traversedSubjects: string[];
 }
 
 /**
@@ -230,42 +230,42 @@ export interface GraphProviderInfo {
     /**
      * The descriptor is the primary way to reference the graph subject while the system is running. This field will uniquely identify the same graph subject across both Accounts and Organizations.
      */
-    descriptor?: string;
+    descriptor: string;
     /**
      * This represents the name of the container of origin for a graph member. (For MSA this is "Windows Live ID", for AAD the tenantID of the directory.)
      */
-    domain?: string;
+    domain: string;
     /**
      * The type of source provider for the origin identifier (ex: "aad", "msa")
      */
-    origin?: string;
+    origin: string;
     /**
      * The unique identifier from the system of origin. (For MSA this is the PUID in hex notation, for AAD this is the object id.)
      */
-    originId?: string;
+    originId: string;
 }
 
 export interface GraphScope extends GraphSubject {
     /**
      * The subject descriptor that references the administrators group for this scope. Only members of this group can change the contents of this scope or assign other users permissions to access this scope.
      */
-    administratorDescriptor?: string;
+    administratorDescriptor: string;
     /**
      * When true, this scope is also a securing host for one or more scopes.
      */
-    isGlobal?: boolean;
+    isGlobal: boolean;
     /**
      * The subject descriptor for the closest account or organization in the ancestor tree of this scope.
      */
-    parentDescriptor?: string;
+    parentDescriptor: string;
     /**
      * The type of this scope. Typically ServiceHost or TeamProject.
      */
-    scopeType?: IdentitiesInterfaces.GroupScopeType;
+    scopeType: IdentitiesInterfaces.GroupScopeType;
     /**
      * The subject descriptor for the containing organization in the ancestor tree of this scope.
      */
-    securingHostDescriptor?: string;
+    securingHostDescriptor: string;
 }
 
 /**
@@ -275,81 +275,81 @@ export interface GraphScopeCreationContext {
     /**
      * Set this field to override the default description of this scope's admin group.
      */
-    adminGroupDescription?: string;
+    adminGroupDescription: string;
     /**
      * All scopes have an Administrator Group that controls access to the contents of the scope. Set this field to use a non-default group name for that administrators group.
      */
-    adminGroupName?: string;
+    adminGroupName: string;
     /**
      * Set this optional field if this scope is created on behalf of a user other than the user making the request. This should be the Id of the user that is not the requester.
      */
-    creatorId?: string;
+    creatorId: string;
     /**
      * The scope must be provided with a unique name within the parent scope. This means the created scope can have a parent or child with the same name, but no siblings with the same name.
      */
-    name?: string;
+    name: string;
     /**
      * The type of scope being created.
      */
-    scopeType?: IdentitiesInterfaces.GroupScopeType;
+    scopeType: IdentitiesInterfaces.GroupScopeType;
     /**
      * An optional ID that uniquely represents the scope within it's parent scope. If this parameter is not provided, Vsts will generate on automatically.
      */
-    storageKey?: string;
+    storageKey: string;
 }
 
 export interface GraphStorageKeyResult {
     /**
      * This field contains zero or more interesting links about the graph storage key. These links may be invoked to obtain additional relationships or more detailed information about this graph storage key.
      */
-    _links?: any;
-    value?: string;
+    _links: any;
+    value: string;
 }
 
 export interface GraphSubject extends GraphSubjectBase {
     /**
      * [Internal Use Only] The legacy descriptor is here in case you need to access old version IMS using identity descriptor.
      */
-    legacyDescriptor?: string;
+    legacyDescriptor: string;
     /**
      * The type of source provider for the origin identifier (ex:AD, AAD, MSA)
      */
-    origin?: string;
+    origin: string;
     /**
      * The unique identifier from the system of origin. Typically a sid, object id or Guid. Linking and unlinking operations can cause this value to change for a user because the user is not backed by a different provider and has a different unique id in the new provider.
      */
-    originId?: string;
+    originId: string;
     /**
      * This field identifies the type of the graph subject (ex: Group, Scope, User).
      */
-    subjectKind?: string;
+    subjectKind: string;
 }
 
 export interface GraphSubjectBase {
     /**
      * This field contains zero or more interesting links about the graph subject. These links may be invoked to obtain additional relationships or more detailed information about this graph subject.
      */
-    _links?: any;
+    _links: any;
     /**
      * The descriptor is the primary way to reference the graph subject while the system is running. This field will uniquely identify the same graph subject across both Accounts and Organizations.
      */
-    descriptor?: string;
+    descriptor: string;
     /**
      * This is the non-unique display name of the graph subject. To change this field, you must alter its value in the source provider.
      */
-    displayName?: string;
+    displayName: string;
     /**
      * This url is the full route to the source resource of this graph subject.
      */
-    url?: string;
+    url: string;
 }
 
 export interface GraphSubjectLookup {
-    lookupKeys?: GraphSubjectLookupKey[];
+    lookupKeys: GraphSubjectLookupKey[];
 }
 
 export interface GraphSubjectLookupKey {
-    descriptor?: string;
+    descriptor: string;
 }
 
 export interface GraphSystemSubject extends GraphSubject {
@@ -362,12 +362,11 @@ export enum GraphTraversalDirection {
 }
 
 export interface GraphUser extends GraphMember {
-    isDeletedInOrigin?: boolean;
-    metadataUpdateDate?: Date;
+    metadataUpdateDate: Date;
     /**
      * The meta type of the user in the origin, such as "member", "guest", etc. See UserMetaType for the set of possible values.
      */
-    metaType?: string;
+    metaType: string;
 }
 
 /**
@@ -377,7 +376,7 @@ export interface GraphUserCreationContext {
     /**
      * Optional: If provided, we will use this identifier for the storage key of the created user
      */
-    storageKey?: string;
+    storageKey: string;
 }
 
 /**
@@ -417,22 +416,22 @@ export interface PagedGraphGroups {
     /**
      * This will be non-null if there is another page of data. There will never be more than one continuation token returned by a request.
      */
-    continuationToken?: string[];
+    continuationToken: string[];
     /**
      * The enumerable list of groups found within a page.
      */
-    graphGroups?: GraphGroup[];
+    graphGroups: GraphGroup[];
 }
 
 export interface PagedGraphUsers {
     /**
      * This will be non-null if there is another page of data. There will never be more than one continuation token returned by a request.
      */
-    continuationToken?: string[];
+    continuationToken: string[];
     /**
      * The enumerable set of users found within a page.
      */
-    graphUsers?: GraphUser[];
+    graphUsers: GraphUser[];
 }
 
 export var TypeInfo = {

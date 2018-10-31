@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import WorkItemTrackingProcessInterfaces = require("./interfaces/WorkItemTrackingProcessInterfaces");
 
@@ -827,12 +829,6 @@ export class WorkItemTrackingProcessApi extends basem.ClientApiBase implements I
         removeFromPageId: string,
         removeFromSectionId: string
         ): Promise<WorkItemTrackingProcessInterfaces.Group> {
-        if (removeFromPageId == null) {
-            throw new TypeError('removeFromPageId can not be null or undefined');
-        }
-        if (removeFromSectionId == null) {
-            throw new TypeError('removeFromSectionId can not be null or undefined');
-        }
 
         return new Promise<WorkItemTrackingProcessInterfaces.Group>(async (resolve, reject) => {
             let routeValues: any = {
@@ -896,9 +892,6 @@ export class WorkItemTrackingProcessApi extends basem.ClientApiBase implements I
         groupId: string,
         removeFromSectionId: string
         ): Promise<WorkItemTrackingProcessInterfaces.Group> {
-        if (removeFromSectionId == null) {
-            throw new TypeError('removeFromSectionId can not be null or undefined');
-        }
 
         return new Promise<WorkItemTrackingProcessInterfaces.Group>(async (resolve, reject) => {
             let routeValues: any = {

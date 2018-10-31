@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import WorkItemTrackingProcessDefinitionsInterfaces = require("./interfaces/WorkItemTrackingProcessDefinitionsInterfaces");
 
@@ -767,12 +769,6 @@ export class WorkItemTrackingProcessDefinitionsApi extends basem.ClientApiBase i
         removeFromPageId: string,
         removeFromSectionId: string
         ): Promise<WorkItemTrackingProcessDefinitionsInterfaces.Group> {
-        if (removeFromPageId == null) {
-            throw new TypeError('removeFromPageId can not be null or undefined');
-        }
-        if (removeFromSectionId == null) {
-            throw new TypeError('removeFromSectionId can not be null or undefined');
-        }
 
         return new Promise<WorkItemTrackingProcessDefinitionsInterfaces.Group>(async (resolve, reject) => {
             let routeValues: any = {
@@ -836,9 +832,6 @@ export class WorkItemTrackingProcessDefinitionsApi extends basem.ClientApiBase i
         groupId: string,
         removeFromSectionId: string
         ): Promise<WorkItemTrackingProcessDefinitionsInterfaces.Group> {
-        if (removeFromSectionId == null) {
-            throw new TypeError('removeFromSectionId can not be null or undefined');
-        }
 
         return new Promise<WorkItemTrackingProcessDefinitionsInterfaces.Group>(async (resolve, reject) => {
             let routeValues: any = {
@@ -2058,7 +2051,7 @@ export class WorkItemTrackingProcessDefinitionsApi extends basem.ClientApiBase i
     }
 
     /**
-     * Returns a single field in the work item type of the process.
+     * Retuens a single field in the work item type of the process.
      * 
      * @param {string} processId - The ID of the process
      * @param {string} witRefNameForFields - Work item type reference name for fields

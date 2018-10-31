@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -39,55 +39,55 @@ export enum AadLoginPromptOption {
 }
 
 export interface AadOauthTokenRequest {
-    refresh?: boolean;
-    resource?: string;
-    tenantId?: string;
-    token?: string;
+    refresh: boolean;
+    resource: string;
+    tenantId: string;
+    token: string;
 }
 
 export interface AadOauthTokenResult {
-    accessToken?: string;
-    refreshTokenCache?: string;
+    accessToken: string;
+    refreshTokenCache: string;
 }
 
 export interface AgentChangeEvent {
-    agent?: TaskAgent;
-    eventType?: string;
-    pool?: TaskAgentPoolReference;
-    poolId?: number;
-    timeStamp?: Date;
+    agent: TaskAgent;
+    eventType: string;
+    pool: TaskAgentPoolReference;
+    poolId: number;
+    timeStamp: Date;
 }
 
 export interface AgentJobRequestMessage extends JobRequestMessage {
-    lockedUntil?: Date;
-    lockToken?: string;
-    requestId?: number;
-    tasks?: TaskInstance[];
+    lockedUntil: Date;
+    lockToken: string;
+    requestId: number;
+    tasks: TaskInstance[];
 }
 
 export interface AgentMigrationMessage {
-    accessToken?: string;
+    accessToken: string;
 }
 
 export interface AgentPoolEvent {
-    eventType?: string;
-    pool?: TaskAgentPool;
+    eventType: string;
+    pool: TaskAgentPool;
 }
 
 export interface AgentQueueEvent {
-    eventType?: string;
-    queue?: TaskAgentQueue;
+    eventType: string;
+    queue: TaskAgentQueue;
 }
 
 export interface AgentQueuesEvent {
-    eventType?: string;
-    queues?: TaskAgentQueue[];
+    eventType: string;
+    queues: TaskAgentQueue[];
 }
 
 export interface AgentRefreshMessage {
-    agentId?: number;
-    targetVersion?: string;
-    timeout?: any;
+    agentId: number;
+    targetVersion: string;
+    timeout: any;
 }
 
 export enum AuditAction {
@@ -98,35 +98,35 @@ export enum AuditAction {
 }
 
 export interface AuthenticationSchemeReference {
-    inputs?: { [key: string] : string; };
-    type?: string;
+    inputs: { [key: string] : string; };
+    type: string;
 }
 
 export interface AuthorizationHeader {
     /**
      * Gets or sets the name of authorization header.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets the value of authorization header.
      */
-    value?: string;
+    value: string;
 }
 
 export interface AzureKeyVaultPermission extends AzureResourcePermission {
-    vault?: string;
+    vault: string;
 }
 
 export interface AzureKeyVaultVariableGroupProviderData extends VariableGroupProviderData {
-    lastRefreshedOn?: Date;
-    serviceEndpointId?: string;
-    vault?: string;
+    lastRefreshedOn: Date;
+    serviceEndpointId: string;
+    vault: string;
 }
 
 export interface AzureKeyVaultVariableValue extends VariableValue {
-    contentType?: string;
-    enabled?: boolean;
-    expires?: Date;
+    contentType: string;
+    enabled: boolean;
+    expires: Date;
 }
 
 /**
@@ -136,19 +136,19 @@ export interface AzureManagementGroup {
     /**
      * Display name of azure management group
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Id of azure management group
      */
-    id?: string;
+    id: string;
     /**
      * Azure management group name
      */
-    name?: string;
+    name: string;
     /**
      * Id of tenant from which azure management group belogs
      */
-    tenantId?: string;
+    tenantId: string;
 }
 
 /**
@@ -158,108 +158,103 @@ export interface AzureManagementGroupQueryResult {
     /**
      * Error message in case of an exception
      */
-    errorMessage?: string;
+    errorMessage: string;
     /**
      * List of azure management groups
      */
-    value?: AzureManagementGroup[];
+    value: AzureManagementGroup[];
 }
 
 export interface AzurePermission {
-    provisioned?: boolean;
-    resourceProvider?: string;
+    provisioned: boolean;
+    resourceProvider: string;
 }
 
 export interface AzureResourcePermission extends AzurePermission {
-    resourceGroup?: string;
+    resourceGroup: string;
 }
 
 export interface AzureRoleAssignmentPermission extends AzurePermission {
-    roleAssignmentId?: string;
+    roleAssignmentId: string;
 }
 
 export interface AzureSpnOperationStatus {
-    state?: string;
-    statusMessage?: string;
+    state: string;
+    statusMessage: string;
 }
 
 export interface AzureSubscription {
-    displayName?: string;
-    subscriptionId?: string;
-    subscriptionTenantId?: string;
-    subscriptionTenantName?: string;
+    displayName: string;
+    subscriptionId: string;
+    subscriptionTenantId: string;
+    subscriptionTenantName: string;
 }
 
 export interface AzureSubscriptionQueryResult {
-    errorMessage?: string;
-    value?: AzureSubscription[];
+    errorMessage: string;
+    value: AzureSubscription[];
 }
 
 export interface ClientCertificate {
     /**
      * Gets or sets the value of client certificate.
      */
-    value?: string;
+    value: string;
 }
 
 export interface CounterVariable {
-    prefix?: string;
-    seed?: number;
-    value?: number;
+    prefix: string;
+    seed: number;
+    value: number;
 }
 
 export interface DataSource {
-    authenticationScheme?: AuthenticationSchemeReference;
-    endpointUrl?: string;
-    headers?: AuthorizationHeader[];
-    name?: string;
-    resourceUrl?: string;
-    resultSelector?: string;
+    authenticationScheme: AuthenticationSchemeReference;
+    endpointUrl: string;
+    headers: AuthorizationHeader[];
+    name: string;
+    resourceUrl: string;
+    resultSelector: string;
 }
 
 export interface DataSourceBinding extends DistributedTaskCommonInterfaces.DataSourceBindingBase {
 }
 
 export interface DataSourceDetails {
-    dataSourceName?: string;
-    dataSourceUrl?: string;
-    headers?: AuthorizationHeader[];
-    parameters?: { [key: string] : string; };
-    resourceUrl?: string;
-    resultSelector?: string;
+    dataSourceName: string;
+    dataSourceUrl: string;
+    headers: AuthorizationHeader[];
+    parameters: { [key: string] : string; };
+    resourceUrl: string;
+    resultSelector: string;
 }
 
-export interface Demand {
-    name?: string;
-    value?: string;
+export interface DemandEquals {
 }
 
-export interface DemandEquals extends Demand {
+export interface DemandExists {
 }
 
-export interface DemandExists extends Demand {
-}
-
-export interface DemandMinimumVersion extends Demand {
+export interface DemandMinimumVersion {
 }
 
 export interface DependencyBinding {
-    key?: string;
-    value?: string;
+    key: string;
+    value: string;
 }
 
 export interface DependencyData {
-    input?: string;
-    map?: { key: string; value: { key: string; value: string }[] }[];
+    input: string;
+    map: { key: string; value: { key: string; value: string }[] }[];
 }
 
 export interface DependsOn {
-    input?: string;
-    map?: DependencyBinding[];
+    input: string;
+    map: DependencyBinding[];
 }
 
 export interface DeploymentGatesChangeEvent {
-    gateNames?: string[];
+    gateNames: string[];
 }
 
 /**
@@ -269,19 +264,19 @@ export interface DeploymentGroup extends DeploymentGroupReference {
     /**
      * Description of the deployment group.
      */
-    description?: string;
+    description: string;
     /**
      * Number of deployment targets in the deployment group.
      */
-    machineCount?: number;
+    machineCount: number;
     /**
      * List of deployment targets in the deployment group.
      */
-    machines?: DeploymentMachine[];
+    machines: DeploymentMachine[];
     /**
      * List of unique tags across all deployment targets in the deployment group.
      */
-    machineTags?: string[];
+    machineTags: string[];
 }
 
 /**
@@ -309,19 +304,19 @@ export interface DeploymentGroupCreateParameter {
     /**
      * Description of the deployment group.
      */
-    description?: string;
+    description: string;
     /**
      * Name of the deployment group.
      */
-    name?: string;
+    name: string;
     /**
      * Deployment pool in which deployment agents are registered. This is obsolete. Kept for compatibility. Will be marked obsolete explicitly by M132.
      */
-    pool?: DeploymentGroupCreateParameterPoolProperty;
+    pool: DeploymentGroupCreateParameterPoolProperty;
     /**
      * Identifier of the deployment pool in which deployment agents are registered.
      */
-    poolId?: number;
+    poolId: number;
 }
 
 /**
@@ -331,7 +326,7 @@ export interface DeploymentGroupCreateParameterPoolProperty {
     /**
      * Deployment pool identifier.
      */
-    id?: number;
+    id: number;
 }
 
 /**
@@ -359,15 +354,15 @@ export interface DeploymentGroupMetrics {
     /**
      * List of deployment group properties. And types of metrics provided for those properties.
      */
-    columnsHeader?: MetricsColumnsHeader;
+    columnsHeader: MetricsColumnsHeader;
     /**
      * Deployment group.
      */
-    deploymentGroup?: DeploymentGroupReference;
+    deploymentGroup: DeploymentGroupReference;
     /**
      * Values of properties and the metrics. E.g. 1: total count of deployment targets for which 'TargetState' is 'offline'. E.g. 2: Average time of deployment to the deployment targets for which 'LastJobStatus' is 'passed' and 'TargetState' is 'online'.
      */
-    rows?: MetricsRow[];
+    rows: MetricsRow[];
 }
 
 /**
@@ -377,19 +372,19 @@ export interface DeploymentGroupReference {
     /**
      * Deployment group identifier.
      */
-    id?: number;
+    id: number;
     /**
      * Name of the deployment group.
      */
-    name?: string;
+    name: string;
     /**
      * Deployment pool in which deployment agents are registered.
      */
-    pool?: TaskAgentPoolReference;
+    pool: TaskAgentPoolReference;
     /**
      * Project to which the deployment group belongs.
      */
-    project?: ProjectReference;
+    project: ProjectReference;
 }
 
 /**
@@ -399,11 +394,11 @@ export interface DeploymentGroupUpdateParameter {
     /**
      * Description of the deployment group.
      */
-    description?: string;
+    description: string;
     /**
      * Name of the deployment group.
      */
-    name?: string;
+    name: string;
 }
 
 /**
@@ -413,20 +408,20 @@ export interface DeploymentMachine {
     /**
      * Deployment agent.
      */
-    agent?: TaskAgent;
+    agent: TaskAgent;
     /**
      * Deployment target Identifier.
      */
-    id?: number;
+    id: number;
     /**
      * Tags of the deployment target.
      */
-    tags?: string[];
+    tags: string[];
 }
 
 export interface DeploymentMachineChangedData extends DeploymentMachine {
-    addedTags?: string[];
-    deletedTags?: string[];
+    addedTags: string[];
+    deletedTags: string[];
 }
 
 export enum DeploymentMachineExpands {
@@ -436,20 +431,20 @@ export enum DeploymentMachineExpands {
 }
 
 export interface DeploymentMachineGroup extends DeploymentMachineGroupReference {
-    machines?: DeploymentMachine[];
-    size?: number;
+    machines: DeploymentMachine[];
+    size: number;
 }
 
 export interface DeploymentMachineGroupReference {
-    id?: number;
-    name?: string;
-    pool?: TaskAgentPoolReference;
-    project?: ProjectReference;
+    id: number;
+    name: string;
+    pool: TaskAgentPoolReference;
+    project: ProjectReference;
 }
 
 export interface DeploymentMachinesChangeEvent {
-    machineGroupReference?: DeploymentGroupReference;
-    machines?: DeploymentMachineChangedData[];
+    machineGroupReference: DeploymentGroupReference;
+    machines: DeploymentMachineChangedData[];
 }
 
 /**
@@ -459,19 +454,19 @@ export interface DeploymentPoolSummary {
     /**
      * List of deployment groups referring to the deployment pool.
      */
-    deploymentGroups?: DeploymentGroupReference[];
+    deploymentGroups: DeploymentGroupReference[];
     /**
      * Number of deployment agents that are offline.
      */
-    offlineAgentsCount?: number;
+    offlineAgentsCount: number;
     /**
      * Number of deployment agents that are online.
      */
-    onlineAgentsCount?: number;
+    onlineAgentsCount: number;
     /**
      * Deployment pool.
      */
-    pool?: TaskAgentPoolReference;
+    pool: TaskAgentPoolReference;
 }
 
 /**
@@ -517,28 +512,28 @@ export interface DeploymentTargetUpdateParameter {
     /**
      * Identifier of the deployment target.
      */
-    id?: number;
-    tags?: string[];
+    id: number;
+    tags: string[];
 }
 
 export interface DiagnosticLogMetadata {
-    agentId?: number;
-    agentName?: string;
-    fileName?: string;
-    phaseName?: string;
-    phaseResult?: string;
-    poolId?: number;
+    agentId: number;
+    agentName: string;
+    fileName: string;
+    phaseName: string;
+    phaseResult: string;
+    poolId: number;
 }
 
 export interface EndpointAuthorization {
     /**
      * Gets or sets the parameters for the selected authorization scheme.
      */
-    parameters?: { [key: string] : string; };
+    parameters: { [key: string] : string; };
     /**
      * Gets or sets the scheme used for service endpoint authentication.
      */
-    scheme?: string;
+    scheme: string;
 }
 
 /**
@@ -548,23 +543,23 @@ export interface EndpointUrl {
     /**
      * Gets or sets the dependency bindings.
      */
-    dependsOn?: DependsOn;
+    dependsOn: DependsOn;
     /**
      * Gets or sets the display name of service endpoint url.
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Gets or sets the help text of service endpoint url.
      */
-    helpText?: string;
+    helpText: string;
     /**
      * Gets or sets the visibility of service endpoint url.
      */
-    isVisible?: string;
+    isVisible: string;
     /**
      * Gets or sets the value of service endpoint url.
      */
-    value?: string;
+    value: string;
 }
 
 export interface EventsConfig {
@@ -574,33 +569,33 @@ export interface ExpressionValidationItem extends ValidationItem {
 }
 
 export interface HelpLink {
-    text?: string;
-    url?: string;
+    text: string;
+    url: string;
 }
 
 export interface InputBindingContext {
     /**
      * Value of the input
      */
-    value?: string;
+    value: string;
 }
 
 export interface InputValidationItem extends ValidationItem {
     /**
      * Provides binding context for the expression to evaluate
      */
-    context?: InputBindingContext;
+    context: InputBindingContext;
 }
 
 export interface InputValidationRequest {
-    inputs?: { [key: string] : ValidationItem; };
+    inputs: { [key: string] : ValidationItem; };
 }
 
 export interface Issue {
-    category?: string;
-    data?: { [key: string] : string; };
-    message?: string;
-    type?: IssueType;
+    category: string;
+    data: { [key: string] : string; };
+    message: string;
+    type: IssueType;
 }
 
 export enum IssueType {
@@ -609,68 +604,68 @@ export enum IssueType {
 }
 
 export interface JobAssignedEvent extends JobEvent {
-    request?: TaskAgentJobRequest;
+    request: TaskAgentJobRequest;
 }
 
 export interface JobCancelMessage {
-    jobId?: string;
-    timeout?: any;
+    jobId: string;
+    timeout: any;
 }
 
 export interface JobCompletedEvent extends JobEvent {
-    requestId?: number;
-    result?: TaskResult;
+    requestId: number;
+    result: TaskResult;
 }
 
 /**
  * Represents the context of variables and vectors for a job request.
  */
 export interface JobEnvironment {
-    endpoints?: ServiceEndpoint[];
-    mask?: MaskHint[];
-    options?: { [key: string] : JobOption; };
-    secureFiles?: SecureFile[];
+    endpoints: ServiceEndpoint[];
+    mask: MaskHint[];
+    options: { [key: string] : JobOption; };
+    secureFiles: SecureFile[];
     /**
      * Gets or sets the endpoint used for communicating back to the calling service.
      */
-    systemConnection?: ServiceEndpoint;
-    variables?: { [key: string] : string; };
+    systemConnection: ServiceEndpoint;
+    variables: { [key: string] : string; };
 }
 
 export interface JobEvent {
-    jobId?: string;
-    name?: string;
+    jobId: string;
+    name: string;
 }
 
 export interface JobEventConfig {
-    timeout?: string;
+    timeout: string;
 }
 
 export interface JobEventsConfig extends EventsConfig {
-    jobAssigned?: JobEventConfig;
-    jobCompleted?: JobEventConfig;
-    jobStarted?: JobEventConfig;
+    jobAssigned: JobEventConfig;
+    jobCompleted: JobEventConfig;
+    jobStarted: JobEventConfig;
 }
 
 /**
  * Represents an option that may affect the way an agent runs the job.
  */
 export interface JobOption {
-    data?: { [key: string] : string; };
+    data: { [key: string] : string; };
     /**
      * Gets the id of the option.
      */
-    id?: string;
+    id: string;
 }
 
 export interface JobRequestMessage {
-    environment?: JobEnvironment;
-    jobId?: string;
-    jobName?: string;
-    jobRefName?: string;
-    messageType?: string;
-    plan?: TaskOrchestrationPlanReference;
-    timeline?: TimelineReference;
+    environment: JobEnvironment;
+    jobId: string;
+    jobName: string;
+    jobRefName: string;
+    messageType: string;
+    plan: TaskOrchestrationPlanReference;
+    timeline: TimelineReference;
 }
 
 export interface JobStartedEvent extends JobEvent {
@@ -689,20 +684,20 @@ export interface MarketplacePurchasedLicense {
     /**
      * The Marketplace display name.
      */
-    marketplaceName?: string;
+    marketplaceName: string;
     /**
      * The name of the identity making the purchase as seen by the marketplace
      */
-    purchaserName?: string;
+    purchaserName: string;
     /**
      * The quantity purchased.
      */
-    purchaseUnitCount?: number;
+    purchaseUnitCount: number;
 }
 
 export interface MaskHint {
-    type?: MaskType;
-    value?: string;
+    type: MaskType;
+    value: string;
 }
 
 export enum MaskType {
@@ -717,11 +712,11 @@ export interface MetricsColumnMetaData {
     /**
      * Name.
      */
-    columnName?: string;
+    columnName: string;
     /**
      * Data type.
      */
-    columnValueType?: string;
+    columnValueType: string;
 }
 
 /**
@@ -731,11 +726,11 @@ export interface MetricsColumnsHeader {
     /**
      * Properties of deployment group for which metrics are provided. E.g. 1: LastJobStatus E.g. 2: TargetState
      */
-    dimensions?: MetricsColumnMetaData[];
+    dimensions: MetricsColumnMetaData[];
     /**
      * The types of metrics. E.g. 1: total count of deployment targets. E.g. 2: Average time of deployment to the deployment targets.
      */
-    metrics?: MetricsColumnMetaData[];
+    metrics: MetricsColumnMetaData[];
 }
 
 /**
@@ -745,11 +740,11 @@ export interface MetricsRow {
     /**
      * The values of the properties mentioned as 'Dimensions' in column header. E.g. 1: For a property 'LastJobStatus' - metrics will be provided for 'passed', 'failed', etc. E.g. 2: For a property 'TargetState' - metrics will be provided for 'online', 'offline' targets.
      */
-    dimensions?: string[];
+    dimensions: string[];
     /**
      * Metrics in serialized format. Should be deserialized based on the data type provided in header.
      */
-    metrics?: string[];
+    metrics: string[];
 }
 
 /**
@@ -759,47 +754,47 @@ export interface PackageMetadata {
     /**
      * The date the package was created
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * A direct link to download the package.
      */
-    downloadUrl?: string;
+    downloadUrl: string;
     /**
      * The UI uses this to display instructions, i.e. "unzip MyAgent.zip"
      */
-    filename?: string;
+    filename: string;
     /**
      * MD5 hash as a base64 string
      */
-    hashValue?: string;
+    hashValue: string;
     /**
      * A link to documentation
      */
-    infoUrl?: string;
+    infoUrl: string;
     /**
      * The platform (win7, linux, etc.)
      */
-    platform?: string;
+    platform: string;
     /**
      * The type of package (e.g. "agent")
      */
-    type?: string;
+    type: string;
     /**
      * The package version.
      */
-    version?: PackageVersion;
+    version: PackageVersion;
 }
 
 export interface PackageVersion {
-    major?: number;
-    minor?: number;
-    patch?: number;
+    major: number;
+    minor: number;
+    patch: number;
 }
 
 export interface PlanEnvironment {
-    mask?: MaskHint[];
-    options?: { [key: string] : JobOption; };
-    variables?: { [key: string] : string; };
+    mask: MaskHint[];
+    options: { [key: string] : JobOption; };
+    variables: { [key: string] : string; };
 }
 
 export enum PlanGroupStatus {
@@ -815,49 +810,49 @@ export enum PlanGroupStatusFilter {
 }
 
 export interface ProjectReference {
-    id?: string;
-    name?: string;
+    id: string;
+    name: string;
 }
 
 export interface PublishTaskGroupMetadata {
-    comment?: string;
-    parentDefinitionRevision?: number;
-    preview?: boolean;
-    taskGroupId?: string;
-    taskGroupRevision?: number;
+    comment: string;
+    parentDefinitionRevision: number;
+    preview: boolean;
+    taskGroupId: string;
+    taskGroupRevision: number;
 }
 
 export interface ResourceLimit {
-    failedToReachAllProviders?: boolean;
-    hostId?: string;
-    isHosted?: boolean;
-    isPremium?: boolean;
-    parallelismTag?: string;
-    resourceLimitsData?: { [key: string] : string; };
-    totalCount?: number;
-    totalMinutes?: number;
+    failedToReachAllProviders: boolean;
+    hostId: string;
+    isHosted: boolean;
+    isPremium: boolean;
+    parallelismTag: string;
+    resourceLimitsData: { [key: string] : string; };
+    totalCount: number;
+    totalMinutes: number;
 }
 
 export interface ResourceUsage {
-    resourceLimit?: ResourceLimit;
-    runningRequests?: TaskAgentJobRequest[];
-    usedCount?: number;
-    usedMinutes?: number;
+    resourceLimit: ResourceLimit;
+    runningRequests: TaskAgentJobRequest[];
+    usedCount: number;
+    usedMinutes: number;
 }
 
 export interface ResultTransformationDetails {
-    resultTemplate?: string;
+    resultTemplate: string;
 }
 
 export interface SecureFile {
-    createdBy?: VSSInterfaces.IdentityRef;
-    createdOn?: Date;
-    id?: string;
-    modifiedBy?: VSSInterfaces.IdentityRef;
-    modifiedOn?: Date;
-    name?: string;
-    properties?: { [key: string] : string; };
-    ticket?: string;
+    createdBy: VSSInterfaces.IdentityRef;
+    createdOn: Date;
+    id: string;
+    modifiedBy: VSSInterfaces.IdentityRef;
+    modifiedOn: Date;
+    name: string;
+    properties: { [key: string] : string; };
+    ticket: string;
 }
 
 export enum SecureFileActionFilter {
@@ -867,18 +862,18 @@ export enum SecureFileActionFilter {
 }
 
 export interface SendJobResponse {
-    events?: JobEventsConfig;
-    variables?: { [key: string] : string; };
+    events: JobEventsConfig;
+    variables: { [key: string] : string; };
 }
 
 export interface ServerExecutionDefinition {
-    events?: EventsConfig;
-    handlerName?: string;
+    events: EventsConfig;
+    handlerName: string;
 }
 
 export interface ServerTaskRequestMessage extends JobRequestMessage {
-    taskDefinition?: TaskDefinition;
-    taskInstance?: TaskInstance;
+    taskDefinition: TaskDefinition;
+    taskInstance: TaskInstance;
 }
 
 /**
@@ -888,83 +883,79 @@ export interface ServiceEndpoint {
     /**
      * Gets or sets the identity reference for the administrators group of the service endpoint.
      */
-    administratorsGroup?: VSSInterfaces.IdentityRef;
+    administratorsGroup: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets the authorization data for talking to the endpoint.
      */
-    authorization?: EndpointAuthorization;
+    authorization: EndpointAuthorization;
     /**
      * Gets or sets the identity reference for the user who created the Service endpoint.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
-    data?: { [key: string] : string; };
+    createdBy: VSSInterfaces.IdentityRef;
+    data: { [key: string] : string; };
     /**
      * Gets or sets the description of endpoint.
      */
-    description?: string;
-    groupScopeId?: string;
+    description: string;
+    groupScopeId: string;
     /**
      * Gets or sets the identifier of this endpoint.
      */
-    id?: string;
+    id: string;
     /**
      * EndPoint state indictor
      */
-    isReady?: boolean;
-    /**
-     * Indicates whether service endpoint is shared with other projects or not.
-     */
-    isShared?: boolean;
+    isReady: boolean;
     /**
      * Gets or sets the friendly name of the endpoint.
      */
-    name?: string;
+    name: string;
     /**
      * Error message during creation/deletion of endpoint
      */
-    operationStatus?: any;
+    operationStatus: any;
     /**
      * Gets or sets the identity reference for the readers group of the service endpoint.
      */
-    readersGroup?: VSSInterfaces.IdentityRef;
+    readersGroup: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets the type of the endpoint.
      */
-    type?: string;
+    type: string;
     /**
      * Gets or sets the url of the endpoint.
      */
-    url?: string;
+    url: string;
 }
 
 export interface ServiceEndpointAuthenticationScheme {
     /**
      * Gets or sets the authorization headers of service endpoint authentication scheme.
      */
-    authorizationHeaders?: AuthorizationHeader[];
+    authorizationHeaders: AuthorizationHeader[];
     /**
      * Gets or sets the certificates of service endpoint authentication scheme.
      */
-    clientCertificates?: ClientCertificate[];
+    clientCertificates: ClientCertificate[];
     /**
      * Gets or sets the display name for the service endpoint authentication scheme.
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Gets or sets the input descriptors for the service endpoint authentication scheme.
      */
-    inputDescriptors?: FormInputInterfaces.InputDescriptor[];
+    inputDescriptors: FormInputInterfaces.InputDescriptor[];
     /**
      * Gets or sets the scheme for service endpoint authentication.
      */
-    scheme?: string;
+    scheme: string;
 }
 
 export interface ServiceEndpointDetails {
-    authorization?: EndpointAuthorization;
-    data?: { [key: string] : string; };
-    type?: string;
-    url?: string;
+    authorization: EndpointAuthorization;
+    data: { [key: string] : string; };
+    type: string;
+    url: string;
 }
 
 /**
@@ -974,59 +965,59 @@ export interface ServiceEndpointExecutionData {
     /**
      * Gets the definition of service endpoint execution owner.
      */
-    definition?: TaskOrchestrationOwner;
+    definition: TaskOrchestrationOwner;
     /**
      * Gets the finish time of service endpoint execution.
      */
-    finishTime?: Date;
+    finishTime: Date;
     /**
      * Gets the Id of service endpoint execution data.
      */
-    id?: number;
+    id: number;
     /**
      * Gets the owner of service endpoint execution data.
      */
-    owner?: TaskOrchestrationOwner;
+    owner: TaskOrchestrationOwner;
     /**
      * Gets the plan type of service endpoint execution data.
      */
-    planType?: string;
+    planType: string;
     /**
      * Gets the result of service endpoint execution.
      */
-    result?: TaskResult;
+    result: TaskResult;
     /**
      * Gets the start time of service endpoint execution.
      */
-    startTime?: Date;
+    startTime: Date;
 }
 
 export interface ServiceEndpointExecutionRecord {
     /**
      * Gets the execution data of service endpoint execution.
      */
-    data?: ServiceEndpointExecutionData;
+    data: ServiceEndpointExecutionData;
     /**
      * Gets the Id of service endpoint.
      */
-    endpointId?: string;
+    endpointId: string;
 }
 
 export interface ServiceEndpointExecutionRecordsInput {
-    data?: ServiceEndpointExecutionData;
-    endpointIds?: string[];
+    data: ServiceEndpointExecutionData;
+    endpointIds: string[];
 }
 
 export interface ServiceEndpointRequest {
-    dataSourceDetails?: DataSourceDetails;
-    resultTransformationDetails?: ResultTransformationDetails;
-    serviceEndpointDetails?: ServiceEndpointDetails;
+    dataSourceDetails: DataSourceDetails;
+    resultTransformationDetails: ResultTransformationDetails;
+    serviceEndpointDetails: ServiceEndpointDetails;
 }
 
 export interface ServiceEndpointRequestResult {
-    errorMessage?: string;
-    result?: any;
-    statusCode?: string;
+    errorMessage: string;
+    result: any;
+    statusCode: string;
 }
 
 /**
@@ -1036,90 +1027,86 @@ export interface ServiceEndpointType {
     /**
      * Authentication scheme of service endpoint type.
      */
-    authenticationSchemes?: ServiceEndpointAuthenticationScheme[];
+    authenticationSchemes: ServiceEndpointAuthenticationScheme[];
     /**
      * Data sources of service endpoint type.
      */
-    dataSources?: DataSource[];
+    dataSources: DataSource[];
     /**
      * Dependency data of service endpoint type.
      */
-    dependencyData?: DependencyData[];
+    dependencyData: DependencyData[];
     /**
      * Gets or sets the description of service endpoint type.
      */
-    description?: string;
+    description: string;
     /**
      * Gets or sets the display name of service endpoint type.
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Gets or sets the endpoint url of service endpoint type.
      */
-    endpointUrl?: EndpointUrl;
+    endpointUrl: EndpointUrl;
     /**
      * Gets or sets the help link of service endpoint type.
      */
-    helpLink?: HelpLink;
-    helpMarkDown?: string;
+    helpLink: HelpLink;
+    helpMarkDown: string;
     /**
      * Gets or sets the icon url of service endpoint type.
      */
-    iconUrl?: string;
+    iconUrl: string;
     /**
      * Input descriptor of service endpoint type.
      */
-    inputDescriptors?: FormInputInterfaces.InputDescriptor[];
+    inputDescriptors: FormInputInterfaces.InputDescriptor[];
     /**
      * Gets or sets the name of service endpoint type.
      */
-    name?: string;
+    name: string;
     /**
      * Trusted hosts of a service endpoint type.
      */
-    trustedHosts?: string[];
+    trustedHosts: string[];
     /**
      * Gets or sets the ui contribution id of service endpoint type.
      */
-    uiContributionId?: string;
+    uiContributionId: string;
 }
 
 export interface TaskAgent extends TaskAgentReference {
     /**
-     * Gets the Agent Cloud Request that's currently associated with this agent
-     */
-    assignedAgentCloudRequest?: TaskAgentCloudRequest;
-    /**
      * Gets the request which is currently assigned to this agent.
      */
-    assignedRequest?: TaskAgentJobRequest;
+    assignedRequest: TaskAgentJobRequest;
     /**
      * Gets or sets the authorization information for this agent.
      */
-    authorization?: TaskAgentAuthorization;
+    authorization: TaskAgentAuthorization;
     /**
      * Gets the date on which this agent was created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets the last request which was completed by this agent.
      */
-    lastCompletedRequest?: TaskAgentJobRequest;
+    lastCompletedRequest: TaskAgentJobRequest;
     /**
      * Gets or sets the maximum job parallelism allowed on this host.
      */
-    maxParallelism?: number;
+    maxParallelism: number;
     /**
      * Gets the pending update for this agent.
      */
-    pendingUpdate?: TaskAgentUpdate;
-    properties?: any;
+    pendingUpdate: TaskAgentUpdate;
+    properties: any;
     /**
      * Gets the date on which the last connectivity status change occurred.
      */
-    statusChangedOn?: Date;
-    systemCapabilities?: { [key: string] : string; };
-    userCapabilities?: { [key: string] : string; };
+    statusChangedOn: Date;
+    systemCapabilities: { [key: string] : string; };
+    userCapabilities: { [key: string] : string; };
 }
 
 /**
@@ -1129,97 +1116,93 @@ export interface TaskAgentAuthorization {
     /**
      * Gets or sets the endpoint used to obtain access tokens from the configured token service.
      */
-    authorizationUrl?: string;
+    authorizationUrl: string;
     /**
      * Gets or sets the client identifier for this agent.
      */
-    clientId?: string;
+    clientId: string;
     /**
      * Gets or sets the public key used to verify the identity of this agent.
      */
-    publicKey?: TaskAgentPublicKey;
+    publicKey: TaskAgentPublicKey;
 }
 
 export interface TaskAgentCloud {
     /**
      * Gets or sets a AcquireAgentEndpoint using which a request can be made to acquire new agent
      */
-    acquireAgentEndpoint?: string;
-    agentCloudId?: number;
-    getAgentDefinitionEndpoint?: string;
-    getAgentRequestStatusEndpoint?: string;
-    /**
-     * Signifies that this Agent Cloud is internal and should not be user-manageable
-     */
-    internal?: boolean;
-    name?: string;
-    releaseAgentEndpoint?: string;
+    acquireAgentEndpoint: string;
+    agentCloudId: number;
+    getAgentDefinitionEndpoint: string;
+    getAgentRequestStatusEndpoint: string;
+    name: string;
+    releaseAgentEndpoint: string;
     /**
      * Gets or sets the type of the endpoint.
      */
-    type?: string;
+    type: string;
 }
 
 export interface TaskAgentCloudRequest {
-    agent?: TaskAgentReference;
-    agentCloudId?: number;
-    agentConnectedTime?: Date;
-    agentData?: any;
-    agentSpecification?: any;
-    pool?: TaskAgentPoolReference;
-    provisionedTime?: Date;
-    provisionRequestTime?: Date;
-    releaseRequestTime?: Date;
-    requestId?: string;
+    agent: TaskAgentReference;
+    agentCloudId: number;
+    agentConnectedTime: Date;
+    agentData: any;
+    agentSpecification: any;
+    pool: TaskAgentPoolReference;
+    provisionedTime: Date;
+    provisionRequestTime: Date;
+    releaseRequestTime: Date;
+    requestId: string;
 }
 
 export interface TaskAgentCloudType {
     /**
      * Gets or sets the display name of agnet cloud type.
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Gets or sets the input descriptors
      */
-    inputDescriptors?: FormInputInterfaces.InputDescriptor[];
+    inputDescriptors: FormInputInterfaces.InputDescriptor[];
     /**
      * Gets or sets the name of agent cloud type.
      */
-    name?: string;
+    name: string;
 }
 
 export interface TaskAgentDelaySource {
-    delays?: any[];
-    taskAgent?: TaskAgentReference;
+    delays: any[];
+    taskAgent: TaskAgentReference;
 }
 
 export interface TaskAgentJobRequest {
-    agentDelays?: TaskAgentDelaySource[];
-    agentSpecification?: any;
-    assignTime?: Date;
-    data?: { [key: string] : string; };
-    definition?: TaskOrchestrationOwner;
-    demands?: Demand[];
-    expectedDuration?: any;
-    finishTime?: Date;
-    hostId?: string;
-    jobId?: string;
-    jobName?: string;
-    lockedUntil?: Date;
-    matchedAgents?: TaskAgentReference[];
-    owner?: TaskOrchestrationOwner;
-    planGroup?: string;
-    planId?: string;
-    planType?: string;
-    poolId?: number;
-    queueId?: number;
-    queueTime?: Date;
-    receiveTime?: Date;
-    requestId?: number;
-    reservedAgent?: TaskAgentReference;
-    result?: TaskResult;
-    scopeId?: string;
-    serviceOwner?: string;
+    agentDelays: TaskAgentDelaySource[];
+    agentSpecification: any;
+    assignTime: Date;
+    data: { [key: string] : string; };
+    definition: TaskOrchestrationOwner;
+    demands: any[];
+    expectedDuration: any;
+    finishTime: Date;
+    hostId: string;
+    jobId: string;
+    jobName: string;
+    lockedUntil: Date;
+    matchedAgents: TaskAgentReference[];
+    owner: TaskOrchestrationOwner;
+    planGroup: string;
+    planId: string;
+    planType: string;
+    poolId: number;
+    queueId: number;
+    queueTime: Date;
+    receiveTime: Date;
+    requestId: number;
+    reservedAgent: TaskAgentReference;
+    result: TaskResult;
+    scopeId: string;
+    serviceOwner: string;
 }
 
 /**
@@ -1254,53 +1237,53 @@ export interface TaskAgentMessage {
     /**
      * Gets or sets the body of the message. If the <c>IV</c> property is provided the body will need to be decrypted using the <c>TaskAgentSession.EncryptionKey</c> value in addition to the <c>IV</c>.
      */
-    body?: string;
+    body: string;
     /**
      * Gets or sets the intialization vector used to encrypt this message.
      */
-    iV?: number[];
+    iV: number[];
     /**
      * Gets or sets the message identifier.
      */
-    messageId?: number;
+    messageId: number;
     /**
      * Gets or sets the message type, describing the data contract found in <c>TaskAgentMessage.Body</c>.
      */
-    messageType?: string;
+    messageType: string;
 }
 
 export interface TaskAgentMinAgentVersionRequiredUpdate extends TaskAgentUpdateReason {
-    jobDefinition?: TaskOrchestrationOwner;
-    jobOwner?: TaskOrchestrationOwner;
-    minAgentVersion?: Demand;
+    jobDefinition: TaskOrchestrationOwner;
+    jobOwner: TaskOrchestrationOwner;
+    minAgentVersion: any;
 }
 
 export interface TaskAgentPool extends TaskAgentPoolReference {
     /**
      * Gets or sets an agentCloudId
      */
-    agentCloudId?: number;
+    agentCloudId: number;
     /**
      * Gets or sets a value indicating whether or not a queue should be automatically provisioned for each project collection or not.
      */
-    autoProvision?: boolean;
+    autoProvision: boolean;
     /**
      * Gets or sets a value indicating whether or not the pool should autosize itself based on the Agent Cloud Provider settings
      */
-    autoSize?: boolean;
+    autoSize: boolean;
     /**
      * Gets the identity who created this pool. The creator of the pool is automatically added into the administrators group for the pool on creation.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets the date/time of the pool creation.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets the identity who owns or administrates this pool.
      */
-    owner?: VSSInterfaces.IdentityRef;
-    properties?: any;
+    owner: VSSInterfaces.IdentityRef;
+    properties: any;
 }
 
 export enum TaskAgentPoolActionFilter {
@@ -1313,82 +1296,82 @@ export interface TaskAgentPoolMaintenanceDefinition {
     /**
      * Enable maintenance
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Id
      */
-    id?: number;
+    id: number;
     /**
      * Maintenance job timeout per agent
      */
-    jobTimeoutInMinutes?: number;
+    jobTimeoutInMinutes: number;
     /**
      * Max percentage of agents within a pool running maintenance job at given time
      */
-    maxConcurrentAgentsPercentage?: number;
-    options?: TaskAgentPoolMaintenanceOptions;
+    maxConcurrentAgentsPercentage: number;
+    options: TaskAgentPoolMaintenanceOptions;
     /**
      * Pool reference for the maintenance definition
      */
-    pool?: TaskAgentPoolReference;
-    retentionPolicy?: TaskAgentPoolMaintenanceRetentionPolicy;
-    scheduleSetting?: TaskAgentPoolMaintenanceSchedule;
+    pool: TaskAgentPoolReference;
+    retentionPolicy: TaskAgentPoolMaintenanceRetentionPolicy;
+    scheduleSetting: TaskAgentPoolMaintenanceSchedule;
 }
 
 export interface TaskAgentPoolMaintenanceJob {
     /**
      * The maintenance definition for the maintenance job
      */
-    definitionId?: number;
+    definitionId: number;
     /**
      * The total error counts during the maintenance job
      */
-    errorCount?: number;
+    errorCount: number;
     /**
      * Time that the maintenance job was completed
      */
-    finishTime?: Date;
+    finishTime: Date;
     /**
      * Id of the maintenance job
      */
-    jobId?: number;
+    jobId: number;
     /**
      * The log download url for the maintenance job
      */
-    logsDownloadUrl?: string;
+    logsDownloadUrl: string;
     /**
      * Orchestration/Plan Id for the maintenance job
      */
-    orchestrationId?: string;
+    orchestrationId: string;
     /**
      * Pool reference for the maintenance job
      */
-    pool?: TaskAgentPoolReference;
+    pool: TaskAgentPoolReference;
     /**
      * Time that the maintenance job was queued
      */
-    queueTime?: Date;
+    queueTime: Date;
     /**
      * The identity that queued the maintenance job
      */
-    requestedBy?: VSSInterfaces.IdentityRef;
+    requestedBy: VSSInterfaces.IdentityRef;
     /**
      * The maintenance job result
      */
-    result?: TaskAgentPoolMaintenanceJobResult;
+    result: TaskAgentPoolMaintenanceJobResult;
     /**
      * Time that the maintenance job was started
      */
-    startTime?: Date;
+    startTime: Date;
     /**
      * Status of the maintenance job
      */
-    status?: TaskAgentPoolMaintenanceJobStatus;
-    targetAgents?: TaskAgentPoolMaintenanceJobTargetAgent[];
+    status: TaskAgentPoolMaintenanceJobStatus;
+    targetAgents: TaskAgentPoolMaintenanceJobTargetAgent[];
     /**
      * The total warning counts during the maintenance job
      */
-    warningCount?: number;
+    warningCount: number;
 }
 
 export enum TaskAgentPoolMaintenanceJobResult {
@@ -1405,47 +1388,47 @@ export enum TaskAgentPoolMaintenanceJobStatus {
 }
 
 export interface TaskAgentPoolMaintenanceJobTargetAgent {
-    agent?: TaskAgentReference;
-    jobId?: number;
-    result?: TaskAgentPoolMaintenanceJobResult;
-    status?: TaskAgentPoolMaintenanceJobStatus;
+    agent: TaskAgentReference;
+    jobId: number;
+    result: TaskAgentPoolMaintenanceJobResult;
+    status: TaskAgentPoolMaintenanceJobStatus;
 }
 
 export interface TaskAgentPoolMaintenanceOptions {
     /**
      * time to consider a System.DefaultWorkingDirectory is stale
      */
-    workingDirectoryExpirationInDays?: number;
+    workingDirectoryExpirationInDays: number;
 }
 
 export interface TaskAgentPoolMaintenanceRetentionPolicy {
     /**
      * Number of records to keep for maintenance job executed with this definition.
      */
-    numberOfHistoryRecordsToKeep?: number;
+    numberOfHistoryRecordsToKeep: number;
 }
 
 export interface TaskAgentPoolMaintenanceSchedule {
     /**
      * Days for a build (flags enum for days of the week)
      */
-    daysToBuild?: TaskAgentPoolMaintenanceScheduleDays;
+    daysToBuild: TaskAgentPoolMaintenanceScheduleDays;
     /**
      * The Job Id of the Scheduled job that will queue the pool maintenance job.
      */
-    scheduleJobId?: string;
+    scheduleJobId: string;
     /**
      * Local timezone hour to start
      */
-    startHours?: number;
+    startHours: number;
     /**
      * Local timezone minute to start
      */
-    startMinutes?: number;
+    startMinutes: number;
     /**
      * Time zone of the build schedule (string representation of the time zone id)
      */
-    timeZoneId?: string;
+    timeZoneId: string;
 }
 
 export enum TaskAgentPoolMaintenanceScheduleDays {
@@ -1488,29 +1471,29 @@ export enum TaskAgentPoolMaintenanceScheduleDays {
 }
 
 export interface TaskAgentPoolReference {
-    id?: number;
+    id: number;
     /**
      * Gets or sets a value indicating whether or not this pool is managed by the service.
      */
-    isHosted?: boolean;
-    name?: string;
+    isHosted: boolean;
+    name: string;
     /**
      * Gets or sets the type of the pool
      */
-    poolType?: TaskAgentPoolType;
-    scope?: string;
+    poolType: TaskAgentPoolType;
+    scope: string;
     /**
      * Gets the current size of the pool.
      */
-    size?: number;
+    size: number;
 }
 
 export interface TaskAgentPoolSummary {
-    columnsHeader?: MetricsColumnsHeader;
-    deploymentGroups?: DeploymentGroupReference[];
-    pool?: TaskAgentPoolReference;
-    queues?: TaskAgentQueue[];
-    rows?: MetricsRow[];
+    columnsHeader: MetricsColumnsHeader;
+    deploymentGroups: DeploymentGroupReference[];
+    pool: TaskAgentPoolReference;
+    queues: TaskAgentQueue[];
+    rows: MetricsRow[];
 }
 
 export enum TaskAgentPoolType {
@@ -1525,30 +1508,30 @@ export interface TaskAgentPublicKey {
     /**
      * Gets or sets the exponent for the public key.
      */
-    exponent?: number[];
+    exponent: number[];
     /**
      * Gets or sets the modulus for the public key.
      */
-    modulus?: number[];
+    modulus: number[];
 }
 
 export interface TaskAgentQueue {
     /**
      * Id of the queue
      */
-    id?: number;
+    id: number;
     /**
      * Name of the queue
      */
-    name?: string;
+    name: string;
     /**
      * Pool reference for this queue
      */
-    pool?: TaskAgentPoolReference;
+    pool: TaskAgentPoolReference;
     /**
      * Project Id
      */
-    projectId?: string;
+    projectId: string;
 }
 
 export enum TaskAgentQueueActionFilter {
@@ -1558,39 +1541,39 @@ export enum TaskAgentQueueActionFilter {
 }
 
 export interface TaskAgentReference {
-    _links?: any;
+    _links: any;
     /**
      * Gets the access point of the agent.
      */
-    accessPoint?: string;
+    accessPoint: string;
     /**
      * Gets or sets a value indicating whether or not this agent should be enabled for job execution.
      */
-    enabled?: boolean;
+    enabled: boolean;
     /**
      * Gets the identifier of the agent.
      */
-    id?: number;
+    id: number;
     /**
      * Gets the name of the agent.
      */
-    name?: string;
+    name: string;
     /**
      * Gets the OS of the agent.
      */
-    oSDescription?: string;
+    oSDescription: string;
     /**
      * Gets or sets the current provisioning state of this agent
      */
-    provisioningState?: string;
+    provisioningState: string;
     /**
      * Gets the current connectivity status of the agent.
      */
-    status?: TaskAgentStatus;
+    status: TaskAgentStatus;
     /**
      * Gets the version of the agent.
      */
-    version?: string;
+    version: string;
 }
 
 /**
@@ -1600,20 +1583,20 @@ export interface TaskAgentSession {
     /**
      * Gets or sets the agent which is the target of the session.
      */
-    agent?: TaskAgentReference;
+    agent: TaskAgentReference;
     /**
      * Gets the key used to encrypt message traffic for this session.
      */
-    encryptionKey?: TaskAgentSessionKey;
+    encryptionKey: TaskAgentSessionKey;
     /**
      * Gets or sets the owner name of this session. Generally this will be the machine of origination.
      */
-    ownerName?: string;
+    ownerName: string;
     /**
      * Gets the unique identifier for this session.
      */
-    sessionId?: string;
-    systemCapabilities?: { [key: string] : string; };
+    sessionId: string;
+    systemCapabilities: { [key: string] : string; };
 }
 
 /**
@@ -1623,11 +1606,11 @@ export interface TaskAgentSessionKey {
     /**
      * Gets or sets a value indicating whether or not the key value is encrypted. If this value is true, the Value property should be decrypted using the <c>RSA</c> key exchanged with the server during registration.
      */
-    encrypted?: boolean;
+    encrypted: boolean;
     /**
      * Gets or sets the symmetric key value.
      */
-    value?: number[];
+    value: number[];
 }
 
 export enum TaskAgentStatus {
@@ -1657,31 +1640,31 @@ export interface TaskAgentUpdate {
     /**
      * The current state of this agent update
      */
-    currentState?: string;
+    currentState: string;
     /**
      * The reason of this agent update
      */
-    reason?: TaskAgentUpdateReason;
+    reason: TaskAgentUpdateReason;
     /**
      * The identity that request the agent update
      */
-    requestedBy?: VSSInterfaces.IdentityRef;
+    requestedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets the date on which this agent update was requested.
      */
-    requestTime?: Date;
+    requestTime: Date;
     /**
      * Gets or sets the source agent version of the agent update
      */
-    sourceVersion?: PackageVersion;
+    sourceVersion: PackageVersion;
     /**
      * Gets or sets the target agent version of the agent update
      */
-    targetVersion?: PackageVersion;
+    targetVersion: PackageVersion;
 }
 
 export interface TaskAgentUpdateReason {
-    code?: TaskAgentUpdateReasonType;
+    code: TaskAgentUpdateReasonType;
 }
 
 export enum TaskAgentUpdateReasonType {
@@ -1693,86 +1676,86 @@ export interface TaskAssignedEvent extends TaskEvent {
 }
 
 export interface TaskAttachment {
-    _links?: any;
-    createdOn?: Date;
-    lastChangedBy?: string;
-    lastChangedOn?: Date;
-    name?: string;
-    recordId?: string;
-    timelineId?: string;
-    type?: string;
+    _links: any;
+    createdOn: Date;
+    lastChangedBy: string;
+    lastChangedOn: Date;
+    name: string;
+    recordId: string;
+    timelineId: string;
+    type: string;
 }
 
 export interface TaskCompletedEvent extends TaskEvent {
-    result?: TaskResult;
+    result: TaskResult;
 }
 
 export interface TaskDefinition {
-    agentExecution?: TaskExecution;
-    author?: string;
-    category?: string;
-    contentsUploaded?: boolean;
-    contributionIdentifier?: string;
-    contributionVersion?: string;
-    dataSourceBindings?: DataSourceBinding[];
-    definitionType?: string;
-    demands?: Demand[];
-    deprecated?: boolean;
-    description?: string;
-    disabled?: boolean;
-    execution?: { [key: string] : any; };
-    friendlyName?: string;
-    groups?: TaskGroupDefinition[];
-    helpMarkDown?: string;
-    hostType?: string;
-    iconUrl?: string;
-    id?: string;
-    inputs?: TaskInputDefinition[];
-    instanceNameFormat?: string;
-    minimumAgentVersion?: string;
-    name?: string;
-    outputVariables?: TaskOutputVariable[];
-    packageLocation?: string;
-    packageType?: string;
-    postJobExecution?: { [key: string] : any; };
-    preJobExecution?: { [key: string] : any; };
-    preview?: boolean;
-    releaseNotes?: string;
-    runsOn?: string[];
-    satisfies?: string[];
-    serverOwned?: boolean;
-    showEnvironmentVariables?: boolean;
-    sourceDefinitions?: TaskSourceDefinition[];
-    sourceLocation?: string;
-    version?: TaskVersion;
-    visibility?: string[];
+    agentExecution: TaskExecution;
+    author: string;
+    category: string;
+    contentsUploaded: boolean;
+    contributionIdentifier: string;
+    contributionVersion: string;
+    dataSourceBindings: DataSourceBinding[];
+    definitionType: string;
+    demands: any[];
+    deprecated: boolean;
+    description: string;
+    disabled: boolean;
+    execution: { [key: string] : any; };
+    friendlyName: string;
+    groups: TaskGroupDefinition[];
+    helpMarkDown: string;
+    hostType: string;
+    iconUrl: string;
+    id: string;
+    inputs: TaskInputDefinition[];
+    instanceNameFormat: string;
+    minimumAgentVersion: string;
+    name: string;
+    outputVariables: TaskOutputVariable[];
+    packageLocation: string;
+    packageType: string;
+    postJobExecution: { [key: string] : any; };
+    preJobExecution: { [key: string] : any; };
+    preview: boolean;
+    releaseNotes: string;
+    runsOn: string[];
+    satisfies: string[];
+    serverOwned: boolean;
+    showEnvironmentVariables: boolean;
+    sourceDefinitions: TaskSourceDefinition[];
+    sourceLocation: string;
+    version: TaskVersion;
+    visibility: string[];
 }
 
 export interface TaskDefinitionEndpoint {
     /**
      * An ID that identifies a service connection to be used for authenticating endpoint requests.
      */
-    connectionId?: string;
+    connectionId: string;
     /**
      * An Json based keyselector to filter response returned by fetching the endpoint <c>Url</c>.A Json based keyselector must be prefixed with "jsonpath:". KeySelector can be used to specify the filter to get the keys for the values specified with Selector. <example> The following keyselector defines an Json for extracting nodes named 'ServiceName'. <code> endpoint.KeySelector = "jsonpath://ServiceName"; </code></example>
      */
-    keySelector?: string;
+    keySelector: string;
     /**
      * The scope as understood by Connected Services. Essentialy, a project-id for now.
      */
-    scope?: string;
+    scope: string;
     /**
      * An XPath/Json based selector to filter response returned by fetching the endpoint <c>Url</c>. An XPath based selector must be prefixed with the string "xpath:". A Json based selector must be prefixed with "jsonpath:". <example> The following selector defines an XPath for extracting nodes named 'ServiceName'. <code> endpoint.Selector = "xpath://ServiceName"; </code></example>
      */
-    selector?: string;
+    selector: string;
     /**
      * TaskId that this endpoint belongs to.
      */
-    taskId?: string;
+    taskId: string;
     /**
      * URL to GET.
      */
-    url?: string;
+    url: string;
 }
 
 export interface TaskDefinitionReference {
@@ -1803,120 +1786,120 @@ export enum TaskDefinitionStatus {
 }
 
 export interface TaskEvent extends JobEvent {
-    taskId?: string;
+    taskId: string;
 }
 
 export interface TaskExecution {
     /**
      * The utility task to run.  Specifying this means that this task definition is simply a meta task to call another task. This is useful for tasks that call utility tasks like powershell and commandline
      */
-    execTask?: TaskReference;
+    execTask: TaskReference;
     /**
      * If a task is going to run code, then this provides the type/script etc... information by platform. For example, it might look like. net45: { typeName: "Microsoft.TeamFoundation.Automation.Tasks.PowerShellTask", assemblyName: "Microsoft.TeamFoundation.Automation.Tasks.PowerShell.dll" } net20: { typeName: "Microsoft.TeamFoundation.Automation.Tasks.PowerShellTask", assemblyName: "Microsoft.TeamFoundation.Automation.Tasks.PowerShell.dll" } java: { jar: "powershelltask.tasks.automation.teamfoundation.microsoft.com", } node: { script: "powershellhost.js", }
      */
-    platformInstructions?: { [key: string] : { [key: string] : string; }; };
+    platformInstructions: { [key: string] : { [key: string] : string; }; };
 }
 
 export interface TaskGroup extends TaskDefinition {
     /**
      * Gets or sets comment.
      */
-    comment?: string;
+    comment: string;
     /**
      * Gets or sets the identity who created.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets date on which it got created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets or sets as 'true' to indicate as deleted, 'false' otherwise.
      */
-    deleted?: boolean;
+    deleted: boolean;
     /**
      * Gets or sets the identity who modified.
      */
-    modifiedBy?: VSSInterfaces.IdentityRef;
+    modifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets date on which it got modified.
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets or sets the owner.
      */
-    owner?: string;
+    owner: string;
     /**
      * Gets or sets parent task group Id. This is used while creating a draft task group.
      */
-    parentDefinitionId?: string;
+    parentDefinitionId: string;
     /**
      * Gets or sets revision.
      */
-    revision?: number;
+    revision: number;
     /**
      * Gets or sets the tasks.
      */
-    tasks?: TaskGroupStep[];
+    tasks: TaskGroupStep[];
 }
 
 export interface TaskGroupCreateParameter {
     /**
      * Sets author name of the task group.
      */
-    author?: string;
+    author: string;
     /**
      * Sets category of the task group.
      */
-    category?: string;
+    category: string;
     /**
      * Sets description of the task group.
      */
-    description?: string;
+    description: string;
     /**
      * Sets friendly name of the task group.
      */
-    friendlyName?: string;
+    friendlyName: string;
     /**
      * Sets url icon of the task group.
      */
-    iconUrl?: string;
+    iconUrl: string;
     /**
      * Sets input for the task group.
      */
-    inputs?: TaskInputDefinition[];
+    inputs: TaskInputDefinition[];
     /**
      * Sets display name of the task group.
      */
-    instanceNameFormat?: string;
+    instanceNameFormat: string;
     /**
      * Sets name of the task group.
      */
-    name?: string;
+    name: string;
     /**
      * Sets parent task group Id. This is used while creating a draft task group.
      */
-    parentDefinitionId?: string;
+    parentDefinitionId: string;
     /**
      * Sets RunsOn of the task group. Value can be 'Agent', 'Server' or 'DeploymentGroup'.
      */
-    runsOn?: string[];
+    runsOn: string[];
     /**
      * Sets tasks for the task group.
      */
-    tasks?: TaskGroupStep[];
+    tasks: TaskGroupStep[];
     /**
      * Sets version of the task group.
      */
-    version?: TaskVersion;
+    version: TaskVersion;
 }
 
 export interface TaskGroupDefinition {
-    displayName?: string;
-    isExpanded?: boolean;
-    name?: string;
-    tags?: string[];
-    visibleRule?: string;
+    displayName: string;
+    isExpanded: boolean;
+    name: string;
+    tags: string[];
+    visibleRule: string;
 }
 
 export enum TaskGroupExpands {
@@ -1939,13 +1922,13 @@ export enum TaskGroupQueryOrder {
 }
 
 export interface TaskGroupRevision {
-    changedBy?: VSSInterfaces.IdentityRef;
-    changedDate?: Date;
-    changeType?: AuditAction;
-    comment?: string;
-    fileId?: number;
-    revision?: number;
-    taskGroupId?: string;
+    changedBy: VSSInterfaces.IdentityRef;
+    changedDate: Date;
+    changeType: AuditAction;
+    comment: string;
+    fileId: number;
+    revision: number;
+    taskGroupId: string;
 }
 
 /**
@@ -1955,167 +1938,163 @@ export interface TaskGroupStep {
     /**
      * Gets or sets as 'true' to run the task always, 'false' otherwise.
      */
-    alwaysRun?: boolean;
+    alwaysRun: boolean;
     /**
      * Gets or sets condition for the task.
      */
-    condition?: string;
+    condition: string;
     /**
      * Gets or sets as 'true' to continue on error, 'false' otherwise.
      */
-    continueOnError?: boolean;
+    continueOnError: boolean;
     /**
      * Gets or sets the display name.
      */
-    displayName?: string;
+    displayName: string;
     /**
      * Gets or sets as task is enabled or not.
      */
-    enabled?: boolean;
-    /**
-     * Gets dictionary of environment variables.
-     */
-    environment?: { [key: string] : string; };
+    enabled: boolean;
     /**
      * Gets or sets dictionary of inputs.
      */
-    inputs?: { [key: string] : string; };
+    inputs: { [key: string] : string; };
     /**
      * Gets or sets the reference of the task.
      */
-    task?: TaskDefinitionReference;
+    task: TaskDefinitionReference;
     /**
      * Gets or sets the maximum time, in minutes, that a task is allowed to execute on agent before being cancelled by server. A zero value indicates an infinite timeout.
      */
-    timeoutInMinutes?: number;
+    timeoutInMinutes: number;
 }
 
 export interface TaskGroupUpdateParameter {
     /**
      * Sets author name of the task group.
      */
-    author?: string;
+    author: string;
     /**
      * Sets category of the task group.
      */
-    category?: string;
+    category: string;
     /**
      * Sets comment of the task group.
      */
-    comment?: string;
+    comment: string;
     /**
      * Sets description of the task group.
      */
-    description?: string;
+    description: string;
     /**
      * Sets friendly name of the task group.
      */
-    friendlyName?: string;
+    friendlyName: string;
     /**
      * Sets url icon of the task group.
      */
-    iconUrl?: string;
+    iconUrl: string;
     /**
      * Sets the unique identifier of this field.
      */
-    id?: string;
+    id: string;
     /**
      * Sets input for the task group.
      */
-    inputs?: TaskInputDefinition[];
+    inputs: TaskInputDefinition[];
     /**
      * Sets display name of the task group.
      */
-    instanceNameFormat?: string;
+    instanceNameFormat: string;
     /**
      * Sets name of the task group.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets parent task group Id. This is used while creating a draft task group.
      */
-    parentDefinitionId?: string;
+    parentDefinitionId: string;
     /**
      * Sets revision of the task group.
      */
-    revision?: number;
+    revision: number;
     /**
      * Sets RunsOn of the task group. Value can be 'Agent', 'Server' or 'DeploymentGroup'.
      */
-    runsOn?: string[];
+    runsOn: string[];
     /**
      * Sets tasks for the task group.
      */
-    tasks?: TaskGroupStep[];
+    tasks: TaskGroupStep[];
     /**
      * Sets version of the task group.
      */
-    version?: TaskVersion;
+    version: TaskVersion;
 }
 
 export interface TaskHubLicenseDetails {
-    enterpriseUsersCount?: number;
-    failedToReachAllProviders?: boolean;
-    freeHostedLicenseCount?: number;
-    freeLicenseCount?: number;
-    hasLicenseCountEverUpdated?: boolean;
-    hostedAgentMinutesFreeCount?: number;
-    hostedAgentMinutesUsedCount?: number;
-    hostedLicensesArePremium?: boolean;
-    marketplacePurchasedHostedLicenses?: MarketplacePurchasedLicense[];
-    msdnUsersCount?: number;
+    enterpriseUsersCount: number;
+    failedToReachAllProviders: boolean;
+    freeHostedLicenseCount: number;
+    freeLicenseCount: number;
+    hasLicenseCountEverUpdated: boolean;
+    hostedAgentMinutesFreeCount: number;
+    hostedAgentMinutesUsedCount: number;
+    hostedLicensesArePremium: boolean;
+    marketplacePurchasedHostedLicenses: MarketplacePurchasedLicense[];
+    msdnUsersCount: number;
     /**
      * Microsoft-hosted licenses purchased from VSTS directly.
      */
-    purchasedHostedLicenseCount?: number;
+    purchasedHostedLicenseCount: number;
     /**
      * Self-hosted licenses purchased from VSTS directly.
      */
-    purchasedLicenseCount?: number;
-    totalHostedLicenseCount?: number;
-    totalLicenseCount?: number;
-    totalPrivateLicenseCount?: number;
+    purchasedLicenseCount: number;
+    totalHostedLicenseCount: number;
+    totalLicenseCount: number;
+    totalPrivateLicenseCount: number;
 }
 
 export interface TaskInputDefinition extends DistributedTaskCommonInterfaces.TaskInputDefinitionBase {
 }
 
 export interface TaskInstance extends TaskReference {
-    alwaysRun?: boolean;
-    condition?: string;
-    continueOnError?: boolean;
-    displayName?: string;
-    enabled?: boolean;
-    environment?: { [key: string] : string; };
-    instanceId?: string;
-    refName?: string;
-    timeoutInMinutes?: number;
+    alwaysRun: boolean;
+    condition: string;
+    continueOnError: boolean;
+    displayName: string;
+    enabled: boolean;
+    environment: { [key: string] : string; };
+    instanceId: string;
+    refName: string;
+    timeoutInMinutes: number;
 }
 
 export interface TaskLog extends TaskLogReference {
-    createdOn?: Date;
-    indexLocation?: string;
-    lastChangedOn?: Date;
-    lineCount?: number;
-    path?: string;
+    createdOn: Date;
+    indexLocation: string;
+    lastChangedOn: Date;
+    lineCount: number;
+    path: string;
 }
 
 export interface TaskLogReference {
-    id?: number;
-    location?: string;
+    id: number;
+    location: string;
 }
 
 export interface TaskOrchestrationContainer extends TaskOrchestrationItem {
-    children?: TaskOrchestrationItem[];
-    continueOnError?: boolean;
-    data?: { [key: string] : string; };
-    maxConcurrency?: number;
-    parallel?: boolean;
-    rollback?: TaskOrchestrationContainer;
+    children: TaskOrchestrationItem[];
+    continueOnError: boolean;
+    data: { [key: string] : string; };
+    maxConcurrency: number;
+    parallel: boolean;
+    rollback: TaskOrchestrationContainer;
 }
 
 export interface TaskOrchestrationItem {
-    itemType?: TaskOrchestrationItemType;
+    itemType: TaskOrchestrationItemType;
 }
 
 export enum TaskOrchestrationItemType {
@@ -2124,57 +2103,57 @@ export enum TaskOrchestrationItemType {
 }
 
 export interface TaskOrchestrationJob extends TaskOrchestrationItem {
-    demands?: Demand[];
-    executeAs?: VSSInterfaces.IdentityRef;
-    executionMode?: string;
-    executionTimeout?: any;
-    instanceId?: string;
-    name?: string;
-    refName?: string;
-    tasks?: TaskInstance[];
-    variables?: { [key: string] : string; };
+    demands: any[];
+    executeAs: VSSInterfaces.IdentityRef;
+    executionMode: string;
+    executionTimeout: any;
+    instanceId: string;
+    name: string;
+    refName: string;
+    tasks: TaskInstance[];
+    variables: { [key: string] : string; };
 }
 
 export interface TaskOrchestrationOwner {
-    _links?: any;
-    id?: number;
-    name?: string;
+    _links: any;
+    id: number;
+    name: string;
 }
 
 export interface TaskOrchestrationPlan extends TaskOrchestrationPlanReference {
-    environment?: PlanEnvironment;
-    finishTime?: Date;
-    implementation?: TaskOrchestrationContainer;
-    requestedById?: string;
-    requestedForId?: string;
-    result?: TaskResult;
-    resultCode?: string;
-    startTime?: Date;
-    state?: TaskOrchestrationPlanState;
-    timeline?: TimelineReference;
+    environment: PlanEnvironment;
+    finishTime: Date;
+    implementation: TaskOrchestrationContainer;
+    requestedById: string;
+    requestedForId: string;
+    result: TaskResult;
+    resultCode: string;
+    startTime: Date;
+    state: TaskOrchestrationPlanState;
+    timeline: TimelineReference;
 }
 
 export interface TaskOrchestrationPlanGroup {
-    planGroup?: string;
-    project?: ProjectReference;
-    runningRequests?: TaskAgentJobRequest[];
+    planGroup: string;
+    project: ProjectReference;
+    runningRequests: TaskAgentJobRequest[];
 }
 
 export interface TaskOrchestrationPlanGroupsQueueMetrics {
-    count?: number;
-    status?: PlanGroupStatus;
+    count: number;
+    status: PlanGroupStatus;
 }
 
 export interface TaskOrchestrationPlanReference {
-    artifactLocation?: string;
-    artifactUri?: string;
-    definition?: TaskOrchestrationOwner;
-    owner?: TaskOrchestrationOwner;
-    planGroup?: string;
-    planId?: string;
-    planType?: string;
-    scopeIdentifier?: string;
-    version?: number;
+    artifactLocation: string;
+    artifactUri: string;
+    definition: TaskOrchestrationOwner;
+    owner: TaskOrchestrationOwner;
+    planGroup: string;
+    planId: string;
+    planType: string;
+    scopeIdentifier: string;
+    version: number;
 }
 
 export enum TaskOrchestrationPlanState {
@@ -2184,51 +2163,51 @@ export enum TaskOrchestrationPlanState {
 }
 
 export interface TaskOrchestrationQueuedPlan {
-    assignTime?: Date;
-    definition?: TaskOrchestrationOwner;
-    owner?: TaskOrchestrationOwner;
-    planGroup?: string;
-    planId?: string;
-    poolId?: number;
-    queuePosition?: number;
-    queueTime?: Date;
-    scopeIdentifier?: string;
+    assignTime: Date;
+    definition: TaskOrchestrationOwner;
+    owner: TaskOrchestrationOwner;
+    planGroup: string;
+    planId: string;
+    poolId: number;
+    queuePosition: number;
+    queueTime: Date;
+    scopeIdentifier: string;
 }
 
 export interface TaskOrchestrationQueuedPlanGroup {
-    definition?: TaskOrchestrationOwner;
-    owner?: TaskOrchestrationOwner;
-    planGroup?: string;
-    plans?: TaskOrchestrationQueuedPlan[];
-    project?: ProjectReference;
-    queuePosition?: number;
+    definition: TaskOrchestrationOwner;
+    owner: TaskOrchestrationOwner;
+    planGroup: string;
+    plans: TaskOrchestrationQueuedPlan[];
+    project: ProjectReference;
+    queuePosition: number;
 }
 
 export interface TaskOutputVariable {
-    description?: string;
-    name?: string;
+    description: string;
+    name: string;
 }
 
 export interface TaskPackageMetadata {
     /**
      * Gets the name of the package.
      */
-    type?: string;
+    type: string;
     /**
      * Gets the url of the package.
      */
-    url?: string;
+    url: string;
     /**
      * Gets the version of the package.
      */
-    version?: string;
+    version: string;
 }
 
 export interface TaskReference {
-    id?: string;
-    inputs?: { [key: string] : string; };
-    name?: string;
-    version?: string;
+    id: string;
+    inputs: { [key: string] : string; };
+    name: string;
+    version: string;
 }
 
 export enum TaskResult {
@@ -2247,71 +2226,49 @@ export interface TaskStartedEvent extends TaskEvent {
 }
 
 export interface TaskVersion {
-    isTest?: boolean;
-    major?: number;
-    minor?: number;
-    patch?: number;
+    isTest: boolean;
+    major: number;
+    minor: number;
+    patch: number;
 }
 
 export interface Timeline extends TimelineReference {
-    lastChangedBy?: string;
-    lastChangedOn?: Date;
-    records?: TimelineRecord[];
-}
-
-export interface TimelineAttempt {
-    /**
-     * Gets or sets the attempt of the record.
-     */
-    attempt?: number;
-    /**
-     * Gets or sets the unique identifier for the record.
-     */
-    identifier?: string;
-    /**
-     * Gets or sets the record identifier located within the specified timeline.
-     */
-    recordId?: string;
-    /**
-     * Gets or sets the timeline identifier which owns the record representing this attempt.
-     */
-    timelineId?: string;
+    lastChangedBy: string;
+    lastChangedOn: Date;
+    records: TimelineRecord[];
 }
 
 export interface TimelineRecord {
-    attempt?: number;
-    changeId?: number;
-    currentOperation?: string;
-    details?: TimelineReference;
-    errorCount?: number;
-    finishTime?: Date;
-    id?: string;
-    identifier?: string;
-    issues?: Issue[];
-    lastModified?: Date;
-    location?: string;
-    log?: TaskLogReference;
-    name?: string;
-    order?: number;
-    parentId?: string;
-    percentComplete?: number;
-    previousAttempts?: TimelineAttempt[];
-    refName?: string;
-    result?: TaskResult;
-    resultCode?: string;
-    startTime?: Date;
-    state?: TimelineRecordState;
-    task?: TaskReference;
-    type?: string;
-    variables?: { [key: string] : VariableValue; };
-    warningCount?: number;
-    workerName?: string;
+    changeId: number;
+    currentOperation: string;
+    details: TimelineReference;
+    errorCount: number;
+    finishTime: Date;
+    id: string;
+    issues: Issue[];
+    lastModified: Date;
+    location: string;
+    log: TaskLogReference;
+    name: string;
+    order: number;
+    parentId: string;
+    percentComplete: number;
+    refName: string;
+    result: TaskResult;
+    resultCode: string;
+    startTime: Date;
+    state: TimelineRecordState;
+    task: TaskReference;
+    type: string;
+    variables: { [key: string] : VariableValue; };
+    warningCount: number;
+    workerName: string;
 }
 
 export interface TimelineRecordFeedLinesWrapper {
-    count?: number;
-    stepId?: string;
-    value?: string[];
+    count: number;
+    stepId: string;
+    value: string[];
 }
 
 export enum TimelineRecordState {
@@ -2321,28 +2278,28 @@ export enum TimelineRecordState {
 }
 
 export interface TimelineReference {
-    changeId?: number;
-    id?: string;
-    location?: string;
+    changeId: number;
+    id: string;
+    location: string;
 }
 
 export interface ValidationItem {
     /**
      * Tells whether the current input is valid or not
      */
-    isValid?: boolean;
+    isValid: boolean;
     /**
      * Reason for input validation failure
      */
-    reason?: string;
+    reason: string;
     /**
      * Type of validation item
      */
-    type?: string;
+    type: string;
     /**
      * Value to validate. The conditional expression to validate for the input for "expression" type Eg:eq(variables['Build.SourceBranch'], 'refs/heads/master');eq(value, 'refs/heads/master')
      */
-    value?: string;
+    value: string;
 }
 
 /**
@@ -2352,43 +2309,43 @@ export interface VariableGroup {
     /**
      * Gets or sets the identity who created the variable group.
      */
-    createdBy?: VSSInterfaces.IdentityRef;
+    createdBy: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets the time when variable group was created.
      */
-    createdOn?: Date;
+    createdOn: Date;
     /**
      * Gets or sets description of the variable group.
      */
-    description?: string;
+    description: string;
     /**
      * Gets or sets id of the variable group.
      */
-    id?: number;
+    id: number;
     /**
      * Gets or sets the identity who modified the variable group.
      */
-    modifiedBy?: VSSInterfaces.IdentityRef;
+    modifiedBy: VSSInterfaces.IdentityRef;
     /**
      * Gets or sets the time when variable group was modified
      */
-    modifiedOn?: Date;
+    modifiedOn: Date;
     /**
      * Gets or sets name of the variable group.
      */
-    name?: string;
+    name: string;
     /**
      * Gets or sets provider data.
      */
-    providerData?: VariableGroupProviderData;
+    providerData: VariableGroupProviderData;
     /**
      * Gets or sets type of the variable group.
      */
-    type?: string;
+    type: string;
     /**
      * Gets or sets variables contained in the variable group.
      */
-    variables?: { [key: string] : VariableValue; };
+    variables: { [key: string] : VariableValue; };
 }
 
 export enum VariableGroupActionFilter {
@@ -2401,23 +2358,23 @@ export interface VariableGroupParameters {
     /**
      * Sets description of the variable group.
      */
-    description?: string;
+    description: string;
     /**
      * Sets name of the variable group.
      */
-    name?: string;
+    name: string;
     /**
      * Sets provider data.
      */
-    providerData?: VariableGroupProviderData;
+    providerData: VariableGroupProviderData;
     /**
      * Sets type of the variable group.
      */
-    type?: string;
+    type: string;
     /**
      * Sets variables contained in the variable group.
      */
-    variables?: { [key: string] : VariableValue; };
+    variables: { [key: string] : VariableValue; };
 }
 
 /**
@@ -2441,8 +2398,8 @@ export enum VariableGroupQueryOrder {
 }
 
 export interface VariableValue {
-    isSecret?: boolean;
-    value?: string;
+    isSecret: boolean;
+    value: string;
 }
 
 export var TypeInfo = {
@@ -3063,9 +3020,6 @@ TypeInfo.ServiceEndpointType.fields = {
 };
 
 TypeInfo.TaskAgent.fields = {
-    assignedAgentCloudRequest: {
-        typeInfo: TypeInfo.TaskAgentCloudRequest
-    },
     assignedRequest: {
         typeInfo: TypeInfo.TaskAgentJobRequest
     },

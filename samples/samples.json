@@ -2,10 +2,6 @@
     "build",
     "buildArtifact",
     "creation",
-    "policy",
-    "profile",
     "task",
-    "filecontainer",
-    "git",
-    "wiki"
+    "filecontainer"
 ]

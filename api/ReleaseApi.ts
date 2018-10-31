@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import FormInputInterfaces = require("./interfaces/common/FormInputInterfaces");
 import ReleaseInterfaces = require("./interfaces/ReleaseInterfaces");
@@ -30,7 +32,7 @@ export interface IReleaseApi extends basem.ClientApiBase {
     getReleaseTaskAttachments(project: string, releaseId: number, environmentId: number, attemptId: number, planId: string, type: string): Promise<ReleaseInterfaces.ReleaseTaskAttachment[]>;
     getAutoTriggerIssues(artifactType: string, sourceId: string, artifactVersionId: string, project?: string): Promise<ReleaseInterfaces.AutoTriggerIssue[]>;
     getDeploymentBadge(projectId: string, releaseDefinitionId: number, environmentId: number, branchName?: string): Promise<string>;
-    getReleaseChanges(project: string, releaseId: number, baseReleaseId?: number, top?: number, artifactAlias?: string): Promise<ReleaseInterfaces.Change[]>;
+    getReleaseChanges(project: string, releaseId: number, baseReleaseId?: number, top?: number): Promise<ReleaseInterfaces.Change[]>;
     getDefinitionEnvironments(project: string, taskGroupId?: string, propertyFilters?: string[]): Promise<ReleaseInterfaces.DefinitionEnvironmentReference[]>;
     createReleaseDefinition(releaseDefinition: ReleaseInterfaces.ReleaseDefinition, project: string): Promise<ReleaseInterfaces.ReleaseDefinition>;
     deleteReleaseDefinition(project: string, definitionId: number, comment?: string, forceDelete?: boolean): Promise<void>;
@@ -39,7 +41,7 @@ export interface IReleaseApi extends basem.ClientApiBase {
     getReleaseDefinitions(project: string, searchText?: string, expand?: ReleaseInterfaces.ReleaseDefinitionExpands, artifactType?: string, artifactSourceId?: string, top?: number, continuationToken?: string, queryOrder?: ReleaseInterfaces.ReleaseDefinitionQueryOrder, path?: string, isExactNameMatch?: boolean, tagFilter?: string[], propertyFilters?: string[], definitionIdFilter?: string[], isDeleted?: boolean): Promise<ReleaseInterfaces.ReleaseDefinition[]>;
     undeleteReleaseDefinition(releaseDefinitionUndeleteParameter: ReleaseInterfaces.ReleaseDefinitionUndeleteParameter, project: string, definitionId: number): Promise<ReleaseInterfaces.ReleaseDefinition>;
     updateReleaseDefinition(releaseDefinition: ReleaseInterfaces.ReleaseDefinition, project: string): Promise<ReleaseInterfaces.ReleaseDefinition>;
-    getDeployments(project: string, definitionId?: number, definitionEnvironmentId?: number, createdBy?: string, minModifiedTime?: Date, maxModifiedTime?: Date, deploymentStatus?: ReleaseInterfaces.DeploymentStatus, operationStatus?: ReleaseInterfaces.DeploymentOperationStatus, latestAttemptsOnly?: boolean, queryOrder?: ReleaseInterfaces.ReleaseQueryOrder, top?: number, continuationToken?: number, createdFor?: string, minStartedTime?: Date, maxStartedTime?: Date, sourceBranch?: string): Promise<ReleaseInterfaces.Deployment[]>;
+    getDeployments(project: string, definitionId?: number, definitionEnvironmentId?: number, createdBy?: string, minModifiedTime?: Date, maxModifiedTime?: Date, deploymentStatus?: ReleaseInterfaces.DeploymentStatus, operationStatus?: ReleaseInterfaces.DeploymentOperationStatus, latestAttemptsOnly?: boolean, queryOrder?: ReleaseInterfaces.ReleaseQueryOrder, top?: number, continuationToken?: number, createdFor?: string, minStartedTime?: Date, maxStartedTime?: Date): Promise<ReleaseInterfaces.Deployment[]>;
     getDeploymentsForMultipleEnvironments(queryParameters: ReleaseInterfaces.DeploymentQueryParameters, project: string): Promise<ReleaseInterfaces.Deployment[]>;
     getReleaseEnvironment(project: string, releaseId: number, environmentId: number): Promise<ReleaseInterfaces.ReleaseEnvironment>;
     updateReleaseEnvironment(environmentUpdateData: ReleaseInterfaces.ReleaseEnvironmentUpdateMetadata, project: string, releaseId: number, environmentId: number): Promise<ReleaseInterfaces.ReleaseEnvironment>;
@@ -101,7 +103,7 @@ export interface IReleaseApi extends basem.ClientApiBase {
     getArtifactTypeDefinitions(project: string): Promise<ReleaseInterfaces.ArtifactTypeDefinition[]>;
     getArtifactVersions(project: string, releaseDefinitionId: number): Promise<ReleaseInterfaces.ArtifactVersionQueryResult>;
     getArtifactVersionsForSources(artifacts: ReleaseInterfaces.Artifact[], project: string): Promise<ReleaseInterfaces.ArtifactVersionQueryResult>;
-    getReleaseWorkItemsRefs(project: string, releaseId: number, baseReleaseId?: number, top?: number, artifactAlias?: string): Promise<ReleaseInterfaces.ReleaseWorkItemRef[]>;
+    getReleaseWorkItemsRefs(project: string, releaseId: number, baseReleaseId?: number, top?: number): Promise<ReleaseInterfaces.ReleaseWorkItemRef[]>;
 }
 
 export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
@@ -633,15 +635,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         artifactVersionId: string,
         project?: string
         ): Promise<ReleaseInterfaces.AutoTriggerIssue[]> {
-        if (artifactType == null) {
-            throw new TypeError('artifactType can not be null or undefined');
-        }
-        if (sourceId == null) {
-            throw new TypeError('sourceId can not be null or undefined');
-        }
-        if (artifactVersionId == null) {
-            throw new TypeError('artifactVersionId can not be null or undefined');
-        }
 
         return new Promise<ReleaseInterfaces.AutoTriggerIssue[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -737,14 +730,12 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
      * @param {number} releaseId
      * @param {number} baseReleaseId
      * @param {number} top
-     * @param {string} artifactAlias
      */
     public async getReleaseChanges(
         project: string,
         releaseId: number,
         baseReleaseId?: number,
-        top?: number,
-        artifactAlias?: string
+        top?: number
         ): Promise<ReleaseInterfaces.Change[]> {
 
         return new Promise<ReleaseInterfaces.Change[]>(async (resolve, reject) => {
@@ -756,7 +747,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
             let queryValues: any = {
                 baseReleaseId: baseReleaseId,
                 '$top': top,
-                artifactAlias: artifactAlias,
             };
             
             try {
@@ -996,9 +986,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         definitionId: number,
         revision: number
         ): Promise<NodeJS.ReadableStream> {
-        if (revision == null) {
-            throw new TypeError('revision can not be null or undefined');
-        }
 
         return new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1219,7 +1206,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
      * @param {string} createdFor
      * @param {Date} minStartedTime
      * @param {Date} maxStartedTime
-     * @param {string} sourceBranch
      */
     public async getDeployments(
         project: string,
@@ -1236,8 +1222,7 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         continuationToken?: number,
         createdFor?: string,
         minStartedTime?: Date,
-        maxStartedTime?: Date,
-        sourceBranch?: string
+        maxStartedTime?: Date
         ): Promise<ReleaseInterfaces.Deployment[]> {
 
         return new Promise<ReleaseInterfaces.Deployment[]>(async (resolve, reject) => {
@@ -1260,7 +1245,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
                 createdFor: createdFor,
                 minStartedTime: minStartedTime,
                 maxStartedTime: maxStartedTime,
-                sourceBranch: sourceBranch,
             };
             
             try {
@@ -1479,9 +1463,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         project: string,
         templateId: string
         ): Promise<void> {
-        if (templateId == null) {
-            throw new TypeError('templateId can not be null or undefined');
-        }
 
         return new Promise<void>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1530,9 +1511,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         project: string,
         templateId: string
         ): Promise<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate> {
-        if (templateId == null) {
-            throw new TypeError('templateId can not be null or undefined');
-        }
 
         return new Promise<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1629,9 +1607,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         project: string,
         templateId: string
         ): Promise<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate> {
-        if (templateId == null) {
-            throw new TypeError('templateId can not be null or undefined');
-        }
 
         return new Promise<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate>(async (resolve, reject) => {
             let routeValues: any = {
@@ -1655,7 +1630,7 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate>;
-                res = await this.rest.update<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate>(url, null, options);
+                res = await this.rest.update<ReleaseInterfaces.ReleaseDefinitionEnvironmentTemplate>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               ReleaseInterfaces.TypeInfo.ReleaseDefinitionEnvironmentTemplate,
@@ -2667,12 +2642,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         artifactType: string,
         artifactSourceId: string
         ): Promise<ReleaseInterfaces.ProjectReference[]> {
-        if (artifactType == null) {
-            throw new TypeError('artifactType can not be null or undefined');
-        }
-        if (artifactSourceId == null) {
-            throw new TypeError('artifactSourceId can not be null or undefined');
-        }
 
         return new Promise<ReleaseInterfaces.ProjectReference[]>(async (resolve, reject) => {
             let routeValues: any = {
@@ -2986,12 +2955,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         includeArtifact?: boolean,
         definitionEnvironmentIdsFilter?: number[]
         ): Promise<ReleaseInterfaces.ReleaseDefinitionSummary> {
-        if (definitionId == null) {
-            throw new TypeError('definitionId can not be null or undefined');
-        }
-        if (releaseCount == null) {
-            throw new TypeError('releaseCount can not be null or undefined');
-        }
 
         return new Promise<ReleaseInterfaces.ReleaseDefinitionSummary>(async (resolve, reject) => {
             let routeValues: any = {
@@ -3045,9 +3008,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         releaseId: number,
         definitionSnapshotRevision: number
         ): Promise<NodeJS.ReadableStream> {
-        if (definitionSnapshotRevision == null) {
-            throw new TypeError('definitionSnapshotRevision can not be null or undefined');
-        }
 
         return new Promise<NodeJS.ReadableStream>(async (resolve, reject) => {
             let routeValues: any = {
@@ -3091,9 +3051,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         releaseId: number,
         comment: string
         ): Promise<void> {
-        if (comment == null) {
-            throw new TypeError('comment can not be null or undefined');
-        }
 
         return new Promise<void>(async (resolve, reject) => {
             let routeValues: any = {
@@ -3118,7 +3075,7 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<void>;
-                res = await this.rest.replace<void>(url, null, options);
+                res = await this.rest.replace<void>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               null,
@@ -3552,7 +3509,7 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<string[]>;
-                res = await this.rest.update<string[]>(url, null, options);
+                res = await this.rest.update<string[]>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               null,
@@ -3736,7 +3693,7 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<string[]>;
-                res = await this.rest.update<string[]>(url, null, options);
+                res = await this.rest.update<string[]>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               null,
@@ -4125,9 +4082,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
         project: string,
         releaseDefinitionId: number
         ): Promise<ReleaseInterfaces.ArtifactVersionQueryResult> {
-        if (releaseDefinitionId == null) {
-            throw new TypeError('releaseDefinitionId can not be null or undefined');
-        }
 
         return new Promise<ReleaseInterfaces.ArtifactVersionQueryResult>(async (resolve, reject) => {
             let routeValues: any = {
@@ -4212,14 +4166,12 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
      * @param {number} releaseId
      * @param {number} baseReleaseId
      * @param {number} top
-     * @param {string} artifactAlias
      */
     public async getReleaseWorkItemsRefs(
         project: string,
         releaseId: number,
         baseReleaseId?: number,
-        top?: number,
-        artifactAlias?: string
+        top?: number
         ): Promise<ReleaseInterfaces.ReleaseWorkItemRef[]> {
 
         return new Promise<ReleaseInterfaces.ReleaseWorkItemRef[]>(async (resolve, reject) => {
@@ -4231,7 +4183,6 @@ export class ReleaseApi extends basem.ClientApiBase implements IReleaseApi {
             let queryValues: any = {
                 baseReleaseId: baseReleaseId,
                 '$top': top,
-                artifactAlias: artifactAlias,
             };
             
             try {

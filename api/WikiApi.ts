@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ---------------------------------------------------------
  * Copyright(C) Microsoft Corporation. All rights reserved.
  * ---------------------------------------------------------
@@ -11,8 +11,10 @@
 // Licensed under the MIT license.  See LICENSE file in the project root for full license information.
 
 import * as restm from 'typed-rest-client/RestClient';
+import * as httpm from 'typed-rest-client/HttpClient';
 import vsom = require('./VsoClient');
 import basem = require('./ClientApiBases');
+import serm = require('./Serialization');
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import GitInterfaces = require("./interfaces/GitInterfaces");
 import WikiInterfaces = require("./interfaces/WikiInterfaces");
@@ -155,12 +157,6 @@ export class WikiApi extends basem.ClientApiBase implements IWikiApi {
         path: string,
         oldPath?: string
         ): Promise<WikiInterfaces.WikiPageViewStats> {
-        if (wikiVersion == null) {
-            throw new TypeError('wikiVersion can not be null or undefined');
-        }
-        if (path == null) {
-            throw new TypeError('path can not be null or undefined');
-        }
 
         return new Promise<WikiInterfaces.WikiPageViewStats>(async (resolve, reject) => {
             let routeValues: any = {
@@ -187,7 +183,7 @@ export class WikiApi extends basem.ClientApiBase implements IWikiApi {
                                                                                 verData.apiVersion);
 
                 let res: restm.IRestResponse<WikiInterfaces.WikiPageViewStats>;
-                res = await this.rest.create<WikiInterfaces.WikiPageViewStats>(url, null, options);
+                res = await this.rest.create<WikiInterfaces.WikiPageViewStats>(url, options);
 
                 let ret = this.formatResponse(res.result,
                                               WikiInterfaces.TypeInfo.WikiPageViewStats,
