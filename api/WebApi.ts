@@ -164,7 +164,7 @@ export class WebApi {
 
     public async getCoreApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<corem.ICoreApi> {
         if(type == "tfs"){
-            serverUrl = "http://tfs.lojasrenner.com.br/tfs/LojasRennerCollection/";
+            serverUrl = "http://tfscollection/";
             handlers = handlers || [this.authHandler];
             return new corem.CoreApi(serverUrl, handlers, this.options);
         }
@@ -273,7 +273,7 @@ export class WebApi {
 
     public async getTestApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<testm.ITestApi> {
         if(type == "tfs"){
-            serverUrl = "http://tfs.lojasrenner.com.br/tfs/LojasRennerCollection/";
+            serverUrl = "http://tfscollection/";
             handlers = handlers || [this.authHandler];
             return new testm.TestApi(serverUrl, handlers, this.options, type);
         }
@@ -306,7 +306,7 @@ export class WebApi {
 
     public async getWorkItemTrackingApi(type:string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workitemtrackingm.IWorkItemTrackingApi> {
         if(type == "tfs"){
-            serverUrl = "http://tfs.lojasrenner.com.br/tfs/LojasRennerCollection/";
+            serverUrl = "http://tfscollection/";
             handlers = handlers || [this.authHandler];
             return new workitemtrackingm.WorkItemTrackingApi(serverUrl, handlers, this.options);
         }
