@@ -272,7 +272,7 @@ export class WebApi {
     }
 
     public async getTestApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<testm.ITestApi> {
-        if(type == "tfs"){
+        if(type == "tfs") {
             serverUrl = "http://tfscollection/";
             handlers = handlers || [this.authHandler];
             return new testm.TestApi(serverUrl, handlers, this.options, type);
