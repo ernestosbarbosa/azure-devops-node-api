@@ -162,9 +162,8 @@ export class WebApi {
         return new buildm.BuildApi(serverUrl, handlers, this.options);
     }
 
-    public async getCoreApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<corem.ICoreApi> {
-        if(type == "tfs"){
-            serverUrl = "http://tfscollection/";
+    public async getCoreApi(isTfs?: boolean, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<corem.ICoreApi> {
+        if (isTfs) {
             handlers = handlers || [this.authHandler];
             return new corem.CoreApi(serverUrl, handlers, this.options);
         }
@@ -271,11 +270,10 @@ export class WebApi {
         return new taskagentm.TaskAgentApi(serverUrl, handlers, this.options);
     }
 
-    public async getTestApi(type: string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<testm.ITestApi> {
-        if(type == "tfs") {
-            serverUrl = "http://tfscollection/";
+    public async getTestApi(isTfs?: boolean, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<testm.ITestApi> {
+        if (isTfs) {
             handlers = handlers || [this.authHandler];
-            return new testm.TestApi(serverUrl, handlers, this.options, type);
+            return new testm.TestApi(serverUrl, handlers, this.options, isTfs);
         }
         // TODO: Load RESOURCE_AREA_ID correctly.
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, "c2aa639c-3ccc-4740-b3b6-ce2a1e1d984e");
@@ -297,16 +295,19 @@ export class WebApi {
         return new wikim.WikiApi(serverUrl, handlers, this.options);
     }
 
-    public async getWorkApi(serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workm.IWorkApi> {
+    public async getWorkApi(isTfs?: boolean, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workm.IWorkApi> {
+        if (isTfs) {
+            handlers = handlers || [this.authHandler];
+            return new workm.WorkApi(serverUrl, handlers, this.options);
+        }
         // TODO: Load RESOURCE_AREA_ID correctly.
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, "1d4f49f9-02b9-4e26-b826-2cdb6195f2a9");
         handlers = handlers || [this.authHandler];
         return new workm.WorkApi(serverUrl, handlers, this.options);
     }
 
-    public async getWorkItemTrackingApi(type:string, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workitemtrackingm.IWorkItemTrackingApi> {
-        if(type == "tfs"){
-            serverUrl = "http://tfscollection/";
+    public async getWorkItemTrackingApi(isTfs?: boolean, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<workitemtrackingm.IWorkItemTrackingApi> {
+        if (isTfs) {
             handlers = handlers || [this.authHandler];
             return new workitemtrackingm.WorkItemTrackingApi(serverUrl, handlers, this.options);
         }

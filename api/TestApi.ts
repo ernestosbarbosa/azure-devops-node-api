@@ -74,7 +74,7 @@ export interface ITestApi extends basem.ClientApiBase {
     getResultRetentionSettings(project: string): Promise<TestInterfaces.ResultRetentionSettings>;
     updateResultRetentionSettings(retentionSettings: TestInterfaces.ResultRetentionSettings, project: string): Promise<TestInterfaces.ResultRetentionSettings>;
     addTestResultsToTestRun(results: TestInterfaces.TestCaseResult[], project: string, runId: number): Promise<TestInterfaces.TestCaseResult[]>;
-    getTestResultById(project: string, runId: number, testCaseResultId: number, detailsToInclude?: TestInterfaces.ResultDetails): Promise<TestInterfaces.TestCaseResult>;
+    getTestResultById(isTfs: boolean, project: string, runId: number, testCaseResultId: number, detailsToInclude?: TestInterfaces.ResultDetails): Promise<TestInterfaces.TestCaseResult>;
     getTestResults(project: string, runId: number, detailsToInclude?: TestInterfaces.ResultDetails, skip?: number, top?: number, outcomes?: TestInterfaces.TestOutcome[]): Promise<TestInterfaces.TestCaseResult[]>;
     updateTestResults(results: TestInterfaces.TestCaseResult[], project: string, runId: number): Promise<TestInterfaces.TestCaseResult[]>;
     getTestResultsByQuery(query: TestInterfaces.TestResultsQuery, project: string): Promise<TestInterfaces.TestResultsQuery>;
@@ -128,11 +128,11 @@ export interface ITestApi extends basem.ClientApiBase {
 }
 
 export class TestApi extends basem.ClientApiBase implements ITestApi {
-    constructor(baseUrl: string, handlers: VsoBaseInterfaces.IRequestHandler[], options?: VsoBaseInterfaces.IRequestOptions, type?: string) {
+    constructor(baseUrl: string, handlers: VsoBaseInterfaces.IRequestHandler[], options?: VsoBaseInterfaces.IRequestOptions, isTfs?: boolean) {
         super(baseUrl, handlers, 'node-Test-api', options);
-        this.type = type;
+        this.isTfs = isTfs;
     }
-    public type: string;
+    public isTfs: boolean;
 
     public static readonly RESOURCE_AREA_ID = "c2aa639c-3ccc-4740-b3b6-ce2a1e1d984e";
 
@@ -164,7 +164,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.3",
                         "Test",
@@ -216,7 +216,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.1",
                         "Test",
@@ -2028,7 +2028,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.2",
                         "Test",
@@ -2096,7 +2096,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.2",
                         "Test",
@@ -2811,6 +2811,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
                     routeValues);
 
                 let url: string = verData.requestUrl;
+
                 let options: restm.IRequestOptions = this.createRequestOptions('application/json',
                     verData.apiVersion);
 
@@ -2839,6 +2840,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
      * @param {TestInterfaces.ResultDetails} detailsToInclude - Details to include with test results. Default is None. Other values are Iterations, WorkItems and SubResults.
      */
     public async getTestResultById(
+        isTfs: boolean,
         project: string,
         runId: number,
         testCaseResultId: number,
@@ -2855,6 +2857,12 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
             let queryValues: any = {
                 detailsToInclude: detailsToInclude,
             };
+
+            if (isTfs) {
+                queryValues = {
+                    includeIterationDetails: true,
+                };
+            }
 
             try {
                 let verData: vsom.ClientVersioningData = await this.vsoClient.getVersioningData(
@@ -4085,7 +4093,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.1",
                         "Test",
@@ -4234,7 +4242,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
         return new Promise<TestInterfaces.SuiteTestCase>(async (resolve, reject) => {
 
             let routeValues: any;
-            if (this.type == "tfs") {
+            if (this.isTfs) {
                 routeValues = {
                     project: project,
                     planId: planId,
@@ -4301,7 +4309,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.3",
                         "Test",
@@ -4561,7 +4569,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.3",
                         "Test",
@@ -4631,7 +4639,7 @@ export class TestApi extends basem.ClientApiBase implements ITestApi {
 
             try {
                 let verData: vsom.ClientVersioningData;
-                if (this.type == "tfs") {
+                if (this.isTfs) {
                     verData = await this.vsoClient.getVersioningDataOld(
                         "5.0-preview.3",
                         "Test",
