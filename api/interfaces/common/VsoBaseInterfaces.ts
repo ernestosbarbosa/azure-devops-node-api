@@ -89,7 +89,7 @@ export interface IRequestOptions {
     ignoreSslError?: boolean,
     proxy?: IProxyConfiguration
     cert?: ICertConfiguration
-    isSsl: boolean
+    isSsl?: boolean
 }
 
 export interface IProxyConfiguration {
