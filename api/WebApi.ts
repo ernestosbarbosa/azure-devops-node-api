@@ -32,7 +32,7 @@ import bearm = require('./handlers/bearertoken');
 import ntlmm = require('./handlers/ntlm');
 import patm = require('./handlers/personalaccesstoken');
 
-import * as rm from 'typed-rest-client/RestClient';
+import * as rm from 'typed-rest-client/_build/RestClient';
 import vsom = require('./VsoClient');
 import lim = require("./interfaces/LocationsInterfaces");
 

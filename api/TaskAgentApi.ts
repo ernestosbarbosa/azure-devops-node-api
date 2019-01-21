@@ -5,7 +5,7 @@ import url = require('url');
 import vsom = require('./VsoClient');
 import TaskAgentInterfaces = require("./interfaces/TaskAgentInterfaces");
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
-import * as restm from 'typed-rest-client/RestClient';
+import * as restm from 'typed-rest-client/_build/RestClient';
 
 export interface ITaskAgentApi extends taskagentbasem.ITaskAgentApiBase {
     uploadTaskDefinition(customHeaders: VsoBaseInterfaces.IHeaders, contentStream: NodeJS.ReadableStream, taskId: string, overwrite: boolean): Promise<void>;

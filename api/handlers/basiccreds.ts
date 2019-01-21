@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import ifm = require('../interfaces/common/VsoBaseInterfaces');
-import * as resthandlers from 'typed-rest-client/Handlers'; 
+import * as resthandlers from 'typed-rest-client/_build/Handlers'; 
 
 export class BasicCredentialHandler extends resthandlers.BasicCredentialHandler implements ifm.IRequestHandler {
     constructor(username: string, password: string) {

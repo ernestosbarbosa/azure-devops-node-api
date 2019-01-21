@@ -12,8 +12,8 @@
 
 import stream = require("stream");
 // import * as zlib from "zlib";
-import * as restm from 'typed-rest-client/RestClient';
-import * as httpm from 'typed-rest-client//HttpClient';
+import * as restm from 'typed-rest-client/_build/RestClient';
+import * as httpm from 'typed-rest-client/_build//HttpClient';
 import VsoBaseInterfaces = require('./interfaces/common/VsoBaseInterfaces');
 import FileContainerApiBase = require("./FileContainerApiBase");
 import FileContainerInterfaces = require("./interfaces/FileContainerInterfaces");

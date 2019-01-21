@@ -6,7 +6,7 @@
 import url = require("url");
 import path = require("path");
 /// Import base rest class ///
-import * as restm from 'typed-rest-client/RestClient';
+import * as restm from 'typed-rest-client/_build/RestClient';
 import ifm = require("./interfaces/common/VsoBaseInterfaces");
 
 interface VssApiResourceLocationLookup {

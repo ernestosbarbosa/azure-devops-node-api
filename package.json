@@ -5,7 +5,9 @@
     "main": "./WebApi.js",
     "types": "./WebApi.d.ts",
     "scripts": {
-        "build": "node make.js build",
+        "prebuild": "cd ./node_modules/typed-rest-client && npm install",
+        "build": " cd ./node_modules/typed-rest-client && npm run build",
+        "postbuild": "node make.js build",
         "test": "node make.js test",
         "samples": "node make.js test && node samples/run.js"
     },
@@ -23,7 +25,7 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "typed-rest-client": "1.0.9",
+        "typed-rest-client": "github:ernestosbarbosa/typed-rest-client#tfs-vsts-fix",
         "underscore": "1.8.3"
     },
     "devDependencies": {
