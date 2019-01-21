@@ -7,8 +7,7 @@
     "scripts": {
         "postinstall": "npm run build",
         "prebuild": "cd ./node_modules/typed-rest-client && npm install",
-        "build": " cd ./node_modules/typed-rest-client && npm run build",
-        "postbuild": "node make.js build",
+        "build": "node make.js build",
         "test": "node make.js test",
         "samples": "node make.js test && node samples/run.js"
     },
