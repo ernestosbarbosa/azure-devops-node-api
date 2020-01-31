@@ -27,7 +27,7 @@ export interface IWorkItemTrackingApi extends basem.ClientApiBase {
     getWorkArtifactLinkTypes(): Promise<WorkItemTrackingInterfaces.WorkArtifactLink[]>;
     queryWorkItemsForArtifactUris(artifactUriQuery: WorkItemTrackingInterfaces.ArtifactUriQuery): Promise<WorkItemTrackingInterfaces.ArtifactUriQueryResult>;
     createAttachment(customHeaders: any, contentStream: NodeJS.ReadableStream, fileName?: string, uploadType?: string, areaPath?: string): Promise<WorkItemTrackingInterfaces.AttachmentReference>;
-    getAttachmentContent(id: string, fileName?: string): Promise<NodeJS.ReadableStream>;
+    getAttachmentContent(id: string, baseUrl: string, fileName?: string): Promise<NodeJS.ReadableStream>;
     getAttachmentZip(id: string, fileName?: string): Promise<NodeJS.ReadableStream>;
     getRootNodes(project: string, depth?: number): Promise<WorkItemTrackingInterfaces.WorkItemClassificationNode[]>;
     createOrUpdateClassificationNode(postedNode: WorkItemTrackingInterfaces.WorkItemClassificationNode, project: string, structureGroup: WorkItemTrackingInterfaces.TreeStructureGroup, path?: string): Promise<WorkItemTrackingInterfaces.WorkItemClassificationNode>;
@@ -364,6 +364,7 @@ export class WorkItemTrackingApi extends basem.ClientApiBase implements IWorkIte
      */
     public async getAttachmentContent(
         id: string,
+        baseUrl: string,
         fileName?: string
         ): Promise<NodeJS.ReadableStream> {
 
@@ -385,6 +386,8 @@ export class WorkItemTrackingApi extends basem.ClientApiBase implements IWorkIte
                     queryValues);
 
                 let url: string = verData.requestUrl;
+                url = `${baseUrl}/_api/_wit/DownloadAttachment?fileName=${fileName}&attachmentId=${id}`
+
                 
                 let apiVersion: string = verData.apiVersion;
                 let accept: string = this.createAcceptHeader("application/octet-stream", apiVersion);

@@ -11,7 +11,7 @@ export interface IWorkItemTrackingApi extends basem.ClientApiBase {
     getWorkArtifactLinkTypes(): Promise<WorkItemTrackingInterfaces.WorkArtifactLink[]>;
     queryWorkItemsForArtifactUris(artifactUriQuery: WorkItemTrackingInterfaces.ArtifactUriQuery): Promise<WorkItemTrackingInterfaces.ArtifactUriQueryResult>;
     createAttachment(customHeaders: any, contentStream: NodeJS.ReadableStream, fileName?: string, uploadType?: string, areaPath?: string): Promise<WorkItemTrackingInterfaces.AttachmentReference>;
-    getAttachmentContent(id: string, fileName?: string): Promise<NodeJS.ReadableStream>;
+    getAttachmentContent(id: string, baseUrl: string, fileName?: string): Promise<NodeJS.ReadableStream>;
     getAttachmentZip(id: string, fileName?: string): Promise<NodeJS.ReadableStream>;
     getRootNodes(project: string, depth?: number): Promise<WorkItemTrackingInterfaces.WorkItemClassificationNode[]>;
     createOrUpdateClassificationNode(postedNode: WorkItemTrackingInterfaces.WorkItemClassificationNode, project: string, structureGroup: WorkItemTrackingInterfaces.TreeStructureGroup, path?: string): Promise<WorkItemTrackingInterfaces.WorkItemClassificationNode>;
@@ -126,7 +126,7 @@ export declare class WorkItemTrackingApi extends basem.ClientApiBase implements 
      * @param {string} id - Attachment ID
      * @param {string} fileName - Name of the file
      */
-    getAttachmentContent(id: string, fileName?: string): Promise<NodeJS.ReadableStream>;
+    getAttachmentContent(id: string, baseUrl: string, fileName?: string): Promise<NodeJS.ReadableStream>;
     /**
      * Downloads an attachment.
      *

@@ -184,7 +184,7 @@ class WorkItemTrackingApi extends basem.ClientApiBase {
      * @param {string} id - Attachment ID
      * @param {string} fileName - Name of the file
      */
-    getAttachmentContent(id, fileName) {
+    getAttachmentContent(id, baseUrl, fileName) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
                 let routeValues = {
@@ -196,6 +196,7 @@ class WorkItemTrackingApi extends basem.ClientApiBase {
                 try {
                     let verData = yield this.vsoClient.getVersioningData("4.1-preview.2", "wit", "e07b5fa4-1499-494d-a496-64b860fd64ff", routeValues, queryValues);
                     let url = verData.requestUrl;
+                    url = `${baseUrl}/_api/_wit/DownloadAttachment?fileName=${fileName}&attachmentId=${id}`;
                     let apiVersion = verData.apiVersion;
                     let accept = this.createAcceptHeader("application/octet-stream", apiVersion);
                     resolve((yield this.http.get(url, { "Accept": accept })).message);
