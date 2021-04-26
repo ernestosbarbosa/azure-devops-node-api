@@ -21,8 +21,9 @@ const basem = require("./ClientApiBases");
 const CoreInterfaces = require("./interfaces/CoreInterfaces");
 const OperationsInterfaces = require("./interfaces/common/OperationsInterfaces");
 class CoreApi extends basem.ClientApiBase {
-    constructor(baseUrl, handlers, options) {
+    constructor(baseUrl, handlers, options, isTfs) {
         super(baseUrl, handlers, 'node-Core-api', options);
+        this.isTfs = isTfs;
     }
     /**
      * @param {CoreInterfaces.WebApiConnectedServiceDetails} connectedServiceCreationData
@@ -416,7 +417,13 @@ class CoreApi extends basem.ClientApiBase {
                     continuationToken: continuationToken,
                 };
                 try {
-                    let verData = yield this.vsoClient.getVersioningData("5.0-preview.3", "core", "603fe2ac-9723-48b9-88ad-09305aa6c6e1", routeValues, queryValues);
+                    let verData;
+                    if (this.isTfs) {
+                        verData = yield this.vsoClient.getVersioningDataOld("5.0-preview.3", "core", "603fe2ac-9723-48b9-88ad-09305aa6c6e1", routeValues, queryValues);
+                    }
+                    else {
+                        verData = yield this.vsoClient.getVersioningData("5.0-preview.3", "core", "603fe2ac-9723-48b9-88ad-09305aa6c6e1", routeValues, queryValues);
+                    }
                     let url = verData.requestUrl;
                     let options = this.createRequestOptions('application/json', verData.apiVersion);
                     let res;

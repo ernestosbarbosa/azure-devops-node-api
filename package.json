@@ -23,7 +23,7 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "typed-rest-client": "github:ernestosbarbosa/typed-rest-client#tfs-vsts-fix",
+        "typed-rest-client": "file:../typed-rest-client",
         "underscore": "1.8.3"
     },
     "devDependencies": {

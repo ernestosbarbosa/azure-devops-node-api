@@ -190,7 +190,6 @@ export class VsoClient {
                 // if (!location) { 
                 //     throw new Error("Failed to find api location for area: " + area + " id: " + locationId);
                 // }
-
                 apiVersion = "1.0";
                 // apiVersion = this.autoNegotiateApiVersion(location, apiVersion);
                 requestUrl = this.getRequestUrl(location.routeTemplate, location.area, location.resourceName, routeValues, queryParams);

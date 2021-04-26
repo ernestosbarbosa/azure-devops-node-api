@@ -153,7 +153,7 @@ class WebApi {
         return __awaiter(this, void 0, void 0, function* () {
             if (isTfs) {
                 handlers = handlers || [this.authHandler];
-                return new corem.CoreApi(serverUrl, handlers, this.options);
+                return new corem.CoreApi(serverUrl, handlers, this.options, isTfs);
             }
             // TODO: Load RESOURCE_AREA_ID correctly.
             serverUrl = yield this._getResourceAreaUrl(serverUrl || this.serverUrl, "79134c72-4a58-4b42-976c-04e7115f32bf");

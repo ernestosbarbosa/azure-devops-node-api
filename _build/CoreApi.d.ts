@@ -35,7 +35,8 @@ export interface ICoreApi extends basem.ClientApiBase {
     updateTeam(teamData: CoreInterfaces.WebApiTeam, projectId: string, teamId: string): Promise<CoreInterfaces.WebApiTeam>;
 }
 export declare class CoreApi extends basem.ClientApiBase implements ICoreApi {
-    constructor(baseUrl: string, handlers: VsoBaseInterfaces.IRequestHandler[], options?: VsoBaseInterfaces.IRequestOptions);
+    constructor(baseUrl: string, handlers: VsoBaseInterfaces.IRequestHandler[], options?: VsoBaseInterfaces.IRequestOptions, isTfs?: boolean);
+    isTfs: boolean;
     static readonly RESOURCE_AREA_ID: string;
     /**
      * @param {CoreInterfaces.WebApiConnectedServiceDetails} connectedServiceCreationData

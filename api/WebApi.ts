@@ -165,7 +165,7 @@ export class WebApi {
     public async getCoreApi(isTfs?: boolean, serverUrl?: string, handlers?: VsoBaseInterfaces.IRequestHandler[]): Promise<corem.ICoreApi> {
         if (isTfs) {
             handlers = handlers || [this.authHandler];
-            return new corem.CoreApi(serverUrl, handlers, this.options);
+            return new corem.CoreApi(serverUrl, handlers, this.options, isTfs);
         }
         // TODO: Load RESOURCE_AREA_ID correctly.
         serverUrl = await this._getResourceAreaUrl(serverUrl || this.serverUrl, "79134c72-4a58-4b42-976c-04e7115f32bf");

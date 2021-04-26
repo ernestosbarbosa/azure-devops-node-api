@@ -53,9 +53,11 @@ export interface ICoreApi extends basem.ClientApiBase {
 }
 
 export class CoreApi extends basem.ClientApiBase implements ICoreApi {
-    constructor(baseUrl: string, handlers: VsoBaseInterfaces.IRequestHandler[], options?: VsoBaseInterfaces.IRequestOptions) {
+    constructor(baseUrl: string, handlers: VsoBaseInterfaces.IRequestHandler[], options?: VsoBaseInterfaces.IRequestOptions, isTfs?: boolean) {
         super(baseUrl, handlers, 'node-Core-api', options);
+        this.isTfs = isTfs;
     }
+    public isTfs: boolean;
 
     public static readonly RESOURCE_AREA_ID = "79134c72-4a58-4b42-976c-04e7115f32bf";
 
@@ -693,17 +695,25 @@ export class CoreApi extends basem.ClientApiBase implements ICoreApi {
             };
             
             try {
-                let verData: vsom.ClientVersioningData = await this.vsoClient.getVersioningData(
-                    "5.0-preview.3",
-                    "core",
-                    "603fe2ac-9723-48b9-88ad-09305aa6c6e1",
-                    routeValues,
-                    queryValues);
-
+                let verData: vsom.ClientVersioningData;
+                if (this.isTfs) {
+                    verData = await this.vsoClient.getVersioningDataOld(
+                        "5.0-preview.3",
+                        "core",
+                        "603fe2ac-9723-48b9-88ad-09305aa6c6e1",
+                        routeValues,
+                        queryValues);
+                } else {
+                    verData = await this.vsoClient.getVersioningData(
+                        "5.0-preview.3",
+                        "core",
+                        "603fe2ac-9723-48b9-88ad-09305aa6c6e1",
+                        routeValues,
+                        queryValues);
+                }
                 let url: string = verData.requestUrl;
                 let options: restm.IRequestOptions = this.createRequestOptions('application/json', 
                                                                                 verData.apiVersion);
-
                 let res: restm.IRestResponse<CoreInterfaces.TeamProjectReference[]>;
                 res = await this.rest.get<CoreInterfaces.TeamProjectReference[]>(url, options);
 
